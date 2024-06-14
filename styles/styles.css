@@ -1,7 +1,11 @@
+/* Main Styling */
+
 body {
     position: relative;
     background-image: url(/images/bg.jpg);
 }
+
+/* Game Screen Styling */
 
 .game-container {
     margin: 0 auto;
@@ -16,4 +20,32 @@ body {
     font-size: 3rem;
     padding: 2rem;
     border-bottom: 2px solid black;
+}
+
+.game-screen {
+    margin: 2rem;
+}
+
+.game-screen .word-to-solve {
+    text-transform: uppercase;
+    letter-spacing: 1.5rem;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+/* Component Styling */
+
+button {
+    color: white;
+    font-size: large;
+    padding: 1rem;
+    border: 3px solid white;
+    border-radius: 10px;
+    background: linear-gradient(
+        179.7deg,
+        rgb(248, 126, 126) -0.5%,
+        rgb(251, 206, 143) 35.3%,
+        rgb(184, 252, 233) 67.2%,
+        rgb(118, 162, 229) 92.3%
+    );
 }
