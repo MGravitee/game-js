@@ -1,0 +1,19 @@
+body {
+    position: relative;
+    background-image: url(/images/bg.jpg);
+}
+
+.game-container {
+    margin: 0 auto;
+    background-color: cornsilk;
+    width: 37.5rem;
+    border-radius: 10px;
+    height: 30rem;
+}
+
+.game-container h1 {
+    text-align: center;
+    font-size: 3rem;
+    padding: 2rem;
+    border-bottom: 2px solid black;
+}

@@ -3,7 +3,45 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <link rel="stylesheet" href="styles/styles.css" />
+        <link rel="stylesheet" href="styles/normalize-fwd.css" />
+        <title>Stupid JS Game</title>
     </head>
-    <body></body>
+    <body>
+        <section class="game-container" id="game-container">
+            <h1 class="title">Word Unscramble!!!!</h1>
+
+            <div class="game-screen" id="game-screen">
+                <h2 class="word-to-solve">Word to Solve</h2>
+                <div class="function-things" id="functional-things">
+                    <p class="hint-1" id="hint-1">
+                        Hint 1: <span class="hint-1-txt">dfgdfgdfg</span>
+                    </p>
+                    <p class="hint-2" id="hint-2">
+                        Hint 2: <span class="hint-2-txt">gdfgdfgd</span>
+                    </p>
+                    <p class="hint-3" id="hint-3">
+                        Hint 3: <span class="hint-3-txt">gdfgdfgd</span>
+                    </p>
+                    <p class="time-main" id="time-main">
+                        Time Left: <span>00:00</span>
+                    </p>
+                </div>
+                <input
+                    type="text"
+                    class="answer-box"
+                    id="answer-box"
+                    placeholder="Type your answer here..."
+                />
+                <div class="buttons" id="buttons">
+                    <button class="shuffle-word" id="shuffle-word">
+                        Shuffle Letters
+                    </button>
+                    <button class="check-answer" id="check-answer">
+                        Check Answer
+                    </button>
+                </div>
+            </div>
+        </section>
+    </body>
 </html>
