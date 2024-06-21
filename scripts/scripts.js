@@ -353,7 +353,7 @@ const startGame = function () {
     hintThree.innerText = randomWord.hint3;
 
     //need to check the answer by checking the name object
-    correctAnswer = randomWord.name;
+    correctAnswer = randomWord.name.toLowerCase();
    
     console.log(randomWord);
 };
@@ -361,7 +361,7 @@ const startGame = function () {
 startGame();
 
 const checkAnswer = function () {
-      let playerAnswer = answerInput.value
+      let playerAnswer = answerInput.value.toLowerCase();
        //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
     if (playerAnswer !== correctAnswer) 
       return alert(`Sorry ${playerAnswer} is not the right Pokemon! Try again!`)
