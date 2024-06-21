@@ -100,7 +100,7 @@ const startGame = function () {
         letterArray[index] = letterArray[newIndex];
         letterArray[newIndex] = temp;
     }
-    wordLetters.innerText = letterArrat
+    wordLetters.innerText = letterArray.join("");
     console.log(randomWord);
 };
 
