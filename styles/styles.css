@@ -1,18 +1,20 @@
 /* pokemon font */
 
-@font-face {
+/*! cant seem to get this to work */
+/* @font-face {
     font-family: pokemon1;
-    src: url("Pokemon-Hollow.ttf");
-}
+    src: url("Pokemon-Hollow.ttf") format("ttf");
+} */
 
 /* Main Styling */
 
 body {
+    /* not sure if I need position relative but am putting it anyway */
     position: relative;
     background-image: url(/images/pokemon-bg.png);
-    cursor: url(/assets/pokeball.svg), auto;
+    /* cursor: url(/assets/pokeball.svg), auto;
+} */
 }
-
 /* Game Screen Styling */
 
 .game-container {
@@ -39,7 +41,7 @@ body {
     margin: 2rem;
 }
 
-.game-screen .word-to-solve {
+.game-screen .word-to-solve-output {
     color: #ffce00;
     text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
         1px 1px 0 #395ba1;
