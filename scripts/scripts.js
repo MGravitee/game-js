@@ -331,9 +331,10 @@ const startGame = function () {
         letterArray[newIndex] = temp;
     }
     wordLetters.innerText = letterArray.join("");
-    hintOne.innerText = letterArray.hint1;
-    hintTwo.innerText = letterArray.hint2;
-    hintThree.innerText = letterArray.hint3;
+
+    hintOne.innerText = randomWord.hint1;
+    hintTwo.innerText = randomWord.hint2;
+    hintThree.innerText = randomWord.hint3;
     console.log(randomWord);
 };
 
