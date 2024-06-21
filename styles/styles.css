@@ -1,10 +1,10 @@
 /* pokemon font */
 
 /*! cant seem to get this to work */
-/* @font-face {
+@font-face {
     font-family: pokemon1;
-    src: url("Pokemon-Hollow.ttf") format("ttf");
-} */
+    src: url(/fonts/Pokemon-Solid.ttf) format("ttf");
+}
 
 /* Main Styling */
 
@@ -86,7 +86,7 @@ body {
 /* Component Styling */
 
 .buttons button {
-    color: white;
+    color: #395ba1 ;
     font-size: 2rem;
     padding: 1rem;
     border: 5px solid #395ba1;

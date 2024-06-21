@@ -314,6 +314,12 @@ const hintOne = document.querySelector(".hint-1-output");
 const hintTwo = document.querySelector(".hint-2-output");
 const hintThree = document.querySelector(".hint-3-output");
 
+
+//countdown timer
+
+const mainTimer = document.getElementById("count-down-main");
+
+
 //answer box
 
 const answerInput = document.getElementById("answer-box")
@@ -322,41 +328,82 @@ const answerInput = document.getElementById("answer-box")
 
 const newPokemonBtn = document.getElementById("new-word-btn");
 const checkAnswerBtn = document.getElementById("check-answer-btn");
-
+const shuffleBtn = document.getElementById("check-answer-btn");
 
 // variables we need for the game
 //like the cat assignment, need to declare a variable that is empty/has no value
 
 let correctAnswer;
 
+//!timer function
+
+//! let timerInterval;
+// let timeLeft
+
+
+//! this should be to keep track of a countdown
+
+// const countDown = function () {
+//   if (timeLeft > 0) {
+//     timeLeft--;
+//   } else {
+//     clearInterval(timerInterval)
+//   }
+// };
+
+
+// this should be to start the timer
+
+const startMainTimer = function (duration) {
+  timeLeft = duration;
+  timerInterval = setInterval (countDown, 1000);
+  mainTimer.innerHTML = `${timeLeft} seconds`;
+}
+
+
+// Function to shuffle letters
+
+const shuffleLetters = function(array) {
+  for (let index = array.length - 1; index > 0; index--) {
+    let newIndex = Math.floor(Math.random() * (index + 1));
+    // Swap elements using temporary variable
+    let temp = array[index];
+    array[index] = array[newIndex];
+    array[newIndex] = temp;
+  }
+  return array;
+};
+
+
 // start game function
 
-const startGame = function () {
-    //getting random pokemon object out of pokemonList array of obj
-    let randomWord =
-        pokemonList[Math.floor(Math.random() * pokemonList.length)];
-    //splitting each letter of the name property from object.
-    let letterArray = randomWord.name.split("");
+const startGame = function() {
+  //! start timer when game starts
+  //! startMainTimer(90);
 
-    for (let index = letterArray.length - 1; index > 0; index--) {
-        let newIndex = Math.floor(Math.random() * (index + 1)); //getting a random number from newly made index, swapping elements and swaps there "position" in a temp. variable
-        let temp = letterArray[index];
-        letterArray[index] = letterArray[newIndex];
-        letterArray[newIndex] = temp;
-    }
-    //joining split/shuffled array of letters back together
-    wordLetters.innerText = letterArray.join("");
+  // Getting random pokemon object out of pokemonList array of objects
+  let randomWord = pokemonList[Math.floor(Math.random() * pokemonList.length)];
+  
+  // Splitting each letter of the name property from object
+  let letterArray = randomWord.name.split("");
+  // calling shuffle function to shuffle them
+  letterArray = shuffleLetters(letterArray);
 
-    //putting hint properties from randomWord into the DOM
-    hintOne.innerText = randomWord.hint1;
-    hintTwo.innerText = randomWord.hint2;
-    hintThree.innerText = randomWord.hint3;
+  // Joining shuffled array of letters back together
+  wordLetters.innerText = letterArray.join("");
 
-    //need to check the answer by checking the name object
-    correctAnswer = randomWord.name.toLowerCase();
-    //this is so the input field resets to blank after an answer is given 
-    answerInput.value = "";
-    console.log(randomWord);
+  // Putting hint properties from randomWord into the DOM
+  hintOne.innerText = randomWord.hint1;
+  hintTwo.innerText = randomWord.hint2;
+  hintThree.innerText = randomWord.hint3;
+
+  // Need to check the answer by checking the name object
+  correctAnswer = randomWord.name.toLowerCase();
+
+  // Resetting the input field after an answer is given
+  answerInput.value = "";
+
+  console.log(randomWord);
 };
 
 startGame();
