@@ -5,11 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="styles/styles.css" />
         <link rel="stylesheet" href="styles/normalize-fwd.css" />
+        <script defer src="scripts/pokelist.js"></script>
         <script defer src="scripts/scripts.js"></script>
         <title>Stupid JS Game</title>
     </head>
     <body>
-        <section class="game-container" id="game-container">
+        <section class="screen" id="start-screen">
+            <figure><img src="./images/pokemon-logo.png" alt="the pokemon logo"></figure>
+            <figcaption>Name Unscramble!!!</figcaption>
+            
+            <p>Gotta catch em all! The name of the game is to figure out as many Pokemon as you can until the timer runs out, if you need a hint, press the pokeball (but you only get so many per Pokemon). </p>
+
+            <button class="button" id="start-btn">Start Game</button>
+        </section>
+
+
+        
+        <section class="screen " id="game-container">
             <h1 class="title">Pokemon Unscramble!!!!</h1>
 
             <div class="game-screen" id="game-screen">
@@ -34,7 +46,7 @@
                     id="answer-box"
                     placeholder="Type your answer here..."
                 />
-                <div class="buttons" id="buttons">
+                <div class="game-buttons" id="game-buttons">
                     <button class="new-word-btn" id="new-word-btn">New Pokemon</button>
                     <button class="shuffle-btn" id="shuffle-btn">
                         Shuffle Letters

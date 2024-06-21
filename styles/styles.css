@@ -1,23 +1,65 @@
-/* pokemon font */
+/* obnoxious pokemon fonts */
 
-/*! cant seem to get this to work */
+
 @font-face {
     font-family: pokemon1;
-    src: url(/fonts/Pokemon-Solid.ttf) format("ttf");
+    src: url(../fonts/Pokemon-Solid.ttf);
 }
+@font-face {
+    font-family: pokemon2;
+    src: url(../fonts/Pokemon-Hollow.ttf);
+}
+@font-face {
+    font-family: pixelify;
+    src: url(../fonts/Pixelify.ttf);
+}
+
 
 /* Main Styling */
 
 body {
     /* not sure if I need position relative but am putting it anyway */
     position: relative;
-    background-image: url(/images/pokemon-bg.png);
-    /* cursor: url(/assets/pokeball.svg), auto;
-} */
+    background-image: url(../images/pokemon-bg.png);
+    cursor: url(../assets/pokeball.svg), auto;
 }
+
+
+
+/* Utility classes */
+
+.hide {
+    display: none !important;
+}
+
+
+/* Start Screen Styling */
+#start-screen {
+    display: flex;
+    flex-direction: column;
+}
+
+#start-screen img {
+    max-width: 35rem;
+    margin: 0 auto;
+}
+
+#start-screen p {
+    font-family: pixelify;
+    color: #395ba1;
+    text-shadow: -1px -1px 0 #ffce00, 1px -1px 0 #ffce00, -1px 1px 0 #ffce00,
+    1px 1px 0 #ffce00;
+    text-align: center;
+    font-size: 2rem;
+}
+
+
+
+
 /* Game Screen Styling */
 
-.game-container {
+
+.screen {
     margin: 0 auto;
     background-color: cornsilk;
     width: 50rem;
@@ -26,11 +68,12 @@ body {
     height: 45rem;
 }
 
-.game-container h1 {
+.title {
     color: #ffce00;
     text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
         1px 1px 0 #395ba1;
     font-family: pokemon1;
+    letter-spacing: .5rem;
     text-align: center;
     font-size: 3rem;
     padding: 2rem;
@@ -43,10 +86,11 @@ body {
 
 .game-screen .word-to-solve-output {
     color: #ffce00;
+    font-family: pokemon1;
     text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
         1px 1px 0 #395ba1;
     text-transform: uppercase;
-    letter-spacing: 2rem;
+    letter-spacing: 3rem;
     font-size: 3rem;
     text-align: center;
     outline-color: #395ba1;
@@ -58,15 +102,16 @@ body {
 }
 
 .hint-time p {
-    font-size: 1.5rem;
+    font-family: pixelify;
+    font-size: 2rem;
     margin: 1rem 1rem;
-    color: #ffce00;
-    text-shadow: -1px -1px 0 #395ba1, 1px -1px 0 #395ba1, -1px 1px 0 #395ba1,
-        1px 1px 0 #395ba1;
+    color: #395ba1;
+    text-shadow: -1px -1px 0 #ffce00, 1px -1px 0 #ffce00, -1px 1px 0 #ffce00,
+        1px 1px 0 #ffce00;
     outline-width: 2px;
 }
 
-.game-container input {
+#game-container input {
     font-size: 2rem;
     border-radius: 1rem;
     border: 5px solid #395ba1;
@@ -76,7 +121,7 @@ body {
     margin-bottom: 3rem;
 }
 
-.game-container .buttons {
+#game-container .game-buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -85,12 +130,29 @@ body {
 
 /* Component Styling */
 
-.buttons button {
+#start-screen button {
     color: #395ba1 ;
+    font-family: pokemon2;
+    font-weight: 900;
     font-size: 2rem;
     padding: 1rem;
     border: 5px solid #395ba1;
     border-radius: 10px;
     background-color: #ffce00;
     cursor: pointer;
+    margin-bottom: 2rem;
 }
+
+
+.game-buttons button {
+    color: #395ba1 ;
+    font-size: 2rem;
+    font-family: pokemon2;
+    font-weight: 900;
+    padding: 1rem;
+    border: 5px solid #395ba1;
+    border-radius: 10px;
+    background-color: #ffce00;
+    cursor: pointer;
+}
+
