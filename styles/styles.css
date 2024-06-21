@@ -1,0 +1,94 @@
+/* pokemon font */
+
+@font-face {
+    font-family: pokemon1;
+    src: url("Pokemon-Hollow.ttf");
+}
+
+/* Main Styling */
+
+body {
+    position: relative;
+    background-image: url(/images/pokemon-bg.png);
+    cursor: url(/assets/pokeball.svg), auto;
+}
+
+/* Game Screen Styling */
+
+.game-container {
+    margin: 0 auto;
+    background-color: cornsilk;
+    width: 50rem;
+    border: 1rem solid #395ba1;
+    border-radius: 10px;
+    height: 45rem;
+}
+
+.game-container h1 {
+    color: #ffce00;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
+        1px 1px 0 #395ba1;
+    font-family: pokemon1;
+    text-align: center;
+    font-size: 3rem;
+    padding: 2rem;
+    border-bottom: 2px solid black;
+}
+
+.game-screen {
+    margin: 2rem;
+}
+
+.game-screen .word-to-solve {
+    color: #ffce00;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
+        1px 1px 0 #395ba1;
+    text-transform: uppercase;
+    letter-spacing: 2rem;
+    font-size: 3rem;
+    text-align: center;
+    outline-color: #395ba1;
+    outline-width: 3px;
+}
+
+.game-screen .hint-time {
+    margin-bottom: 1rem;
+}
+
+.hint-time p {
+    font-size: 1.5rem;
+    margin: 1rem 1rem;
+    color: #ffce00;
+    text-shadow: -1px -1px 0 #395ba1, 1px -1px 0 #395ba1, -1px 1px 0 #395ba1,
+        1px 1px 0 #395ba1;
+    outline-width: 2px;
+}
+
+.game-container input {
+    font-size: 2rem;
+    border-radius: 1rem;
+    border: 5px solid #395ba1;
+    width: 100%;
+    height: 5rem;
+    outline: none;
+    margin-bottom: 3rem;
+}
+
+.game-container .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+}
+
+/* Component Styling */
+
+.buttons button {
+    color: white;
+    font-size: 2rem;
+    padding: 1rem;
+    border: 5px solid #395ba1;
+    border-radius: 10px;
+    background-color: #ffce00;
+    cursor: pointer;
+}
