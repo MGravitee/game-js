@@ -176,7 +176,7 @@ const pokemonList = [
   {
     name: "Nidorina",
     hint1: "It evolves from Nidoran♀.",
-    hint2: "It is more mature and protective than Nidoran♀.",
+    hint2: "It is more mature and protective than Nidoran.",
     hint3: "It is a Poison type Pokémon."
   },
   {
@@ -186,15 +186,15 @@ const pokemonList = [
     hint3: "It is a Poison/Ground type Pokémon."
   },
   {
-    name: "Nidoran♂",
+    name: "Nidoran",
     hint1: "It is a Poison type Pokémon.",
-    hint2: "It is more aggressive and defensive than Nidoran♀.",
+    hint2: "It is more aggressive and defensive than Nidoran.",
     hint3: "It is number 032 in the Pokédex."
   },
   {
     name: "Nidorino",
     hint1: "It evolves from Nidoran♂.",
-    hint2: "It is more powerful and aggressive than Nidoran♂.",
+    hint2: "It is more powerful and aggressive than Nidoran.",
     hint3: "It is a Poison type Pokémon."
   },
   {
@@ -307,15 +307,27 @@ const pokemonList = [
 
 const wordLetters = document.getElementById("word-to-solve-output");
 
+
 // Hints 
 
 const hintOne = document.querySelector(".hint-1-output");
 const hintTwo = document.querySelector(".hint-2-output");
 const hintThree = document.querySelector(".hint-3-output");
 
+//answer box
+
+const answerInput = document.getElementById("answer-box")
+
 //buttons
 
-const newPokemonBtn = document.getElementById("new-word-btn")
+const newPokemonBtn = document.getElementById("new-word-btn");
+const checkAnswerBtn = document.getElementById("check-answer-btn");
+
+
+// variables we need for the game
+//like the cat assignment, need to declare a variable that is empty/has no value
+
+let correctAnswer;
 
 // start game function
 
@@ -339,13 +351,38 @@ const startGame = function () {
     hintOne.innerText = randomWord.hint1;
     hintTwo.innerText = randomWord.hint2;
     hintThree.innerText = randomWord.hint3;
+
+    //need to check the answer by checking the name object
+    correctAnswer = randomWord.name.toLowerCase();
+    //this is so the input field resets to blank after an answer is given 
+    answerInput.value = "";
     console.log(randomWord);
 };
 
 startGame();
 
+const checkAnswer = function () {
+      // this is to check if the typed value is the correct answer
+      let playerAnswer = answerInput.value.toLowerCase(); 
+      // oh man finding the lowercase method was awesome but also super annoying 
+
+
+      //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent along trying other stuff
+    if (!playerAnswer) return alert ("Please enter a Pokemon name to check!");
+       
+      //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
+      if (playerAnswer !== correctAnswer) {return alert(`Sorry ${playerAnswer} is not the right Pokemon! Try again!`)
+        // else the answer is correct, yay!
+      } else {
+        alert (`You got it! ${playerAnswer.toUpperCase()} is the right Pokemon! Keep going to catch them all!`)
+        startGame();
+      }
+}
+
+
 //event listeners
 
 newPokemonBtn.addEventListener("click", startGame);
 
+checkAnswerBtn.addEventListener("click", checkAnswer)
 
