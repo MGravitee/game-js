@@ -307,15 +307,27 @@ const pokemonList = [
 
 const wordLetters = document.getElementById("word-to-solve-output");
 
+
 // Hints 
 
 const hintOne = document.querySelector(".hint-1-output");
 const hintTwo = document.querySelector(".hint-2-output");
 const hintThree = document.querySelector(".hint-3-output");
 
+//answer box
+
+const answerInput = document.getElementById("answer-box")
+
 //buttons
 
-const newPokemonBtn = document.getElementById("new-word-btn")
+const newPokemonBtn = document.getElementById("new-word-btn");
+const checkAnswerBtn = document.getElementById("check-answer-btn");
+
+
+// variables we need for the game
+//like the cat assignment, need to declare a variable that is empty/has no value
+
+let correctAnswer;
 
 // start game function
 
@@ -339,13 +351,27 @@ const startGame = function () {
     hintOne.innerText = randomWord.hint1;
     hintTwo.innerText = randomWord.hint2;
     hintThree.innerText = randomWord.hint3;
+
+    //need to check the answer by checking the name object
+    correctAnswer = randomWord.name;
+   
     console.log(randomWord);
 };
 
 startGame();
 
+const checkAnswer = function () {
+      let playerAnswer = answerInput.value
+       //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
+    if (playerAnswer !== correctAnswer) 
+      return alert(`Sorry ${playerAnswer} is not the right Pokemon! Try again!`)
+      console.log(playerAnswer);
+}
+
+
 //event listeners
 
 newPokemonBtn.addEventListener("click", startGame);
 
+checkAnswerBtn.addEventListener("click", checkAnswer)
 
