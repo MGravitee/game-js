@@ -176,7 +176,7 @@ const pokemonList = [
   {
     name: "Nidorina",
     hint1: "It evolves from Nidoran♀.",
-    hint2: "It is more mature and protective than Nidoran♀.",
+    hint2: "It is more mature and protective than Nidoran.",
     hint3: "It is a Poison type Pokémon."
   },
   {
@@ -186,15 +186,15 @@ const pokemonList = [
     hint3: "It is a Poison/Ground type Pokémon."
   },
   {
-    name: "Nidoran♂",
+    name: "Nidoran",
     hint1: "It is a Poison type Pokémon.",
-    hint2: "It is more aggressive and defensive than Nidoran♀.",
+    hint2: "It is more aggressive and defensive than Nidoran.",
     hint3: "It is number 032 in the Pokédex."
   },
   {
     name: "Nidorino",
     hint1: "It evolves from Nidoran♂.",
-    hint2: "It is more powerful and aggressive than Nidoran♂.",
+    hint2: "It is more powerful and aggressive than Nidoran.",
     hint3: "It is a Poison type Pokémon."
   },
   {
@@ -354,7 +354,8 @@ const startGame = function () {
 
     //need to check the answer by checking the name object
     correctAnswer = randomWord.name.toLowerCase();
-   
+    //this is so the input field resets to blank after an answer is given 
+    answerInput.value = "";
     console.log(randomWord);
 };
 
@@ -374,6 +375,7 @@ const checkAnswer = function () {
         // else the answer is correct, yay!
       } else {
         alert (`You got it! ${playerAnswer.toUpperCase()} is the right Pokemon! Keep going to catch them all!`)
+        startGame();
       }
 }
 
