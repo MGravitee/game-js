@@ -168,7 +168,7 @@ const pokemonList = [
     hint3: "It is a Ground type Pokémon."
   },
   {
-    name: "Nidoran♀",
+    name: "Nidoran",
     hint1: "It is a Poison type Pokémon.",
     hint2: "It has large ears and can release toxic spikes from its body.",
     hint3: "It is number 029 in the Pokédex."
@@ -313,7 +313,9 @@ const hintOne = document.querySelector(".hint-1-output");
 const hintTwo = document.querySelector(".hint-2-output");
 const hintThree = document.querySelector(".hint-3-output");
 
+//buttons
 
+const newPokemonBtn = document.getElementById("new-word-btn")
 
 // start game function
 
@@ -330,8 +332,10 @@ const startGame = function () {
         letterArray[index] = letterArray[newIndex];
         letterArray[newIndex] = temp;
     }
+    //joining split/shuffled array of letters back together
     wordLetters.innerText = letterArray.join("");
 
+    //putting hint properties from randomWord into the DOM
     hintOne.innerText = randomWord.hint1;
     hintTwo.innerText = randomWord.hint2;
     hintThree.innerText = randomWord.hint3;
@@ -339,3 +343,9 @@ const startGame = function () {
 };
 
 startGame();
+
+//event listeners
+
+newPokemonBtn.addEventListener("click", startGame);
+
+
