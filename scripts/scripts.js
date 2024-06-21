@@ -1,5 +1,19 @@
 "use strict";
 
+const wordLetters = document.getElementById("word-to-solve-output");
+
+
+const startGame = function () {
+    //getting random pokemon object out of pokemonList array of obj
+    let randomWord =
+        pokemonList[Math.floor(Math.random() * pokemonList.length)];
+    //splitting each letter of the name property from object.
+    let letterArray = randomWord.name.split("");
+
+
+
+// list of pokemon
+
 const pokemonList = [
     {
         name: "Bulbasaur",
