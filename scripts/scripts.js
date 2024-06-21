@@ -361,7 +361,9 @@ const startGame = function () {
 startGame();
 
 const checkAnswer = function () {
-      let playerAnswer = answerInput.value.toLowerCase();
+      let playerAnswer = answerInput.value.toLowerCase(); // oh man finding the lowercase method was awesome but also super annoying 
+
+    if (playerAnswer === undefined) return alert ("Please enter a Pokemon to check!")
        //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
     if (playerAnswer !== correctAnswer) 
       return alert(`Sorry ${playerAnswer} is not the right Pokemon! Try again!`)
