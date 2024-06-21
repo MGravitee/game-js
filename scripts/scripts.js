@@ -74,7 +74,7 @@ const shuffleLetters = function(array) {
 
 let letterArray = [];
 let randomWord;
-// function to grabWord from pokemonList array
+
 
 function shuffleAgain(word) {
   letterArray = word.name.split("");
@@ -86,6 +86,8 @@ function shuffleAgain(word) {
   displayedShuffledLetters.innerText = letterArray.join("");
 }
 
+
+// function to grabWord from pokemonList array
 const grabWord = function() {
 
   // Getting random pokemon object out of pokemonList array of objects
