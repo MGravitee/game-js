@@ -28,9 +28,14 @@ const checkAnswerBtn = document.getElementById("check-answer-btn");
 const shuffleBtn = document.getElementById("shuffle-btn");
 
 // variables we need for the game
-//like the cat assignment, need to declare a variable that is empty/has no value
+//like the cat assignment, need to declare a variables that is empty/has no value
 
 let correctAnswer;
+
+let letterArray = [];
+
+let randomWord;
+
 
 // timer function
 
@@ -76,8 +81,8 @@ const shuffleLetters = function(array) {
   return array;
 };
 
-let letterArray = [];
-let randomWord;
+
+//function for shuffle letters button 
 
 
 function shuffleAgain(word) {
