@@ -4,14 +4,11 @@
 
 const displayedShuffledLetters = document.getElementById("word-to-solve-output");
 
-
-
 //hint containers
 
 const hiddenHintOne = document.getElementById("hint-1");
 const hiddenHintTwo = document.getElementById("hint-2");
 const hiddenHintThree = document.getElementById("hint-3");
-
 
 // Hints 
 
@@ -19,18 +16,15 @@ const hintOne = document.querySelector(".hint-1-output");
 const hintTwo = document.querySelector(".hint-2-output");
 const hintThree = document.querySelector(".hint-3-output");
 
-
 //countdown timer
 
 const mainTimer = document.getElementById("count-down-main");
-
 
 //answer box
 
 const answerInput = document.getElementById("answer-box")
 
 //buttons
-
 
 const showHintBtn = document.getElementById("get-hint-btn");
 const newPokemonBtn = document.getElementById("new-word-btn");
