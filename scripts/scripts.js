@@ -120,6 +120,7 @@ shuffleAgain(randomWord);
   hintTwo.innerText = randomWord.hint2;
   hintThree.innerText = randomWord.hint3;
 
+
   // Need to check the answer by checking the name object
   correctAnswer = randomWord.name.toLowerCase();
 
@@ -128,9 +129,10 @@ shuffleAgain(randomWord);
 
   console.log(randomWord);
 
+  revealHints();
 };
 
-grabWord();
+
 
 const checkAnswer = function () {
       // this is to check if the typed value is the correct answer
@@ -150,11 +152,29 @@ const checkAnswer = function () {
 }
 
 
+// function to display hints via setTimeout
+
+const revealHints = function () {
+
+  setTimeout(() => {
+    hiddenHintOne.style.opacity = "1";
+  }, 3000); // Display the first hint after 3 second
+
+  setTimeout(() => {
+      hiddenHintTwo.style.opacity = "1";
+  }, 6000); // Display the second hint after 6 seconds
+
+  setTimeout(() => {
+      hiddenHintThree.style.opacity = "1";
+  }, 9000); // Display the third hint after 9 seconds
+};
+
+
 //function to display hints
 
-getHint = function () {
-  hiddenHintOne.style.display = "block";
-}
+// getHint = function () {
+//   hiddenHintOne.style.display = "block";
+// }
 
 
 //event listeners
@@ -167,7 +187,7 @@ shuffleBtn.addEventListener("click",() => {
   shuffleAgain(randomWord);
 });
 
-getHintBtn.addEventListener("click", getHint);
+// getHintBtn.addEventListener("click", getHint);
 
 
 
@@ -200,3 +220,7 @@ function createPopup(heading ,message) {
       popup.style.opacity = 1;
   }, 100);
 }
+
+grabWord();
+
+revealHints();
