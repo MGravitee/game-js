@@ -122,10 +122,8 @@ const checkAnswer = function () {
       let playerAnswer = answerInput.value.toLowerCase(); 
       // oh man finding the lowercase method was awesome but also super annoying 
 
-
       //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent along trying other stuff
     if (!playerAnswer) return createPopup("Sorry!", "Please enter a Pokémon name to check!");
-
 
       //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
       if (playerAnswer !== correctAnswer) {return createPopup("Sorry", `${playerAnswer} is not the right Pokémon! Try again!`), answerInput.value = "";
@@ -142,6 +140,7 @@ const checkAnswer = function () {
 newPokemonBtn.addEventListener("click", grabWord);
 
 checkAnswerBtn.addEventListener("click", checkAnswer)
+
 shuffleBtn.addEventListener("click",() => {
   shuffleAgain(randomWord);
 })
