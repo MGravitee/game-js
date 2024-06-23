@@ -5,6 +5,14 @@
 const displayedShuffledLetters = document.getElementById("word-to-solve-output");
 
 
+
+//hint containers
+
+const hiddenHintOne = document.getElementById("hint-1");
+const hiddenHintTwo = document.getElementById("hint-2");
+const hiddenHintThree = document.getElementById("hint-3");
+
+
 // Hints 
 
 const hintOne = document.querySelector(".hint-1-output");
@@ -23,6 +31,8 @@ const answerInput = document.getElementById("answer-box")
 
 //buttons
 
+
+const getHintBtn = document.getElementById("get-hint-btn");
 const newPokemonBtn = document.getElementById("new-word-btn");
 const checkAnswerBtn = document.getElementById("check-answer-btn");
 const shuffleBtn = document.getElementById("shuffle-btn");
@@ -140,6 +150,13 @@ const checkAnswer = function () {
 }
 
 
+//function to display hints
+
+getHint = function () {
+  hiddenHintOne.style.display = "block";
+}
+
+
 //event listeners
 
 newPokemonBtn.addEventListener("click", grabWord);
@@ -148,8 +165,9 @@ checkAnswerBtn.addEventListener("click", checkAnswer)
 
 shuffleBtn.addEventListener("click",() => {
   shuffleAgain(randomWord);
-})
+});
 
+getHintBtn.addEventListener("click", getHint);
 
 
 
@@ -182,6 +200,3 @@ function createPopup(heading ,message) {
       popup.style.opacity = 1;
   }, 100);
 }
-
-// createPopup('Hello', 'This is a popup');
-// createPopup('Hint', 'this is a hint');
