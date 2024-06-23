@@ -15,7 +15,7 @@
 }
 
 
-/* Main Styling */
+/* Main Styling ------------------------------*/
 
 body {
     /* not sure if I need position relative but am putting it anyway */
@@ -26,14 +26,17 @@ body {
 
 
 
-/* Utility classes */
+/* Utility classes------------------------------*/
 
 .hide {
     display: none !important;
 }
 
 
-/* Start Screen Styling */
+
+
+/* Start Screen Styling ------------------------------ */
+
 #start-screen {
     display: flex;
     flex-direction: column;
@@ -57,16 +60,21 @@ body {
 
 
 
-/* Game Screen Styling */
+/* Game Screen Styling ------------------------------*/
+
+/* #game-container {
+    display: flex;
+    flex-direction: column;
+} */
 
 
 .screen {
     margin: 0 auto;
     background-color: rgb(0, 0, 0, 0.8);
     width: 50rem;
+    min-height: 50rem;
     border: 1rem solid #395ba1;
     border-radius: 10px;
-    height: 45rem;
 }
 
 .title {
@@ -78,6 +86,7 @@ body {
     text-align: center;
     font-size: 3rem;
     padding: 2rem;
+    /* margin-bottom: 0; */
 }
 
 .game-screen {
@@ -95,6 +104,7 @@ body {
     text-align: center;
 }
 
+
 .game-screen .hint-time {
     margin-bottom: 1rem;
 }
@@ -109,10 +119,27 @@ body {
     outline-width: 2px;
 }
 
+.hint-time .hint {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.time-main {
+    text-align:  center;
+}
+
+/* input and buttons */
+
 #game-container input {
+    font-family: pokemon2;
+    background-color: rgb(0, 0, 0, .5);
+    color: #395ba1;
+    font-weight: 900;
+    letter-spacing: .2rem;
     font-size: 2rem;
     border-radius: 1rem;
     border: 5px solid #395ba1;
+    padding-bottom: 1rem;
     width: 100%;
     height: 5rem;
     outline: none;
@@ -126,7 +153,12 @@ body {
     gap: 3rem;
 }
 
-/* Component Styling */
+
+
+/* Component Styling ------------------------------*/
+
+
+/* startgame button */
 
 #start-screen button {
     color: #395ba1 ;
@@ -141,15 +173,24 @@ body {
     margin-bottom: 2rem;
 }
 
-/* 
-.hint-time button {
-background-image: url(../images/pokeball-for-hints-sized.png)
-background-repeat: no-repeat;
-background-position: 50% 50%;
-height: 170px;
-width: 140px;
-border: none;
-} */
+
+/* get hint button */
+
+.get-hint-btn {
+    opacity: .9;
+    height: 85px;
+    width: 70px;
+}
+
+.get-hint-btn:hover{
+opacity: 1;
+cursor: grab;
+transform: scale(1.1);
+transition: ease-in .25s;
+
+}
+
+
 
 
 .game-buttons button {
@@ -165,7 +206,7 @@ border: none;
     cursor: pointer;
 }
 
-/* Popup/Modal Styling */
+/* Popup/Modal Styling ------------------------------*/
 
 .popup {
     position: fixed;

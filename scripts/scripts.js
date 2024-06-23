@@ -5,6 +5,14 @@
 const displayedShuffledLetters = document.getElementById("word-to-solve-output");
 
 
+
+//hint containers
+
+const hiddenHintOne = document.getElementById("hint-1");
+const hiddenHintTwo = document.getElementById("hint-2");
+const hiddenHintThree = document.getElementById("hint-3");
+
+
 // Hints 
 
 const hintOne = document.querySelector(".hint-1-output");
@@ -23,6 +31,8 @@ const answerInput = document.getElementById("answer-box")
 
 //buttons
 
+
+const showHintBtn = document.getElementById("get-hint-btn");
 const newPokemonBtn = document.getElementById("new-word-btn");
 const checkAnswerBtn = document.getElementById("check-answer-btn");
 const shuffleBtn = document.getElementById("shuffle-btn");
@@ -32,12 +42,34 @@ const shuffleBtn = document.getElementById("shuffle-btn");
 
 let correctAnswer;
 
+// letterArray needs to be defined empty out here for scope otherwise shuffle letters button won't work
 let letterArray = [];
 
+// randomWord needs to be defined empty out here for scope otherwise can't grab matching hints from the right object in pokelist array
 let randomWord;
 
 
-// timer function
+//variables for showHint function
+
+let currentHintIndex = 0
+const hints = [hiddenHintOne,hiddenHintTwo, hiddenHintThree]
+
+
+// showHint function
+
+const showHint = function () {
+  if (currentHintIndex < hints.length) {
+    hints[currentHintIndex].style.opacity = "1";
+    currentHintIndex++;
+    
+  }
+};
+
+
+
+
+
+// variables for timer function
 
 let timerInterval;
 let timeLeft
@@ -63,9 +95,6 @@ const startMainTimer = function (duration) {
   mainTimer.innerHTML = `${timeLeft} seconds`;
   timerInterval = setInterval (countDown, 1000);
 }
-
-
-// hint timer
 
 
 // Function to shuffle letters
@@ -110,6 +139,13 @@ shuffleAgain(randomWord);
   hintTwo.innerText = randomWord.hint2;
   hintThree.innerText = randomWord.hint3;
 
+  // Resetting the hints and input field
+  hiddenHintOne.style.opacity = "0";
+  hiddenHintTwo.style.opacity = "0";
+  hiddenHintThree.style.opacity = "0";
+  currentHintIndex = 0;
+
+
   // Need to check the answer by checking the name object
   correctAnswer = randomWord.name.toLowerCase();
 
@@ -118,9 +154,10 @@ shuffleAgain(randomWord);
 
   console.log(randomWord);
 
+  // revealHints();
 };
 
-grabWord();
+
 
 const checkAnswer = function () {
       // this is to check if the typed value is the correct answer
@@ -140,6 +177,31 @@ const checkAnswer = function () {
 }
 
 
+// function to display hints via setTimeout
+
+// const revealHints = function () {
+
+//   setTimeout(() => {
+//     hiddenHintOne.style.opacity = "1";
+//   }, 3000); // Display the first hint after 3 second
+
+//   setTimeout(() => {
+//       hiddenHintTwo.style.opacity = "1";
+//   }, 6000); // Display the second hint after 6 seconds
+
+//   setTimeout(() => {
+//       hiddenHintThree.style.opacity = "1";
+//   }, 9000); // Display the third hint after 9 seconds
+// };
+
+
+//function to display hints
+
+// getHint = function () {
+//   hiddenHintOne.style.display = "block";
+// }
+
+
 //event listeners
 
 newPokemonBtn.addEventListener("click", grabWord);
@@ -148,8 +210,9 @@ checkAnswerBtn.addEventListener("click", checkAnswer)
 
 shuffleBtn.addEventListener("click",() => {
   shuffleAgain(randomWord);
-})
+});
 
+showHintBtn.addEventListener("click", showHint);
 
 
 
@@ -183,5 +246,6 @@ function createPopup(heading ,message) {
   }, 100);
 }
 
-// createPopup('Hello', 'This is a popup');
-// createPopup('Hint', 'this is a hint');
+grabWord();
+
+// revealHints();
