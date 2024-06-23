@@ -10,35 +10,40 @@
         <title>Stupid JS Game</title>
     </head>
     <body>
-        <section class="screen" id="start-screen">
-            <figure><img src="./images/pokemon-logo.png" alt="the pokemon logo"></figure>
-            <figcaption>Name Unscramble!!!</figcaption>
+        <!-- <section class="screen" id="start-screen">
+            <img src="./images/pokemon-logo.png" alt="the pokemon logo">
+            <h1>Unscramble!!</h1>
+
             
-            <p>Gotta catch em all! The name of the game is to figure out as many Pokemon as you can until the timer runs out, if you need a hint, press the pokeball (but you only get so many per Pokemon). </p>
+            <p>Gotta catch em all! The name of the game is to figure out as many Pokémon as you can until the timer runs out, if you need a hint, press the pokéball (but you only get so many per Pokemon). </p>
+            <p>DISCLAIMER: This will probably be pretty hard if you have never played Pokémon before...</p>
+            <p>For Education Purposes Only </p>
 
             <button class="button" id="start-btn">Start Game</button>
-        </section>
+        </section> -->
 
 
         
         <section class="screen " id="game-container">
-            <h1 class="title">Pokemon Unscramble!!!!</h1>
+            <h1 class="title">Pokémon Unscramble!!!!</h1>
 
             <div class="game-screen" id="game-screen">
                 <h2 class="word-to-solve-output" id="word-to-solve-output"></h2>
                 <div class="hint-time" id="hint-time">
-                    <p class="hint-1" id="hint-1">
+                    <div class="get-hint" id="get-hint"><img src="./images/pokeball-for-hints-sized.png" alt="pokeball for hints"></div>
+                    <p class="hint" id="hint-1">
                         Hint 1: <span class="hint-1-output"></span>
                     </p>
-                    <p class="hint-2" id="hint-2">
+                    <p class="hint" id="hint-2">
                         Hint 2: <span class="hint-2-output"></span>
                     </p>
-                    <p class="hint-3" id="hint-3">
+                    <p class="hint" id="hint-3">
                         Hint 3: <span class="hint-3-output"></span>
                     </p>
                     <p class="time-main" id="time-main">
                         Time Left: <span id="count-down-main"></span>
                     </p>
+                    
                 </div>
                 <input
                     type="text"
@@ -47,7 +52,7 @@
                     placeholder="Type your answer here..."
                 />
                 <div class="game-buttons" id="game-buttons">
-                    <button class="new-word-btn" id="new-word-btn">New Pokemon</button>
+                    <button class="new-word-btn" id="new-word-btn">New Pokémon</button>
                     <button class="shuffle-btn" id="shuffle-btn">
                         Shuffle Letters
                     </button>

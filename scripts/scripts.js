@@ -59,6 +59,10 @@ const startMainTimer = function (duration) {
   timerInterval = setInterval (countDown, 1000);
 }
 
+
+// hint timer
+
+
 // Function to shuffle letters
 
 const shuffleLetters = function(array) {
@@ -141,3 +145,38 @@ shuffleBtn.addEventListener("click",() => {
   shuffleAgain(randomWord);
 })
 
+
+
+
+
+// Popup functions
+
+function createPopup(heading ,message) {
+  const popup = document.createElement('div');
+  popup.className = 'popup';
+  // heading is h2
+  const h2 = document.createElement('h2');
+  h2.innerHTML = heading;
+  const messageElem = document.createElement('p');
+  messageElem.innerHTML = message;
+  popup.appendChild(h2);
+  popup.appendChild(messageElem);
+
+  const closeButton = document.createElement('button');
+  closeButton.innerHTML = 'Close';
+  closeButton.addEventListener('click', function() {
+      popup.style.opacity = 0;
+      setTimeout(function() {
+          popup.remove();
+      }, 1000);
+  });
+  popup.appendChild(closeButton);
+
+  document.body.appendChild(popup);
+  setTimeout(function() {
+      popup.style.opacity = 1;
+  }, 100);
+}
+
+// createPopup('Hello', 'This is a popup');
+createPopup('Hint', 'this is a hint');
