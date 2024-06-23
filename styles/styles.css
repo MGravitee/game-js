@@ -15,7 +15,7 @@
 }
 
 
-/* Main Styling */
+/* Main Styling ------------------------------*/
 
 body {
     /* not sure if I need position relative but am putting it anyway */
@@ -26,14 +26,15 @@ body {
 
 
 
-/* Utility classes */
+/* Utility classes------------------------------*/
 
 .hide {
     display: none !important;
 }
 
 
-/* Start Screen Styling */
+/* Start Screen Styling ------------------------------ */
+
 #start-screen {
     display: flex;
     flex-direction: column;
@@ -57,7 +58,7 @@ body {
 
 
 
-/* Game Screen Styling */
+/* Game Screen Styling ------------------------------*/
 
 
 .screen {
@@ -126,7 +127,15 @@ body {
     gap: 3rem;
 }
 
-/* Component Styling */
+
+
+
+
+
+/* Component Styling ------------------------------*/
+
+
+/* startgame button */
 
 #start-screen button {
     color: #395ba1 ;
@@ -141,15 +150,26 @@ body {
     margin-bottom: 2rem;
 }
 
-/* 
-.hint-time button {
-background-image: url(../images/pokeball-for-hints-sized.png)
-background-repeat: no-repeat;
-background-position: 50% 50%;
-height: 170px;
-width: 140px;
-border: none;
-} */
+
+/* get hint button */
+
+.get-hint {
+    opacity: .5;
+    height: 170px;
+    width: 140px;
+
+}
+
+
+.get-hint:hover{
+opacity: 1;
+cursor: grab;
+transform: scale(1.1);
+transition: ease-in .25s;
+
+}
+
+
 
 
 .game-buttons button {
@@ -165,7 +185,7 @@ border: none;
     cursor: pointer;
 }
 
-/* Popup/Modal Styling */
+/* Popup/Modal Styling ------------------------------*/
 
 .popup {
     position: fixed;
