@@ -124,13 +124,14 @@ const checkAnswer = function () {
 
 
       //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent along trying other stuff
-    if (!playerAnswer) return alert ("Please enter a Pokemon name to check!");
-       
+    if (!playerAnswer) return createPopup("Sorry!", "Please enter a Pokémon name to check!");
+
+
       //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
-      if (playerAnswer !== correctAnswer) {return alert(`Sorry ${playerAnswer} is not the right Pokemon! Try again!`)
+      if (playerAnswer !== correctAnswer) {return createPopup("Sorry", `${playerAnswer} is not the right Pokémon! Try again!`), answerInput.value = "";
         // else the answer is correct, yay!
       } else {
-        alert (`You got it! ${playerAnswer.toUpperCase()} is the right Pokemon! Keep going to catch them all!`)
+        createPopup ("Yay! You got it!", `${playerAnswer.toUpperCase()} is the right Pokémon! Keep going to catch them all!`)
         grabWord();
       }
 }
@@ -179,4 +180,4 @@ function createPopup(heading ,message) {
 }
 
 // createPopup('Hello', 'This is a popup');
-createPopup('Hint', 'this is a hint');
+// createPopup('Hint', 'this is a hint');
