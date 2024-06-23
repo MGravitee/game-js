@@ -59,6 +59,10 @@ const startMainTimer = function (duration) {
   timerInterval = setInterval (countDown, 1000);
 }
 
+
+// hint timer
+
+
 // Function to shuffle letters
 
 const shuffleLetters = function(array) {
@@ -74,7 +78,7 @@ const shuffleLetters = function(array) {
 
 let letterArray = [];
 let randomWord;
-// function to grabWord from pokemonList array
+
 
 function shuffleAgain(word) {
   letterArray = word.name.split("");
@@ -86,6 +90,8 @@ function shuffleAgain(word) {
   displayedShuffledLetters.innerText = letterArray.join("");
 }
 
+
+// function to grabWord from pokemonList array
 const grabWord = function() {
 
   // Getting random pokemon object out of pokemonList array of objects
@@ -118,13 +124,14 @@ const checkAnswer = function () {
 
 
       //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent along trying other stuff
-    if (!playerAnswer) return alert ("Please enter a Pokemon name to check!");
-       
+    if (!playerAnswer) return createPopup("Sorry!", "Please enter a Pokémon name to check!");
+
+
       //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
-      if (playerAnswer !== correctAnswer) {return alert(`Sorry ${playerAnswer} is not the right Pokemon! Try again!`)
+      if (playerAnswer !== correctAnswer) {return createPopup("Sorry", `${playerAnswer} is not the right Pokémon! Try again!`), answerInput.value = "";
         // else the answer is correct, yay!
       } else {
-        alert (`You got it! ${playerAnswer.toUpperCase()} is the right Pokemon! Keep going to catch them all!`)
+        createPopup ("Yay! You got it!", `${playerAnswer.toUpperCase()} is the right Pokémon! Keep going to catch them all!`)
         grabWord();
       }
 }
@@ -139,3 +146,38 @@ shuffleBtn.addEventListener("click",() => {
   shuffleAgain(randomWord);
 })
 
+
+
+
+
+// Popup functions
+
+function createPopup(heading ,message) {
+  const popup = document.createElement('div');
+  popup.className = 'popup';
+  // heading is h2
+  const h2 = document.createElement('h2');
+  h2.innerHTML = heading;
+  const messageElem = document.createElement('p');
+  messageElem.innerHTML = message;
+  popup.appendChild(h2);
+  popup.appendChild(messageElem);
+
+  const closeButton = document.createElement('button');
+  closeButton.innerHTML = 'Close';
+  closeButton.addEventListener('click', function() {
+      popup.style.opacity = 0;
+      setTimeout(function() {
+          popup.remove();
+      }, 1000);
+  });
+  popup.appendChild(closeButton);
+
+  document.body.appendChild(popup);
+  setTimeout(function() {
+      popup.style.opacity = 1;
+  }, 100);
+}
+
+// createPopup('Hello', 'This is a popup');
+// createPopup('Hint', 'this is a hint');
