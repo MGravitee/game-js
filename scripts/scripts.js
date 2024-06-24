@@ -1,7 +1,8 @@
-// Grabbing HTML elements
-  
+"use strict";
 
-// scoreboard
+// Grabbing HTML elements --------------------->
+
+// Scoreboard
 
 const playerPointsElem = document.getElementById("player-points-output")
 
@@ -65,11 +66,12 @@ const player = {
 // showHint function
 
 const showHint = function () {
+  playPokeBallAudio();
   if (currentHintIndex < hints.length) {
     hints[currentHintIndex].style.opacity = "1";
     currentHintIndex++;
   }
-  playPokeBall;
+  
 };
 
 
@@ -257,16 +259,33 @@ function createPopup(heading ,message) {
 }
 
 
+// Audio ------------------------>
+
+  
+// Audio HTML elements (made more sense to keep these together)
+
+const themeSongAudio = document.getElementById("theme-song-audio");
+const whosThatAudio = document.getElementById("whos-that-audio");
+const startGameAudio = document.getElementById("start-game-audio");
+const pokeBallAudio = document.getElementById("pokeball-audio");
 
 // Audio functions
 
-function playPokeBall () {
-  let pokeBallSound = new Audio("../assets/sounds/pokeball-sound.mp3")
-  pokeBallSound.play();
-
+function playThemeSong () {
+    themeSongAudio.play();
 }
 
+function playWhosThatAudio () {
+  whosThatAudio.play();
+}
 
+function playstartGameAudio () {
+    startGameAudio.play();
+}
+
+function playPokeBallAudio () {
+    pokeBallAudio.play();
+}
 
 
 
