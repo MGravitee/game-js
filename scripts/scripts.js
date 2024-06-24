@@ -1,5 +1,10 @@
 // Grabbing HTML elements
   
+
+// scoreboard
+
+const playerPointsElem = document.getElementById("player-points-output")
+
 // Word to solve
 
 const displayedShuffledLetters = document.getElementById("word-to-solve-output");
@@ -48,6 +53,14 @@ let randomWord;
 let currentHintIndex = 0
 const hints = [hiddenHintOne,hiddenHintTwo, hiddenHintThree]
 
+
+
+
+// player object (literally just for tracking points)
+
+const player = {
+  points: 0,
+};
 
 // showHint function
 
@@ -148,7 +161,6 @@ shuffleAgain(randomWord);
 
   console.log(randomWord);
 
-  // revealHints();
 };
 
 
@@ -166,6 +178,10 @@ const checkAnswer = function () {
         // else the answer is correct, yay!
       } else {
         createPopup ("Yay! You got it!", `${playerAnswer.toUpperCase()} is the right Pokémon! Keep going to catch them all!`)
+        //get point value money out of the randomWord o, and add it to the players points total
+        player.points += randomWord.points;
+        //add it to the players points html elem
+        playerPointsElem.innerText = player.points;
         grabWord();
       }
 }
@@ -241,5 +257,3 @@ function createPopup(heading ,message) {
 }
 
 grabWord();
-
-// revealHints();
