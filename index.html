@@ -10,23 +10,23 @@
         <title>Stupid JS Game</title>
     </head>
     <body>
-        <!-- <section class="screen" id="start-screen">
-            <img src="./images/pokemon-logo.png" alt="the pokemon logo">
-            <h1>Unscramble!!</h1>
+        <section class="screen" id="start-screen">
+            <img src="./images/pokemon-logo-sizedpng.png" alt="the pokemon logo">
+            <h1 class="start-title">Unscramble!!!</h1>
 
             
-            <p>Gotta catch em all! The name of the game is to figure out as many Pokémon as you can until the timer runs out, if you need a hint, press the pokéball (but you only get so many per Pokemon). </p>
-            <p>DISCLAIMER: This will probably be pretty hard if you have never played Pokémon before...</p>
-            <p>For Education Purposes Only </p>
+            <p>Gotta catch em all! The name of the game is to figure out as many Pokémon as you can until the timer runs out, if you need a hint, press the pokéball (but keep in mind you only get 3 hints per Pokémon). </p>
+            <p class="disclaimer" id="disclaimer">DISCLAIMER: <span> This will probably be pretty hard if you have never played Pokémon before...</span></p>
+            <p>For Education Purposes Only... please don't sue me Nintendo</p>
 
-            <button class="button" id="start-btn">Start Game</button>
-        </section> -->
+            <button class="button" id="start-game-btn">Start Game</button>
+        </section>
 
 
         
-        <section class="screen " id="game-container">
+        <section class="screen" id="game-container">
             <div class="score-board" id="score-board">
-                <p>Points:   <span class="player-points-output" id="player-points-output">0</span></p>
+                <p class="utility">Points:   <span class="player-points-output" id="player-points-output">0</span></p>
             </div>
             <h1 class="title">Pokémon Unscramble!!!!</h1>
 
@@ -44,7 +44,7 @@
                     <p class="hint" id="hint-3">
                         Hint 3: <span class="hint-3-output"></span>
                     </p>
-                    <p class="time-main" id="time-main">
+                    <p class="time-main utility" id="time-main">
                         Time Left: <span id="count-down-main"></span>
                     </p>
                     
@@ -67,4 +67,8 @@
             </div>
         </section>
     </body>
+    <audio src="./assets/sounds/theme-song.mp3" id="theme-song-audio"></audio>
+    <audio src="./assets/sounds/whos-that-pokemon.mp3" id="whos-that-audio"></audio>
+    <audio src="./assets/sounds/wild-pokemon-battle.mp3" id="start-game-audio"></audio>
+    <audio src="./assets/sounds/pokeball-sound.mp3" id="pokeball-audio"></audio>
 </html>

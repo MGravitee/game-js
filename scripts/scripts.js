@@ -1,7 +1,12 @@
-// Grabbing HTML elements
-  
+"use strict";
 
-// scoreboard
+// Grabbing HTML elements --------------------->
+
+// audio on pageload - sorry  ;)
+
+// document.addEventListener('DOMContentLoaded', playThemeSong);
+
+// Scoreboard
 
 const playerPointsElem = document.getElementById("player-points-output")
 
@@ -31,10 +36,18 @@ const answerInput = document.getElementById("answer-box")
 
 //buttons
 
+const startGameBtn = document.getElementById("start-game-btn");
 const showHintBtn = document.getElementById("get-hint-btn");
 const newPokemonBtn = document.getElementById("new-word-btn");
 const checkAnswerBtn = document.getElementById("check-answer-btn");
 const shuffleBtn = document.getElementById("shuffle-btn");
+
+
+// player object (literally just for tracking points)
+
+const player = {
+  points: 0,
+};
 
 // variables we need for the game
 //like the cat assignment, need to declare a variables that is empty/has no value
@@ -47,29 +60,34 @@ let letterArray = [];
 // randomWord needs to be defined empty out here for scope otherwise can't grab matching hints from the right object in pokelist array
 let randomWord;
 
-
 //variables for showHint function
 
 let currentHintIndex = 0
 const hints = [hiddenHintOne,hiddenHintTwo, hiddenHintThree]
 
 
+// for hint cooldown so you can't spam the button
+let hintCoolDown = false;
+const hintCoolDownDuration = 6000; 
 
 
-// player object (literally just for tracking points)
 
-const player = {
-  points: 0,
-};
 
 // showHint function
 
 const showHint = function () {
-  if (currentHintIndex < hints.length) {
-    hints[currentHintIndex].style.opacity = "1";
-    currentHintIndex++;
+    if (hintCoolDown) {
+      return;
+    }
     
+
+
+    playPokeBallAudio();
+    if (currentHintIndex < hints.length) {
+      hints[currentHintIndex].style.opacity = "1";
+      currentHintIndex++;
   }
+  
 };
 
 
@@ -134,6 +152,9 @@ function shuffleAgain(word) {
 
 // function to grabWord from pokemonList array
 const grabWord = function() {
+
+  //playing audio on game start
+  // playstartGameAudio();
 
   // Getting random pokemon object out of pokemonList array of objects
   randomWord = pokemonList[Math.floor(Math.random() * pokemonList.length)];
@@ -255,5 +276,41 @@ function createPopup(heading ,message) {
       popup.style.opacity = 1;
   }, 100);
 }
+
+
+// Audio ------------------------>
+
+  
+// Audio HTML elements (made more sense to keep these together)
+
+const themeSongAudio = document.getElementById("theme-song-audio");
+const whosThatAudio = document.getElementById("whos-that-audio");
+const startGameAudio = document.getElementById("start-game-audio");
+const pokeBallAudio = document.getElementById("pokeball-audio");
+
+// Audio functions
+
+function playThemeSong () {
+    themeSongAudio.volume = 0.5;
+    themeSongAudio.play();
+}
+
+function playWhosThatAudio () {
+  whosThatAudio.volume = 0.5;
+  whosThatAudio.play();
+}
+
+function playstartGameAudio () {
+    startGameAudio.volume = 0.5;
+    startGameAudio.play();
+}
+
+function playPokeBallAudio () {
+    pokeBallAudio.volume = 0.5;
+    pokeBallAudio.play();
+}
+
+
+
 
 grabWord();
