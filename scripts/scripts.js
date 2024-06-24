@@ -68,8 +68,8 @@ const showHint = function () {
   if (currentHintIndex < hints.length) {
     hints[currentHintIndex].style.opacity = "1";
     currentHintIndex++;
-    
   }
+  playPokeBall;
 };
 
 
@@ -255,5 +255,20 @@ function createPopup(heading ,message) {
       popup.style.opacity = 1;
   }, 100);
 }
+
+
+
+// Audio functions
+
+function playPokeBall () {
+  let pokeBallSound = new Audio("../assets/sounds/pokeball-sound.mp3")
+  pokeBallSound.play();
+
+}
+
+
+
+
+
 
 grabWord();
