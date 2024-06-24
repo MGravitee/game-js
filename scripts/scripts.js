@@ -257,5 +257,3 @@ function createPopup(heading ,message) {
 }
 
 grabWord();
-
-// revealHints();
