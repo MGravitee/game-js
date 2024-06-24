@@ -22,12 +22,43 @@ body {
     background-image: url(../images/pokemon-bg.png);
 }
 
-
+h1 {
+    color: #ffce00;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
+            1px 1px 0 #395ba1;
+    font-family: pokemon1;
+    letter-spacing: .5rem;
+    text-align: center;
+    font-size: 3rem;
+    padding: 2rem;
+}
 
 /* Utility classes------------------------------*/
 
 .hide {
     display: none !important;
+}
+
+/* Generic Screen Styling */
+
+
+.screen {
+    margin: 0 auto;
+    background-color: rgb(0, 0, 0, 0.8);
+    width: 50rem;
+    min-height: 50rem;
+    border: .5rem solid #395ba1;
+    border-radius: 10px;
+}
+
+.screen p {
+    font-family: pixelify;
+    font-size: 2rem;
+    margin: 1rem 1rem;
+    color: #395ba1;
+    /* text-shadow: -1px -1px 0 #ffce00, 1px -1px 0 #ffce00, -1px 1px 0 #ffce00,
+        1px 1px 0 #ffce00; */
+    outline-width: 2px;
 }
 
 
@@ -48,14 +79,23 @@ body {
 
 #start-screen p {
     font-family: pixelify;
-    color: #395ba1;
-    text-shadow: -1px -1px 0 #ffce00, 1px -1px 0 #ffce00, -1px 1px 0 #ffce00,
-    1px 1px 0 #ffce00;
+    color: #ffffff;
+    /* text-shadow: -1px -1px 0 #ffce00, 1px -1px 0 #ffce00, -1px 1px 0 #ffce00,
+    1px 1px 0 #ffce00; */
     text-align: center;
     font-size: 2rem;
 }
 
+.disclaimer p {
+    color: red;
+}
 
+.start-title {
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 1rem;
+}
 
 
 /* Game Screen Styling ------------------------------*/
@@ -65,26 +105,8 @@ body {
     flex-direction: column;
 } */
 
-
-
-
-.screen {
-    margin: 0 auto;
-    background-color: rgb(0, 0, 0, 0.8);
-    width: 50rem;
-    min-height: 50rem;
-    border: .5rem solid #395ba1;
-    border-radius: 10px;
-}
-
-.screen p {
-    font-family: pixelify;
-    font-size: 2rem;
-    margin: 1rem 1rem;
-    color: #395ba1;
-    text-shadow: -1px -1px 0 #ffce00, 1px -1px 0 #ffce00, -1px 1px 0 #ffce00,
-        1px 1px 0 #ffce00;
-    outline-width: 2px;
+.utility {
+    color: #ffce00;
 }
 
 
@@ -178,6 +200,7 @@ body {
 /* startgame button */
 
 #start-screen button {
+    align-self: center;
     color: #395ba1 ;
     font-family: pokemon2;
     font-weight: 900;
@@ -185,9 +208,12 @@ body {
     padding: 1rem;
     border: 5px solid #395ba1;
     border-radius: 10px;
-    background-color: #ffce00;
+    background-color: #FFCB05;
     cursor: pointer;
-    margin-bottom: 2rem;
+    margin-bottom:1rem;
+    padding-bottom: 2rem;
+    width: fit-content;
+
 }
 
 
