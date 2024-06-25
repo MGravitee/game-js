@@ -59,7 +59,7 @@ const startGame = function () {
   gameScreen.classList.remove("hide");
   playWhosThatAudio();
   playStartGameAudioDelayed();
-  startMainTimer(90);
+  startMainTimer(60);
   grabWord();
 };
 
@@ -108,7 +108,12 @@ const showHint = function () {
       hints[currentHintIndex].style.opacity = "1";
       currentHintIndex++;
   }
-  
+  hintCoolDown = true;
+  showHintBtn.classList.add("disabled");
+      setTimeout(()=> {
+        hintCoolDown = false;
+        showHintBtn.classList.remove("disabled");
+        }, hintCoolDownDuration);
 };
 
 
