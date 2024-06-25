@@ -6,6 +6,14 @@
 
 // document.addEventListener('DOMContentLoaded', playThemeSong);
 
+//game screens
+
+const startScreen = document.getElementById("start-screen");
+const gameScreen = document.getElementById("game-container");
+
+
+
+
 // Scoreboard
 
 const playerPointsElem = document.getElementById("player-points-output")
@@ -41,6 +49,19 @@ const showHintBtn = document.getElementById("get-hint-btn");
 const newPokemonBtn = document.getElementById("new-word-btn");
 const checkAnswerBtn = document.getElementById("check-answer-btn");
 const shuffleBtn = document.getElementById("shuffle-btn");
+
+
+// start game function 
+
+const startGame = function () {
+  startScreen.classList.add("hide");
+  gameScreen.classList.remove("hide");
+  playWhosThatAudio();
+  playStartGameAudioDelayed();
+  startMainTimer(90);
+  grabWord();
+};
+
 
 
 // player object (literally just for tracking points)
@@ -235,15 +256,14 @@ const checkAnswer = function () {
 
 //event listeners
 
+startGameBtn.addEventListener("click", startGame);
 newPokemonBtn.addEventListener("click", grabWord);
-
 checkAnswerBtn.addEventListener("click", checkAnswer)
-
 shuffleBtn.addEventListener("click",() => {
   shuffleAgain(randomWord);
 });
-
 showHintBtn.addEventListener("click", showHint);
+
 
 
 
@@ -278,6 +298,9 @@ function createPopup(heading ,message) {
 }
 
 
+
+
+
 // Audio ------------------------>
 
   
@@ -300,9 +323,12 @@ function playWhosThatAudio () {
   whosThatAudio.play();
 }
 
-function playstartGameAudio () {
+function playStartGameAudioDelayed () {
+  setTimeout(() => {
     startGameAudio.volume = 0.5;
+    startGameAudio.loop = true;
     startGameAudio.play();
+},3000);
 }
 
 function playPokeBallAudio () {
@@ -313,4 +339,4 @@ function playPokeBallAudio () {
 
 
 
-grabWord();
+// grabWord();
