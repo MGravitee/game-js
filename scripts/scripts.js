@@ -129,7 +129,7 @@ const countDown = function () {
     timeLeft--;
     mainTimer.innerHTML = `${timeLeft} seconds`;
   } else {
-    clearInterval(timerInterval)
+    gameEnd();
   }
 };
 
