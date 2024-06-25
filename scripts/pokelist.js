@@ -196,7 +196,7 @@ const pokemonList = [
       points: 1
   },
   {
-      name: "Nidoran♀",
+      name: "Nidoran",
       hint1: "Poison type",
       hint2: "Female counterpart",
       hint3: "Evolves into Nidorina",
@@ -217,7 +217,7 @@ const pokemonList = [
       points: 1
   },
   {
-      name: "Nidoran♂",
+      name: "Nidoran",
       hint1: "Poison type",
       hint2: "Male counterpart",
       hint3: "Evolves into Nidorino",

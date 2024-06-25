@@ -59,7 +59,7 @@ const startGame = function () {
   gameScreen.classList.remove("hide");
   playWhosThatAudio();
   playStartGameAudioDelayed();
-  startMainTimer(60);
+  //!!! startMainTimer(60);
   grabWord();
 };
 
@@ -109,10 +109,13 @@ const showHint = function () {
       currentHintIndex++;
   }
   hintCoolDown = true;
+
   showHintBtn.classList.add("disabled");
+  showHintBtn.classList.add("cool-down")
       setTimeout(()=> {
         hintCoolDown = false;
         showHintBtn.classList.remove("disabled");
+        showHintBtn.classList.remove("cool-down");
         }, hintCoolDownDuration);
 };
 
@@ -134,7 +137,7 @@ const countDown = function () {
     timeLeft--;
     mainTimer.innerHTML = `${timeLeft} seconds`;
   } else {
-    gameEnd();
+    //!!! gameEnd();
   }
 };
 
@@ -356,4 +359,4 @@ function playEndGameAudio () {
 
 
 
-// grabWord();
+grabWord();
