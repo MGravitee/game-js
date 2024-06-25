@@ -10,6 +10,7 @@
 
 const startScreen = document.getElementById("start-screen");
 const gameScreen = document.getElementById("game-container");
+const gameEndScreen = document.getElementById("game-end-screen");
 
 
 
@@ -101,7 +102,6 @@ const showHint = function () {
       return;
     }
     
-
 
     playPokeBallAudio();
     if (currentHintIndex < hints.length) {
@@ -229,6 +229,13 @@ const checkAnswer = function () {
 }
 
 
+const gameEnd = function () {
+  gameScreen.classList.add("hide");
+  gameEndScreen.classList.remove("hide");
+  playEndGameAudio();
+}
+
+
 // function to display hints via setTimeout
 
 // const revealHints = function () {
@@ -310,6 +317,7 @@ const themeSongAudio = document.getElementById("theme-song-audio");
 const whosThatAudio = document.getElementById("whos-that-audio");
 const startGameAudio = document.getElementById("start-game-audio");
 const pokeBallAudio = document.getElementById("pokeball-audio");
+const endGameAudio = document.getElementById("game-end-audio");
 
 // Audio functions
 
@@ -336,6 +344,10 @@ function playPokeBallAudio () {
     pokeBallAudio.play();
 }
 
+function playEndGameAudio () {
+  startGameAudio.pause();
+  endGameAudio.play();
+}
 
 
 
