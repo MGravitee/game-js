@@ -116,6 +116,7 @@ const showHint = function () {
         hintCoolDown = false;
         showHintBtn.classList.remove("disabled");
         showHintBtn.classList.remove("cool-down");
+
         }, hintCoolDownDuration);
 };
 
