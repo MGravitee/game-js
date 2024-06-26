@@ -359,3 +359,53 @@ font-size: 2rem;
     border-radius: 10px;
     cursor: pointer;
 }
+/* hint popup styles */
+
+.player-popup {
+    padding: 0 1rem;
+    transform: translateX(-300px);
+  }
+  
+  .player-popup:first-child {
+    padding-top: 1rem;
+  }
+  
+  .player-popup h1,
+  .player-popup h2 {
+    margin: 10px;
+  }
+  
+  .player-popup h2 {
+    margin-bottom: 0;
+    font-size: 3rem;
+  }
+  
+  .player-popup img {
+    transform: rotate(90deg);
+    margin-top: -5px;
+    margin-left: 25px;
+  }
+  
+  .pop-in {
+    animation-duration: 5s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-name: pop-in-anim;
+  }
+  
+  @keyframes pop-in-anim {
+    0% {
+      transform: translateX(-300px);
+    }
+    20% {
+      transform: translateX(0px);
+    }
+    70% {
+      transform: translateX(0px);
+    }
+    100% {
+      transform: translateX(-300px);
+    }
+  }
+  
