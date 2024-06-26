@@ -47,7 +47,7 @@ h1 {
     transform: translate(-50%);
     background-color: rgb(0, 0, 0, 0.8);
     width: 50rem;
-    min-height: 50rem;
+    min-height: 25rem;
     border: 0.5rem solid #395ba1;
     border-radius: 10px;
 }
@@ -204,6 +204,41 @@ h1 {
     justify-content: center;
     gap: 3rem;
 }
+
+
+/* End Game Screen Styling -------------------------*/
+
+#game-end-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+#game-end-screen p {
+color: #ffffff;
+font-size: 2rem;
+}
+
+
+#game-end-screen button {
+    align-self: center;
+    color: #395ba1;
+    font-family: pokemon2;
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    padding: 1rem;
+    border: 5px solid #395ba1;
+    border-radius: 10px;
+    background-color: #ffcb05;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    padding-bottom: 2rem;
+    width: fit-content;
+}
+
 
 /* Component Styling ------------------------------*/
 

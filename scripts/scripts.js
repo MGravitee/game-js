@@ -24,7 +24,7 @@ const playerPointsElem = document.getElementById("player-points-output")
 
 const displayedShuffledLetters = document.getElementById("word-to-solve-output");
 
-//hint containers
+//Hint containers
 
 const hiddenHintOne = document.getElementById("hint-1");
 const hiddenHintTwo = document.getElementById("hint-2");
@@ -36,13 +36,18 @@ const hintOne = document.querySelector(".hint-1-output");
 const hintTwo = document.querySelector(".hint-2-output");
 const hintThree = document.querySelector(".hint-3-output");
 
-//countdown timer
+//Countdown timer
 
 const mainTimer = document.getElementById("count-down-main");
 
-//answer box
+//Answer text box
 
 const answerInput = document.getElementById("answer-box")
+
+// Endgame text output
+
+//ountdown timer
+const endGameScore = document.getElementById("game-end-txt-output");
 
 //buttons
 
@@ -51,6 +56,7 @@ const showHintBtn = document.getElementById("get-hint-btn");
 const newPokemonBtn = document.getElementById("new-word-btn");
 const checkAnswerBtn = document.getElementById("check-answer-btn");
 const shuffleBtn = document.getElementById("shuffle-btn");
+const playAgainBtn = document.getElementById("play-again-btn");
 
 
 // start game function 
@@ -246,6 +252,9 @@ const gameEnd = function () {
   playEndGameAudio();
 }
 
+const playAgain = function () {
+  window.location.reload();
+}
 
 // function to display hints via setTimeout
 
@@ -281,6 +290,7 @@ shuffleBtn.addEventListener("click",() => {
   shuffleAgain(randomWord);
 });
 showHintBtn.addEventListener("click", showHint);
+playAgainBtn.addEventListener("click", playAgain);
 
 
 
