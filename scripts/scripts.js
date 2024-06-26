@@ -17,6 +17,7 @@ const gameEndScreen = document.getElementById("game-end-screen");
 
 // Scoreboard
 
+const scoreBoardElem = document.getElementById("score-board")
 const playerPointsElem = document.getElementById("player-points-output")
 
 // Word to solve
@@ -56,6 +57,7 @@ const shuffleBtn = document.getElementById("shuffle-btn");
 
 const startGame = function () {
   startScreen.classList.add("hide");
+  scoreBoardElem.classList.remove("hide");
   gameScreen.classList.remove("hide");
   playWhosThatAudio();
   playStartGameAudioDelayed();

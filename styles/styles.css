@@ -13,7 +13,6 @@
     src: url(../fonts/Pixelify.ttf);
 }
 
-
 /* Main Styling ------------------------------*/
 
 body {
@@ -25,9 +24,9 @@ body {
 h1 {
     color: #ffce00;
     text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
-            1px 1px 0 #395ba1;
+        1px 1px 0 #395ba1;
     font-family: pokemon1;
-    letter-spacing: .5rem;
+    letter-spacing: 0.5rem;
     text-align: center;
     font-size: 3rem;
     padding: 2rem;
@@ -41,13 +40,15 @@ h1 {
 
 /* Generic Screen Styling */
 
-
 .screen {
-    margin: 0 auto;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%);
     background-color: rgb(0, 0, 0, 0.8);
     width: 50rem;
     min-height: 50rem;
-    border: .5rem solid #395ba1;
+    border: 0.5rem solid #395ba1;
     border-radius: 10px;
 }
 
@@ -60,9 +61,6 @@ h1 {
         1px 1px 0 #ffce00; */
     outline-width: 2px;
 }
-
-
-
 
 /* Start Screen Styling ------------------------------ */
 
@@ -97,7 +95,6 @@ h1 {
     padding-bottom: 1rem;
 }
 
-
 /* Game Screen Styling ------------------------------*/
 
 /* #game-container {
@@ -106,14 +103,15 @@ h1 {
 } */
 
 .title {
-    color: #FFCB05;
+    color: #ffcb05;
     text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
         1px 1px 0 #395ba1;
     font-family: pokemon1;
-    letter-spacing: .5rem;
+    letter-spacing: 0.5rem;
     text-align: center;
     font-size: 3rem;
     padding: 2rem;
+    margin-top: 0;
     /* margin-bottom: 0; */
 }
 
@@ -122,27 +120,43 @@ h1 {
 }
 
 .score-board {
+    position: absolute;
+    top: 350px;
+    left: px;
     display: flex;
-    background-color: rgb(255, 255, 255, .5);
-    width: 180px;
-    height: 90px;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255, 0.5);
+    width: 200px;
+    height: 150px;
     border-radius: 10px;
+    justify-content: center;
+}
+
+.score-board p {
+    font-family: pixelify;
+    letter-spacing: 0.25rem;
+    color: #ffffff;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
+        1px 1px 0 #395ba1;
+    text-align: center;
+    font-size: 3rem;
+    margin: 0;
 }
 
 .score-board .utility {
-    color: #FFCB05
+    color: #ffcb05;
 }
 
 .player-points-output {
     font-family: pokemon2;
     font-weight: 900;
     color: red;
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
 }
 
 .game-screen .word-to-solve-output {
-    color: #FFCB05;
+    color: #ffcb05;
     font-family: pixelify;
     text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
         1px 1px 0 #395ba1;
@@ -152,11 +166,9 @@ h1 {
     text-align: center;
 }
 
-
 .game-screen .hint-time {
     margin-bottom: 1rem;
 }
-
 
 .hint-time .hint {
     opacity: 0;
@@ -164,7 +176,7 @@ h1 {
 }
 
 .time-main {
-    text-align:  center;
+    text-align: center;
     color: #ffffff;
 }
 
@@ -172,13 +184,13 @@ h1 {
 
 #game-container input {
     font-family: pokemon2;
-    background-color: rgb(0, 0, 0, .5);
+    background-color: rgb(0, 0, 0, 0.5);
     color: #395ba1;
     font-weight: 900;
-    letter-spacing: .2rem;
+    letter-spacing: 0.2rem;
     font-size: 2rem;
     border-radius: 1rem;
-    border: 5px solid #FFCB05;
+    border: 5px solid #ffcb05;
     padding-bottom: 1rem;
     width: 100%;
     height: 5rem;
@@ -193,64 +205,57 @@ h1 {
     gap: 3rem;
 }
 
-
-
 /* Component Styling ------------------------------*/
-
 
 /* startgame button */
 
 #start-screen button {
     align-self: center;
-    color: #395ba1 ;
+    color: #395ba1;
     font-family: pokemon2;
     font-weight: 900;
     font-size: 2rem;
     padding: 1rem;
     border: 5px solid #395ba1;
     border-radius: 10px;
-    background-color: #FFCB05;
+    background-color: #ffcb05;
     cursor: pointer;
-    margin-bottom:1rem;
+    margin-bottom: 1rem;
     padding-bottom: 2rem;
     width: fit-content;
-
 }
-
 
 /* get hint button */
 
 .get-hint-btn {
-    opacity: .9;
+    opacity: 0.9;
     height: 85px;
     width: 70px;
 }
 
-.get-hint-btn:hover{
-opacity: 1;
-cursor: grab;
-transform: scale(1.1);
-transition: ease-in .25s;
-
+.get-hint-btn:hover {
+    opacity: 1;
+    cursor: grab;
+    transform: scale(1.1);
+    transition: ease-in 0.25s;
 }
 
 .cool-down {
-    opacity: .5;
-    cursor:not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
     transform: scale(0.5);
-    transition: ease-in .3s;
-        
+    transition: ease-in 0.3s;
 }
 
 .cool-down:hover {
-    opacity: .5;
-    cursor:not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
     transform: scale(0.5);
-    transition: ease-in .3s;
+    transition: ease-in 0.3s;
 }
 
 .game-buttons button {
-    color: #395ba1 ;
+    color: #395ba1;
     font-size: 2rem;
     font-family: pokemon2;
     font-weight: 900;
@@ -273,17 +278,17 @@ transition: ease-in .25s;
     flex-direction: column;
     gap: 1rem;
     transform: translate(-50%, -50%);
-    background-color: rgb(0, 0, 0,.8);
+    background-color: rgb(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
     border: 5px solid #395ba1;
-    box-shadow: 0 0 10px rgba(0, 0, 0,);
+    box-shadow: 0 0 10px rgba(0, 0, 0);
     opacity: 0;
     transition: opacity 1s;
 }
 .popup h2 {
     font-size: 2.5rem;
-    letter-spacing: .25rem;
+    letter-spacing: 0.25rem;
     text-align: center;
     margin: 0;
     padding-bottom: 1rem;
