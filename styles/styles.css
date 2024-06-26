@@ -169,11 +169,11 @@ h1 {
 .game-screen .hint-time {
     margin-bottom: 1rem;
 }
-
+/* 
 .hint-time .hint {
     opacity: 0;
     transition: opacity 1s ease-in-out;
-}
+} */
 
 .time-main {
     text-align: center;
