@@ -6,15 +6,25 @@
 
 // document.addEventListener('DOMContentLoaded', playThemeSong);
 
+//game screens
+
+const startScreen = document.getElementById("start-screen");
+const gameScreen = document.getElementById("game-container");
+const gameEndScreen = document.getElementById("game-end-screen");
+
+
+
+
 // Scoreboard
 
+const scoreBoardElem = document.getElementById("score-board")
 const playerPointsElem = document.getElementById("player-points-output")
 
 // Word to solve
 
 const displayedShuffledLetters = document.getElementById("word-to-solve-output");
 
-//hint containers
+//Hint containers
 
 const hiddenHintOne = document.getElementById("hint-1");
 const hiddenHintTwo = document.getElementById("hint-2");
@@ -26,13 +36,18 @@ const hintOne = document.querySelector(".hint-1-output");
 const hintTwo = document.querySelector(".hint-2-output");
 const hintThree = document.querySelector(".hint-3-output");
 
-//countdown timer
+//Countdown timer
 
 const mainTimer = document.getElementById("count-down-main");
 
-//answer box
+//Answer text box
 
 const answerInput = document.getElementById("answer-box")
+
+// Endgame text output
+
+//ountdown timer
+const endGameScore = document.getElementById("game-end-txt-output");
 
 //buttons
 
@@ -41,6 +56,21 @@ const showHintBtn = document.getElementById("get-hint-btn");
 const newPokemonBtn = document.getElementById("new-word-btn");
 const checkAnswerBtn = document.getElementById("check-answer-btn");
 const shuffleBtn = document.getElementById("shuffle-btn");
+const playAgainBtn = document.getElementById("play-again-btn");
+
+
+// start game function 
+
+const startGame = function () {
+  startScreen.classList.add("hide");
+  scoreBoardElem.classList.remove("hide");
+  gameScreen.classList.remove("hide");
+  playWhosThatAudio();
+  playStartGameAudioDelayed();
+  //!!! startMainTimer(60);
+  grabWord();
+};
+
 
 
 // player object (literally just for tracking points)
@@ -81,13 +111,21 @@ const showHint = function () {
     }
     
 
-
     playPokeBallAudio();
     if (currentHintIndex < hints.length) {
       hints[currentHintIndex].style.opacity = "1";
       currentHintIndex++;
   }
-  
+  hintCoolDown = true;
+
+  showHintBtn.classList.add("disabled");
+  showHintBtn.classList.add("cool-down")
+      setTimeout(()=> {
+        hintCoolDown = false;
+        showHintBtn.classList.remove("disabled");
+        showHintBtn.classList.remove("cool-down");
+
+        }, hintCoolDownDuration);
 };
 
 
@@ -108,7 +146,7 @@ const countDown = function () {
     timeLeft--;
     mainTimer.innerHTML = `${timeLeft} seconds`;
   } else {
-    clearInterval(timerInterval)
+    //!!! gameEnd();
   }
 };
 
@@ -208,6 +246,16 @@ const checkAnswer = function () {
 }
 
 
+const gameEnd = function () {
+  gameScreen.classList.add("hide");
+  gameEndScreen.classList.remove("hide");
+  playEndGameAudio();
+}
+
+const playAgain = function () {
+  window.location.reload();
+}
+
 // function to display hints via setTimeout
 
 // const revealHints = function () {
@@ -235,15 +283,15 @@ const checkAnswer = function () {
 
 //event listeners
 
+startGameBtn.addEventListener("click", startGame);
 newPokemonBtn.addEventListener("click", grabWord);
-
 checkAnswerBtn.addEventListener("click", checkAnswer)
-
 shuffleBtn.addEventListener("click",() => {
   shuffleAgain(randomWord);
 });
-
 showHintBtn.addEventListener("click", showHint);
+playAgainBtn.addEventListener("click", playAgain);
+
 
 
 
@@ -278,6 +326,9 @@ function createPopup(heading ,message) {
 }
 
 
+
+
+
 // Audio ------------------------>
 
   
@@ -287,6 +338,7 @@ const themeSongAudio = document.getElementById("theme-song-audio");
 const whosThatAudio = document.getElementById("whos-that-audio");
 const startGameAudio = document.getElementById("start-game-audio");
 const pokeBallAudio = document.getElementById("pokeball-audio");
+const endGameAudio = document.getElementById("game-end-audio");
 
 // Audio functions
 
@@ -300,9 +352,12 @@ function playWhosThatAudio () {
   whosThatAudio.play();
 }
 
-function playstartGameAudio () {
+function playStartGameAudioDelayed () {
+  setTimeout(() => {
     startGameAudio.volume = 0.5;
+    startGameAudio.loop = true;
     startGameAudio.play();
+},3000);
 }
 
 function playPokeBallAudio () {
@@ -310,6 +365,10 @@ function playPokeBallAudio () {
     pokeBallAudio.play();
 }
 
+function playEndGameAudio () {
+  startGameAudio.pause();
+  endGameAudio.play();
+}
 
 
 

@@ -23,11 +23,11 @@
         </section>
 
 
-        
-        <section class="screen" id="game-container">
-            <div class="score-board" id="score-board">
-                <p class="utility">Points:   <span class="player-points-output" id="player-points-output">0</span></p>
-            </div>
+        <div class="score-board hide" id="score-board">
+            <p class="utility">SCORE:</p>
+            <span class="player-points-output" id="player-points-output">0</span>
+        </div>
+        <section class="screen hide" id="game-container">
             <h1 class="title">Pokémon Unscramble!!!!</h1>
 
             <div class="game-screen" id="game-screen">
@@ -44,31 +44,43 @@
                     <p class="hint" id="hint-3">
                         Hint 3: <span class="hint-3-output"></span>
                     </p>
-                    <p class="time-main utility" id="time-main">
-                        Time Left: <span id="count-down-main"></span>
+                    <p class="time-main" id="time-main">
+                        Time Left: <span class="count-down-main" id="count-down-main"></span>
                     </p>
                     
                 </div>
-                <input
-                    type="text"
-                    class="answer-box"
-                    id="answer-box"
-                    placeholder="Type your answer here..."
-                />
-                <div class="game-buttons" id="game-buttons">
-                    <button class="new-word-btn" id="new-word-btn">New Pokémon</button>
-                    <button class="shuffle-btn" id="shuffle-btn">
+                <!-- <form> -->
+                    <input
+                        type="text"
+                        class="answer-box"
+                        id="answer-box"
+                        placeholder="Type your answer here..."
+                        />
+                    <div class="game-buttons" id="game-buttons">
+                        <button class="new-word-btn" id="new-word-btn">New Pokémon</button>
+                        <button class="shuffle-btn" id="shuffle-btn">
                         Shuffle Letters
-                    </button>
-                    <button class="check-answer-btn" id="check-answer-btn">
+                        </button>
+                        <button  type="submit" class="check-answer-btn" id="check-answer-btn">
                         Check Answer
-                    </button>
-                </div>
+                        </button>
+                    </div>
+                <!-- </form>     -->
             </div>
+        </section>
+
+        <section class="screen" id="game-end-screen">
+        <p class="game-over-txt-output" id="game-end-txt-output">jhgjhgj</p>
+        <button class="play-again-btn" id="play-again-btn">Play Again!</button>
+
+
+
+
         </section>
     </body>
     <audio src="./assets/sounds/theme-song.mp3" id="theme-song-audio"></audio>
     <audio src="./assets/sounds/whos-that-pokemon.mp3" id="whos-that-audio"></audio>
     <audio src="./assets/sounds/wild-pokemon-battle.mp3" id="start-game-audio"></audio>
     <audio src="./assets/sounds/pokeball-sound.mp3" id="pokeball-audio"></audio>
+    <audio src="./assets/sounds/victory.mp3" id="game-end-audio"></audio>
 </html>
