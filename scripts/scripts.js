@@ -114,28 +114,28 @@ const showHint = function () {
 const hint = hints.shift();
 console.log(hints);
   if (hint) {
-    const playerPopUp = document.createElement("div");
-    playerPopUp.classList.add("player-popup", "pop-in");
-    playerPopUp.innerHTML = `<h2>${hint}</h2>`;
+    const hintPopUp = document.createElement("div");
+    hintPopUp.classList.add("hint-popup", "slide-in");
+    hintPopUp.innerHTML = `<h2>${hint}</h2>`;
     console.log(hint);
-      playerPopUp.addEventListener("animationend", () => {
-      playerPopUp.remove();
+        hintPopUp.addEventListener("animationend", () => {
+        hintPopUp.remove();
     });
     setTimeout(() => {
-      playerPopUp.remove();
+        hintPopUp.remove();
     }, 6000);
-    hintOverlay.append(playerPopUp);
+    hintOverlay.append(hintPopUp);
     playPokeBallAudio(); // Play hint sound 
 
    // Set the cooldown flag to true
     hintCoolDown = true;
-    showHintBtn.classList.add('disabled'); // this may be unecessary but doing it anyway
-    showHintBtn.classList.add("cool-down");
+    showHintBtn.classList.toggle('disabled'); // this may be unecessary but doing it anyway
+    showHintBtn.classList.toggle("cool-down");
     // Reset the cooldown flag after the cooldown duration
     setTimeout(() => {
       hintCoolDown = false;
-      showHintBtn.classList.remove('disabled');
-      showHintBtn.classList.remove("cool-down"); 
+      showHintBtn.classList.toggle('disabled');
+      showHintBtn.classList.toggle("cool-down"); 
     }, hintCoolDownDuration);
 }
 };
