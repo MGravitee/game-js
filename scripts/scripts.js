@@ -88,14 +88,11 @@ let letterArray = [];
 // randomWord needs to be defined empty out here for scope otherwise can't grab matching hints from the right object in pokelist array
 let randomWord;
 
-
-
-
 //variables for showHint function
 
-let hintOne
-let hintTwo
-let hintThree
+let hintOne;
+let hintTwo;
+let hintThree;
 
 let currentHintIndex = 0;
 const hints = [];
@@ -107,37 +104,37 @@ const hintCoolDownDuration = 4000;
 // showHint function
 
 const showHint = function () {
-  if (hintCoolDown) {
-    return;
-  }
+    if (hintCoolDown) {
+        return;
+    }
 
-const hint = hints.shift();
-console.log(hints);
-  if (hint) {
-    const hintPopUp = document.createElement("div");
-    hintPopUp.classList.add("hint-popup", "slide-in");
-    hintPopUp.innerHTML = `<h2>${hint}</h2>`;
-    console.log(hint);
+    const hint = hints.shift();
+    console.log(hints);
+    if (hint) {
+        const hintPopUp = document.createElement("div");
+        hintPopUp.classList.add("hint-popup", "slide-in");
+        hintPopUp.innerHTML = `<h2>${hint}</h2>`;
+        console.log(hint);
         hintPopUp.addEventListener("animationend", () => {
-        hintPopUp.remove();
-    });
-    setTimeout(() => {
-        hintPopUp.remove();
-    }, 6000);
-    hintOverlay.append(hintPopUp);
-    playPokeBallAudio(); // Play hint sound 
+            hintPopUp.remove();
+        });
+        setTimeout(() => {
+            hintPopUp.remove();
+        }, 6000);
+        hintOverlay.append(hintPopUp);
+        playPokeBallAudio(); // Play hint sound
 
-   // Set the cooldown flag to true
-    hintCoolDown = true;
-    showHintBtn.classList.toggle('disabled'); // this may be unecessary but doing it anyway
-    showHintBtn.classList.toggle("cool-down");
-    // Reset the cooldown flag after the cooldown duration
-    setTimeout(() => {
-      hintCoolDown = false;
-      showHintBtn.classList.toggle('disabled');
-      showHintBtn.classList.toggle("cool-down"); 
-    }, hintCoolDownDuration);
-}
+        // Set the cooldown flag to true
+        hintCoolDown = true;
+        showHintBtn.classList.toggle("disabled"); // this may be unecessary but doing it anyway
+        showHintBtn.classList.toggle("cool-down");
+        // Reset the cooldown flag after the cooldown duration
+        setTimeout(() => {
+            hintCoolDown = false;
+            showHintBtn.classList.toggle("disabled");
+            showHintBtn.classList.toggle("cool-down");
+        }, hintCoolDownDuration);
+    }
 };
 
 // const showHint = function () {
@@ -223,15 +220,14 @@ const grabWord = function () {
     shuffleAgain(randomWord);
 
     // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
-    
+
     hintOne = randomWord.hint1;
     hints.push(hintOne);
     hintTwo = randomWord.hint2;
     hints.push(hintTwo);
     hintThree = randomWord.hint3;
     hints.push(hintThree);
-  
-    
+
     // hintOne.innerText = randomWord.hint1;
     // hintTwo.innerText = randomWord.hint2;
     // hintThree.innerText = randomWord.hint3;
@@ -240,7 +236,7 @@ const grabWord = function () {
     // hiddenHintOne.style.opacity = "0";
     // hiddenHintTwo.style.opacity = "0";
     // hiddenHintThree.style.opacity = "0";
-    // currentHintIndex = 0;
+    currentHintIndex = 0;
 
     // Need to check the answer by checking the name object
     correctAnswer = randomWord.name.toLowerCase();
