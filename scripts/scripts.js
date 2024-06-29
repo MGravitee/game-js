@@ -324,31 +324,39 @@ playAgainBtn.addEventListener("click", playAgain);
 // Popup functions
 
 function createPopup(heading, message) {
-    const popup = document.createElement("div");
-    popup.className = "popup";
+    const popUp = document.createElement("div");
+    popUp.className = "popup";
     // heading is h2
     const h2 = document.createElement("h2");
     h2.innerHTML = heading;
     const messageElem = document.createElement("p");
     messageElem.innerHTML = message;
-    popup.appendChild(h2);
-    popup.appendChild(messageElem);
+    popUp.appendChild(h2);
+    popUp.appendChild(messageElem);
 
     const closeButton = document.createElement("button");
     closeButton.innerHTML = "Close";
     closeButton.addEventListener("click", function () {
-        popup.style.opacity = 0;
+        popUp.style.opacity = 0;
         setTimeout(function () {
             popup.remove();
         }, 1000);
     });
-    popup.appendChild(closeButton);
+    popUp.appendChild(closeButton);
 
-    document.body.appendChild(popup);
+    document.body.appendChild(popUp);
     setTimeout(function () {
-        popup.style.opacity = 1;
+        popUp.style.opacity = 1;
     }, 100);
 }
+
+// closeButton.addEventListener("keydown", function (event) {
+//     if(event.key === "Enter") {    popup.style.opacity = 0;
+//         setTimeout(function () {
+//             popup.remove();
+//         }, 1000);
+//     }});
+
 
 // Audio ------------------------>
 
@@ -359,6 +367,7 @@ const whosThatAudio = document.getElementById("whos-that-audio");
 const startGameAudio = document.getElementById("start-game-audio");
 const pokeBallAudio = document.getElementById("pokeball-audio");
 const endGameAudio = document.getElementById("game-end-audio");
+const shuffleAudio = document.getElementById("shuffle-audio");
 
 // Audio functions
 
@@ -383,6 +392,10 @@ function playStartGameAudioDelayed() {
 function playPokeBallAudio() {
     pokeBallAudio.volume = 0.5;
     pokeBallAudio.play();
+}
+function playShuffleAudio() {
+    shuffleAudio.volume = 0.5;
+    shuffleAudio.play();
 }
 
 function playEndGameAudio() {
