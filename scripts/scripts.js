@@ -128,6 +128,8 @@ const showHint = function () {
         hintCoolDown = true;
         showHintBtn.classList.toggle("disabled"); // this may be unecessary but doing it anyway
         showHintBtn.classList.toggle("cool-down");
+        // showHintBtn.classList.add("pop-in");
+        // showHintBtn.classList.add("second-hint");
         // Reset the cooldown flag after the cooldown duration
         setTimeout(() => {
             hintCoolDown = false;
@@ -219,6 +221,10 @@ const grabWord = function () {
     // Splitting each letter of the name property from object
     shuffleAgain(randomWord);
 
+    // resetting the hints array to 0 so that hints from previous pokemon are discarded before new ones are pushed 
+
+    hints.length = 0;
+    
     // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
 
     hintOne = randomWord.hint1;
@@ -228,14 +234,6 @@ const grabWord = function () {
     hintThree = randomWord.hint3;
     hints.push(hintThree);
 
-    // hintOne.innerText = randomWord.hint1;
-    // hintTwo.innerText = randomWord.hint2;
-    // hintThree.innerText = randomWord.hint3;
-
-    // // Resetting the hints and input field
-    // hiddenHintOne.style.opacity = "0";
-    // hiddenHintTwo.style.opacity = "0";
-    // hiddenHintThree.style.opacity = "0";
     currentHintIndex = 0;
 
     // Need to check the answer by checking the name object

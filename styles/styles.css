@@ -275,6 +275,9 @@ font-size: 2rem;
     transition: ease-in 0.25s;
 }
 
+.second-hint {
+    margin: 0 auto;
+}
 .cool-down {
     opacity: 0.5;
     cursor: not-allowed;
@@ -406,3 +409,33 @@ font-size: 2rem;
         transform: translateY(-300px);
       }
 }
+
+/* Hint button shifting over animation */
+
+.pop-in {
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-name: pop-in-anim;
+  }
+  
+  @keyframes pop-in-anim {
+    0% {
+      transform: translateX(0px);
+    }
+    20% {
+      transform: translateX(0px);
+    }
+    70% {
+      transform: translateX(0px);
+    }
+    100% {
+      transform: translateX(+300px);
+    }
+  }
+
+  .second-hint {
+    margin: 0 auto;
+}
+
