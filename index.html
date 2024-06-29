@@ -10,77 +10,102 @@
         <title>Stupid JS Game</title>
     </head>
     <body>
-        <section class="screen" id="start-screen">
-            <img src="./images/pokemon-logo-sizedpng.png" alt="the pokemon logo">
+        <div class="hint-overlay" id="hint-overlay"></div>
+
+        <section class="screen hide" id="start-screen">
+            <img
+                src="./images/pokemon-logo-sizedpng.png"
+                alt="the pokemon logo"
+            />
             <h1 class="start-title">Unscramble!!!</h1>
 
-            
-            <p>Gotta catch em all! The name of the game is to figure out as many Pokémon as you can until the timer runs out, if you need a hint, press the pokéball (but keep in mind you only get 3 hints per Pokémon). </p>
-            <p class="disclaimer" id="disclaimer">DISCLAIMER: <span> This will probably be pretty hard if you have never played Pokémon before...</span></p>
-            <p>For Education Purposes Only... please don't sue me Nintendo</p>
+            <p>
+                Gotta catch em all! The name of the game is to figure out as
+                many Pokémon as you can until the timer runs out, if you need a
+                hint, press the pokéball (but keep in mind you only get 3 hints
+                per Pokémon).
+            </p>
+            <p class="disclaimer" id="disclaimer">
+                DISCLAIMER:
+                <span>
+                    This will probably be pretty hard if you have never played
+                    Pokémon before...</span
+                >
+            </p>
+            <p class="education" id="education">For Education Purposes Only... please don't sue me Nintendo</p>
 
             <button class="button" id="start-game-btn">Start Game</button>
         </section>
 
-
-        <div class="score-board hide" id="score-board">
+        <div class="score-board" id="score-board">
             <p class="utility">SCORE:</p>
-            <span class="player-points-output" id="player-points-output">0</span>
+            <span class="player-points-output" id="player-points-output"
+                >0</span
+            >
         </div>
-        <section class="screen hide" id="game-container">
+        <section class="screen" id="game-container">
             <h1 class="title">Pokémon Unscramble!!!!</h1>
 
             <div class="game-screen" id="game-screen">
                 <h2 class="word-to-solve-output" id="word-to-solve-output"></h2>
                 <div class="hint-time" id="hint-time">
-                    <div class="get-hint-btn" id="get-hint-btn"><img src="./images/pokeball-for-hints-sized.png" alt="pokeball for hints">
+                    <div class="get-hint-btn" id="get-hint-btn">
+                        <img
+                            src="./images/pokeball-for-hints-sized.png"
+                            alt="pokeball for hints"
+                        />
                     </div>
-                    <p class="hint" id="hint-1">
-                        Hint 1: <span class="hint-1-output"></span>
-                    </p>
-                    <p class="hint" id="hint-2">
-                        Hint 2: <span class="hint-2-output"></span>
-                    </p>
-                    <p class="hint" id="hint-3">
-                        Hint 3: <span class="hint-3-output"></span>
-                    </p>
                     <p class="time-main" id="time-main">
-                        Time Left: <span class="count-down-main" id="count-down-main"></span>
+                        Time Left:
+                        <span
+                            class="count-down-main"
+                            id="count-down-main"
+                        ></span>
                     </p>
-                    
                 </div>
                 <!-- <form> -->
-                    <input
-                        type="text"
-                        class="answer-box"
-                        id="answer-box"
-                        placeholder="Type your answer here..."
-                        />
-                    <div class="game-buttons" id="game-buttons">
-                        <button class="new-word-btn" id="new-word-btn">New Pokémon</button>
-                        <button class="shuffle-btn" id="shuffle-btn">
+                <input
+                    type="text"
+                    class="answer-box"
+                    id="answer-box"
+                    placeholder="Type your answer here..."
+                />
+                <div class="game-buttons" id="game-buttons">
+                    <button class="new-word-btn" id="new-word-btn">
+                        New Pokémon
+                    </button>
+                    <button class="shuffle-btn" id="shuffle-btn">
                         Shuffle Letters
-                        </button>
-                        <button  type="submit" class="check-answer-btn" id="check-answer-btn">
+                    </button>
+                    <button
+                        type="submit"
+                        class="check-answer-btn"
+                        id="check-answer-btn"
+                    >
                         Check Answer
-                        </button>
-                    </div>
+                    </button>
+                </div>
                 <!-- </form>     -->
             </div>
         </section>
 
-        <section class="screen" id="game-end-screen">
-        <p class="game-over-txt-output" id="game-end-txt-output">jhgjhgj</p>
-        <button class="play-again-btn" id="play-again-btn">Play Again!</button>
-
-
-
-
+        <section class="screen hide" id="game-end-screen">
+            <p class="game-over-txt-output" id="game-end-txt-output">jhgjhgj</p>
+            <button class="play-again-btn" id="play-again-btn">
+                Play Again!
+            </button>
         </section>
     </body>
     <audio src="./assets/sounds/theme-song.mp3" id="theme-song-audio"></audio>
-    <audio src="./assets/sounds/whos-that-pokemon.mp3" id="whos-that-audio"></audio>
-    <audio src="./assets/sounds/wild-pokemon-battle.mp3" id="start-game-audio"></audio>
+    <audio
+        src="./assets/sounds/whos-that-pokemon.mp3"
+        id="whos-that-audio"
+    ></audio>
+    <audio
+        src="./assets/sounds/wild-pokemon-battle.mp3"
+        id="start-game-audio"
+    ></audio>
     <audio src="./assets/sounds/pokeball-sound.mp3" id="pokeball-audio"></audio>
     <audio src="./assets/sounds/victory.mp3" id="game-end-audio"></audio>
+    <audio src="./assets/sounds/shuffling.mp3" id="shuffle-audio"></audio>
 </html>

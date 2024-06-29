@@ -12,29 +12,30 @@ const startScreen = document.getElementById("start-screen");
 const gameScreen = document.getElementById("game-container");
 const gameEndScreen = document.getElementById("game-end-screen");
 
-
-
-
 // Scoreboard
 
-const scoreBoardElem = document.getElementById("score-board")
-const playerPointsElem = document.getElementById("player-points-output")
+const scoreBoardElem = document.getElementById("score-board");
+const playerPointsElem = document.getElementById("player-points-output");
 
 // Word to solve
 
-const displayedShuffledLetters = document.getElementById("word-to-solve-output");
+const displayedShuffledLetters = document.getElementById(
+    "word-to-solve-output"
+);
 
 //Hint containers
 
-const hiddenHintOne = document.getElementById("hint-1");
-const hiddenHintTwo = document.getElementById("hint-2");
-const hiddenHintThree = document.getElementById("hint-3");
+const hintOverlay = document.getElementById("hint-overlay");
 
-// Hints 
+// const hiddenHintOne = document.getElementById("hint-1");
+// const hiddenHintTwo = document.getElementById("hint-2");
+// const hiddenHintThree = document.getElementById("hint-3");
 
-const hintOne = document.querySelector(".hint-1-output");
-const hintTwo = document.querySelector(".hint-2-output");
-const hintThree = document.querySelector(".hint-3-output");
+// Hints
+
+// const hintOne = document.querySelector(".hint-1-output");
+// const hintTwo = document.querySelector(".hint-2-output");
+// const hintThree = document.querySelector(".hint-3-output");
 
 //Countdown timer
 
@@ -42,7 +43,7 @@ const mainTimer = document.getElementById("count-down-main");
 
 //Answer text box
 
-const answerInput = document.getElementById("answer-box")
+const answerInput = document.getElementById("answer-box");
 
 // Endgame text output
 
@@ -58,25 +59,22 @@ const checkAnswerBtn = document.getElementById("check-answer-btn");
 const shuffleBtn = document.getElementById("shuffle-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 
-
-// start game function 
+// start game function
 
 const startGame = function () {
-  startScreen.classList.add("hide");
-  scoreBoardElem.classList.remove("hide");
-  gameScreen.classList.remove("hide");
-  playWhosThatAudio();
-  playStartGameAudioDelayed();
-  //!!! startMainTimer(60);
-  grabWord();
+    startScreen.classList.add("hide");
+    scoreBoardElem.classList.remove("hide");
+    gameScreen.classList.remove("hide");
+    playWhosThatAudio();
+    playStartGameAudioDelayed();
+    //!!! startMainTimer(60);
+    grabWord();
 };
-
-
 
 // player object (literally just for tracking points)
 
 const player = {
-  points: 0,
+    points: 0,
 };
 
 // variables we need for the game
@@ -92,169 +90,202 @@ let randomWord;
 
 //variables for showHint function
 
-let currentHintIndex = 0
-const hints = [hiddenHintOne,hiddenHintTwo, hiddenHintThree]
+let hintOne;
+let hintTwo;
+let hintThree;
 
+let currentHintIndex = 0;
+const hints = [];
 
 // for hint cooldown so you can't spam the button
 let hintCoolDown = false;
-const hintCoolDownDuration = 6000; 
-
-
-
+const hintCoolDownDuration = 4000;
 
 // showHint function
 
 const showHint = function () {
     if (hintCoolDown) {
-      return;
+        return;
     }
-    
 
-    playPokeBallAudio();
-    if (currentHintIndex < hints.length) {
-      hints[currentHintIndex].style.opacity = "1";
-      currentHintIndex++;
-  }
-  hintCoolDown = true;
+    const hint = hints.shift();
+    console.log(hints);
+    if (hint) {
+        const hintPopUp = document.createElement("div");
+        hintPopUp.classList.add("hint-popup", "slide-in");
+        hintPopUp.innerHTML = `<h2>${hint}</h2>`;
+        console.log(hint);
+        hintPopUp.addEventListener("animationend", () => {
+            hintPopUp.remove();
+        });
+        setTimeout(() => {
+            hintPopUp.remove();
+        }, 6000);
+        hintOverlay.append(hintPopUp);
+        playPokeBallAudio(); // Play hint sound
 
-  showHintBtn.classList.add("disabled");
-  showHintBtn.classList.add("cool-down")
-      setTimeout(()=> {
-        hintCoolDown = false;
-        showHintBtn.classList.remove("disabled");
-        showHintBtn.classList.remove("cool-down");
-
+        // Set the cooldown flag to true
+        hintCoolDown = true;
+        showHintBtn.classList.toggle("disabled"); // this may be unecessary but doing it anyway
+        showHintBtn.classList.toggle("cool-down");
+        // showHintBtn.classList.add("pop-in");
+        // showHintBtn.classList.add("second-hint");
+        // Reset the cooldown flag after the cooldown duration
+        setTimeout(() => {
+            hintCoolDown = false;
+            showHintBtn.classList.toggle("disabled");
+            showHintBtn.classList.toggle("cool-down");
         }, hintCoolDownDuration);
+    }
 };
 
+// const showHint = function () {
+//     if (hintCoolDown) {
+//         return;
+//     }
 
+//     playPokeBallAudio();
+//     if (currentHintIndex < hints.length) {
+//         hints[currentHintIndex].style.opacity = "1";
+//         currentHintIndex++;
+//     }
+//     hintCoolDown = true;
 
-
+//     showHintBtn.classList.add("disabled");
+//     showHintBtn.classList.add("cool-down");
+//     setTimeout(() => {
+//         hintCoolDown = false;
+//         showHintBtn.classList.remove("disabled");
+//         showHintBtn.classList.remove("cool-down");
+//     }, hintCoolDownDuration);
+// };
 
 // variables for timer function
 
 let timerInterval;
-let timeLeft
-
+let timeLeft;
 
 //  this should be to keep track of a countdown
 
 const countDown = function () {
-  console.log(timeLeft);
-  if (timeLeft > 0) {
-    timeLeft--;
-    mainTimer.innerHTML = `${timeLeft} seconds`;
-  } else {
-    //!!! gameEnd();
-  }
+    console.log(timeLeft);
+    if (timeLeft > 0) {
+        timeLeft--;
+        mainTimer.innerHTML = `${timeLeft} seconds`;
+    } else {
+        //!!! gameEnd();
+    }
 };
-
 
 //  this should be to start the timer
 
 const startMainTimer = function (duration) {
-  timeLeft = duration;
-  mainTimer.innerHTML = `${timeLeft} seconds`;
-  timerInterval = setInterval (countDown, 1000);
-}
-
+    timeLeft = duration;
+    mainTimer.innerHTML = `${timeLeft} seconds`;
+    timerInterval = setInterval(countDown, 1000);
+};
 
 // Function to shuffle letters
 
-const shuffleLetters = function(array) {
-  for (let index = array.length - 1; index > 0; index--) {
-    let newIndex = Math.floor(Math.random() * (index + 1));
-    // Swap elements using temporary variable
-    let temp = array[index];
-    array[index] = array[newIndex];
-    array[newIndex] = temp;
-  }
-  return array;
+const shuffleLetters = function (array) {
+    for (let index = array.length - 1; index > 0; index--) {
+        let newIndex = Math.floor(Math.random() * (index + 1));
+        // Swap elements using temporary variable
+        let temp = array[index];
+        array[index] = array[newIndex];
+        array[newIndex] = temp;
+    }
+    return array;
 };
 
-
-//function for shuffle letters button 
-
+//function for shuffle letters button
 
 function shuffleAgain(word) {
-  letterArray = word.name.split("");
-  // calling shuffle function to shuffle them
-  // shuffleLetters(letterArray);
- letterArray = shuffleLetters(letterArray);
+    letterArray = word.name.split("");
+    // calling shuffle function to shuffle them
+    // shuffleLetters(letterArray);
+    letterArray = shuffleLetters(letterArray);
 
-  // Joining shuffled array of letters back together
-  displayedShuffledLetters.innerText = letterArray.join("");
+    // Joining shuffled array of letters back together
+    displayedShuffledLetters.innerText = letterArray.join("");
 }
 
-
 // function to grabWord from pokemonList array
-const grabWord = function() {
+const grabWord = function () {
+    //playing audio on game start
+    // playstartGameAudio();
 
-  //playing audio on game start
-  // playstartGameAudio();
+    // Getting random pokemon object out of pokemonList array of objects
+    randomWord = pokemonList[Math.floor(Math.random() * pokemonList.length)];
 
-  // Getting random pokemon object out of pokemonList array of objects
-  randomWord = pokemonList[Math.floor(Math.random() * pokemonList.length)];
-  
-  // Splitting each letter of the name property from object
-shuffleAgain(randomWord);
+    // Splitting each letter of the name property from object
+    shuffleAgain(randomWord);
 
-  // Putting hint properties from randomWord into the DOM
-  hintOne.innerText = randomWord.hint1;
-  hintTwo.innerText = randomWord.hint2;
-  hintThree.innerText = randomWord.hint3;
+    // resetting the hints array to 0 so that hints from previous pokemon are discarded before new ones are pushed 
 
-  // Resetting the hints and input field
-  hiddenHintOne.style.opacity = "0";
-  hiddenHintTwo.style.opacity = "0";
-  hiddenHintThree.style.opacity = "0";
-  currentHintIndex = 0;
+    hints.length = 0;
+    
+    // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
 
+    hintOne = randomWord.hint1;
+    hints.push(hintOne);
+    hintTwo = randomWord.hint2;
+    hints.push(hintTwo);
+    hintThree = randomWord.hint3;
+    hints.push(hintThree);
 
-  // Need to check the answer by checking the name object
-  correctAnswer = randomWord.name.toLowerCase();
+    currentHintIndex = 0;
 
-  // Resetting the input field after an answer is given
-  answerInput.value = "";
+    // Need to check the answer by checking the name object
+    correctAnswer = randomWord.name.toLowerCase();
 
-  console.log(randomWord);
+    // Resetting the input field after an answer is given
+    answerInput.value = "";
 
+    console.log(randomWord);
 };
 
-
-
 const checkAnswer = function () {
-      // this is to check if the typed value is the correct answer
-      let playerAnswer = answerInput.value.toLowerCase(); 
-      // oh man finding the lowercase method was awesome but also super annoying 
+    // this is to check if the typed value is the correct answer
+    let playerAnswer = answerInput.value.toLowerCase();
+    // oh man finding the lowercase method was awesome but also super annoying
 
-      //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent along trying other stuff
-    if (!playerAnswer) return createPopup("Sorry!", "Please enter a Pokémon name to check!");
+    //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent along trying other stuff
+    if (!playerAnswer)
+        return createPopup("Sorry!", "Please enter a Pokémon name to check!");
 
-      //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
-      if (playerAnswer !== correctAnswer) {return createPopup("Sorry", `${playerAnswer} is not the right Pokémon! Try again!`), answerInput.value = "";
+    //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
+    if (playerAnswer !== correctAnswer) {
+        return (
+            createPopup(
+                "Sorry",
+                `${playerAnswer} is not the right Pokémon! Try again!`
+            ),
+            (answerInput.value = "")
+        );
         // else the answer is correct, yay!
-      } else {
-        createPopup ("Yay! You got it!", `${playerAnswer.toUpperCase()} is the right Pokémon! Keep going to catch them all!`)
+    } else {
+        createPopup(
+            "Yay! You got it!",
+            `${playerAnswer.toUpperCase()} is the right Pokémon! Keep going to catch them all!`
+        );
         //get point value money out of the randomWord o, and add it to the players points total
         player.points += randomWord.points;
         //add it to the players points html elem
         playerPointsElem.innerText = player.points;
         grabWord();
-      }
-}
-
+    }
+};
 
 const gameEnd = function () {
-  gameScreen.classList.add("hide");
-  gameEndScreen.classList.remove("hide");
-  playEndGameAudio();
-}
+    gameScreen.classList.add("hide");
+    gameEndScreen.classList.remove("hide");
+    playEndGameAudio();
+};
 
 const playAgain = function () {
-  window.location.reload();
-}
+    window.location.reload();
+};
 
 // function to display hints via setTimeout
 
@@ -273,65 +304,62 @@ const playAgain = function () {
 //   }, 9000); // Display the third hint after 9 seconds
 // };
 
-
 //function to display hints
 
 // getHint = function () {
 //   hiddenHintOne.style.display = "block";
 // }
 
-
 //event listeners
 
 startGameBtn.addEventListener("click", startGame);
 newPokemonBtn.addEventListener("click", grabWord);
-checkAnswerBtn.addEventListener("click", checkAnswer)
-shuffleBtn.addEventListener("click",() => {
-  shuffleAgain(randomWord);
+checkAnswerBtn.addEventListener("click", checkAnswer);
+shuffleBtn.addEventListener("click", () => {
+    shuffleAgain(randomWord);
 });
 showHintBtn.addEventListener("click", showHint);
 playAgainBtn.addEventListener("click", playAgain);
 
-
-
-
-
 // Popup functions
 
-function createPopup(heading ,message) {
-  const popup = document.createElement('div');
-  popup.className = 'popup';
-  // heading is h2
-  const h2 = document.createElement('h2');
-  h2.innerHTML = heading;
-  const messageElem = document.createElement('p');
-  messageElem.innerHTML = message;
-  popup.appendChild(h2);
-  popup.appendChild(messageElem);
+function createPopup(heading, message) {
+    const popUp = document.createElement("div");
+    popUp.className = "popup";
+    // heading is h2
+    const h2 = document.createElement("h2");
+    h2.innerHTML = heading;
+    const messageElem = document.createElement("p");
+    messageElem.innerHTML = message;
+    popUp.appendChild(h2);
+    popUp.appendChild(messageElem);
 
-  const closeButton = document.createElement('button');
-  closeButton.innerHTML = 'Close';
-  closeButton.addEventListener('click', function() {
-      popup.style.opacity = 0;
-      setTimeout(function() {
-          popup.remove();
-      }, 1000);
-  });
-  popup.appendChild(closeButton);
+    const closeButton = document.createElement("button");
+    closeButton.innerHTML = "Close";
+    closeButton.addEventListener("click", function () {
+        popUp.style.opacity = 0;
+        setTimeout(function () {
+            popup.remove();
+        }, 1000);
+    });
+    popUp.appendChild(closeButton);
 
-  document.body.appendChild(popup);
-  setTimeout(function() {
-      popup.style.opacity = 1;
-  }, 100);
+    document.body.appendChild(popUp);
+    setTimeout(function () {
+        popUp.style.opacity = 1;
+    }, 100);
 }
 
-
-
+// closeButton.addEventListener("keydown", function (event) {
+//     if(event.key === "Enter") {    popup.style.opacity = 0;
+//         setTimeout(function () {
+//             popup.remove();
+//         }, 1000);
+//     }});
 
 
 // Audio ------------------------>
 
-  
 // Audio HTML elements (made more sense to keep these together)
 
 const themeSongAudio = document.getElementById("theme-song-audio");
@@ -339,37 +367,40 @@ const whosThatAudio = document.getElementById("whos-that-audio");
 const startGameAudio = document.getElementById("start-game-audio");
 const pokeBallAudio = document.getElementById("pokeball-audio");
 const endGameAudio = document.getElementById("game-end-audio");
+const shuffleAudio = document.getElementById("shuffle-audio");
 
 // Audio functions
 
-function playThemeSong () {
+function playThemeSong() {
     themeSongAudio.volume = 0.5;
     themeSongAudio.play();
 }
 
-function playWhosThatAudio () {
-  whosThatAudio.volume = 0.5;
-  whosThatAudio.play();
+function playWhosThatAudio() {
+    whosThatAudio.volume = 0.5;
+    whosThatAudio.play();
 }
 
-function playStartGameAudioDelayed () {
-  setTimeout(() => {
-    startGameAudio.volume = 0.5;
-    startGameAudio.loop = true;
-    startGameAudio.play();
-},3000);
+function playStartGameAudioDelayed() {
+    setTimeout(() => {
+        startGameAudio.volume = 0.5;
+        startGameAudio.loop = true;
+        startGameAudio.play();
+    }, 3000);
 }
 
-function playPokeBallAudio () {
+function playPokeBallAudio() {
     pokeBallAudio.volume = 0.5;
     pokeBallAudio.play();
 }
-
-function playEndGameAudio () {
-  startGameAudio.pause();
-  endGameAudio.play();
+function playShuffleAudio() {
+    shuffleAudio.volume = 0.5;
+    shuffleAudio.play();
 }
 
-
+function playEndGameAudio() {
+    startGameAudio.pause();
+    endGameAudio.play();
+}
 
 grabWord();
