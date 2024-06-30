@@ -97,17 +97,52 @@ const hintCoolDownDuration = 4000;
 
 // showHint function
 
+// function showHint() {
+//     if (hints.length === 0) {
+//         // No more hints available, keep the button disabled
+//         console.log('No more hints available.');
+//         showHintBtn.disabled = true;
+//         showHintBtn.classList.add ("cool-down");
+//         return;
+//     }
+
+//     // Display the next hint
+//     const nextHint = hints.shift();
+//     const hintPopUp = document.createElement("div");
+//         hintPopUp.classList.add("hint-popup", "slide-in");
+//         hintPopUp.innerHTML = `<h2>${nextHint}</h2>`;
+//         console.log(nextHint);
+//         hintPopUp.addEventListener("animationend", () => {
+//             hintPopUp.remove();
+//         });
+//         setTimeout(() => {
+//             hintPopUp.remove();
+//         }, 6000);
+//         hintOverlay.append(hintPopUp);
+//         playAudio(pokeBallAudio, 0.5); // playing hint sound 
+
+//          // Disable the button
+//         showHintBtn.disabled = true;
+//         showHintBtn.classList.add ("cool-down");
+//     // Re-enable the button after 6 seconds if there are more hints
+//     if (hints.length > 0) {
+//         setTimeout(() => {
+//             showHintBtn.disabled = false;
+//         }, 6000);
+//     }
+// };
+
 const showHint = function () {
-    if (hintCoolDown) {
+    if (hints.length === 0) {
+        showHintBtn.classList.add ("disabled");
+        showHintBtn.classList.add ("cool-down");
+        
+    } if (hintCoolDown) {
         return;
     }
     const nextHint = hints.shift();
     console.log(hints);
-    // if (hints.length === 0) {
-    //     hintCoolDown = true;
-    //     showHintBtn.classList.toggle("disabled"); // this may be unecessary but doing it anyway
-    //     showHintBtn.classList.toggle("cool-down");
-    // } 
+
     if (nextHint) {
         const hintPopUp = document.createElement("div");
         hintPopUp.classList.add("hint-popup", "slide-in");
@@ -124,17 +159,18 @@ const showHint = function () {
 
         // Set the cooldown flag to true
         hintCoolDown = true;
-        showHintBtn.classList.toggle("disabled"); // this may be unecessary but doing it anyway
-        showHintBtn.classList.toggle("cool-down");
-        // showHintBtn.classList.add("pop-in");
-        // showHintBtn.classList.add("second-hint");
+        showHintBtn.classList.add ("disabled"); // this may be unecessary but doing it anyway
+        showHintBtn.classList.add ("cool-down");
         // Reset the cooldown flag after the cooldown duration
+            if (hints.length === 0) {
+                return
+            } else {
         setTimeout(() => {
             hintCoolDown = false;
-            showHintBtn.classList.toggle("disabled");
-            showHintBtn.classList.toggle("cool-down");
+            showHintBtn.classList.remove ("disabled");
+            showHintBtn.classList.remove ("cool-down");
         }, hintCoolDownDuration);
-    }
+    }}
 };
 
 // const showHint = function () {
@@ -170,10 +206,14 @@ function countDown  () {
     if (timeLeft == 0) {
         clearInterval (timerInterval);
         gameEnd();
-    } if (timeLeft > 0) {
+    }  if (timeLeft > 0) {
         timeLeft--;
         mainTimer.innerHTML = `${timeLeft} seconds`;
-    } 
+    }  if (timeLeft <= 30) {
+            mainTimer.style.color = "#ffcb05";
+    }  if (timeLeft <= 10) {
+            mainTimer.style.color = "#ff0000";
+    }
     
 };
 

@@ -151,7 +151,7 @@ body button:hover {
 
 .score-board {
     position: absolute;
-    top: 350px;
+    top: 250px;
     right: 80%;
     display: flex;
     flex-direction: column;
@@ -173,14 +173,10 @@ body button:hover {
     margin: 0;
 }
 
-.score-board .utility {
-    color: #ffcb05;
-}
-
 .player-points-output {
     font-family: pokemon2;
     font-weight: 900;
-    color: red;
+    color: #ff0000;
     font-size: 3rem;
     text-align: center;
 }
@@ -205,17 +201,19 @@ body button:hover {
     text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
         1px 1px 0 #395ba1;
     color: #ffffff;
+    font-size: 3rem;
 }
 
 .game-screen .count-down-main {
-    color: red;
+    color: #09ff00;
     text-shadow: none;
 }
+
 /* input and buttons */
 
 #game-container input {
     font-family: pokemon2;
-    background-color: rgb(0, 0, 0, 0.5);
+    background-color: #00000080;
     color: #ffcb05;
     font-weight: 900;
     letter-spacing: 0.2rem;
@@ -234,6 +232,39 @@ body button:hover {
     flex-direction: row;
     justify-content: center;
     gap: 3rem;
+}
+
+/* get hint button */
+
+.get-hint-btn {
+    margin: 0 auto;
+    opacity: 0.9;
+    height: 85px;
+    width: 70px;
+}
+
+.get-hint-btn:hover {
+    opacity: 1;
+    cursor: grab;
+    transform: scale(1.1);
+    transition: ease-in 0.25s;
+}
+
+.second-hint {
+    margin: 0 auto;
+}
+.cool-down {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(0.5);
+    transition: ease-in 0.3s;
+}
+
+.cool-down:hover {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(0.5);
+    transition: ease-in 0.3s;
 }
 
 /* End Game Screen Styling -------------------------*/
@@ -265,37 +296,6 @@ body button:hover {
     width: fit-content;
 }
 
-/* get hint button */
-
-.get-hint-btn {
-    opacity: 0.9;
-    height: 85px;
-    width: 70px;
-}
-
-.get-hint-btn:hover {
-    opacity: 1;
-    cursor: grab;
-    transform: scale(1.1);
-    transition: ease-in 0.25s;
-}
-
-.second-hint {
-    margin: 0 auto;
-}
-.cool-down {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: scale(0.5);
-    transition: ease-in 0.3s;
-}
-
-.cool-down:hover {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: scale(0.5);
-    transition: ease-in 0.3s;
-}
 
 /* Popup/Modal Styling ------------------------------*/
 
