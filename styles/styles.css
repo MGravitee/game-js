@@ -217,8 +217,15 @@ h1 {
 }
 
 #game-end-screen p {
-color: #ffffff;
-font-size: 2rem;
+    color: #ffcb05;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
+        1px 1px 0 #395ba1;
+    font-family: pokemon1;
+    letter-spacing: 0.5rem;
+    text-align: center;
+    font-size: 3rem;
+    padding: 2rem;
+    margin-top: 0;
 }
 
 
