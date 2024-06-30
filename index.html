@@ -12,7 +12,7 @@
     <body>
         <div class="hint-overlay" id="hint-overlay"></div>
 
-        <section class="screen hide" id="start-screen">
+        <section class="screen" id="start-screen">
             <img
                 src="./images/pokemon-logo-sizedpng.png"
                 alt="the pokemon logo"
@@ -37,13 +37,13 @@
             <button class="button" id="start-game-btn">Start Game</button>
         </section>
 
-        <div class="score-board" id="score-board">
+        <div class="score-board hide" id="score-board">
             <p class="utility">SCORE:</p>
             <span class="player-points-output" id="player-points-output"
                 >0</span
             >
         </div>
-        <section class="screen" id="game-container">
+        <section class="screen hide" id="game-container">
             <h1 class="title">Pokémon Unscramble!!!!</h1>
 
             <div class="game-screen" id="game-screen">
@@ -89,7 +89,7 @@
             </div>
         </section>
 
-        <section class="screen" id="game-end-screen">
+        <section class="screen hide" id="game-end-screen">
             <p class="game-end-txt-output" id="game-end-txt-output">Congrats! you got <span class="player-end-points" id="player-end-points"></span>!</p>
             <p>Did you want to play again?</p>
             <button class="play-again-btn" id="play-again-btn">

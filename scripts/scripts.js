@@ -37,9 +37,6 @@ const answerInput = document.getElementById("answer-box");
 
 // Endgame text output
 
-
-
-// Countdown timer
 const endGameScore = document.getElementById("game-end-txt-output");
 
 // Buttons
@@ -55,13 +52,14 @@ const quitBtn = document.getElementById("quit-btn");
 
 // start game function
 
-const startGame = function () {
+function startGame () {
     startScreen.classList.add("hide");
     scoreBoardElem.classList.remove("hide");
     gameScreen.classList.remove("hide");
+    stopAudio(themeSongAudio, 0)
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    //!!! startMainTimer(60);
+    startMainTimer(60);
     grabWord();
 };
 
@@ -77,6 +75,7 @@ const player = {
 let correctAnswer;
 
 // letterArray needs to be defined empty out here for scope otherwise shuffle letters button won't work
+
 let letterArray = [];
 
 // randomWord needs to be defined empty out here for scope otherwise can't grab matching hints from the right object in pokelist array
@@ -92,6 +91,7 @@ let currentHintIndex = 0;
 const hints = [];
 
 // for hint cooldown so you can't spam the button
+
 let hintCoolDown = false;
 const hintCoolDownDuration = 4000;
 
@@ -168,7 +168,7 @@ const countDown = function () {
         timeLeft--;
         mainTimer.innerHTML = `${timeLeft} seconds`;
     } else {
-        //!!! gameEnd();
+    gameEnd();
     }
 };
 
@@ -265,7 +265,7 @@ const checkAnswer = function () {
             "Yay! You got it!",
             `${playerAnswer.toUpperCase()} is the right Pokémon! Keep going to catch them all!`
         );
-        //get point value money out of the randomWord o, and add it to the players points total
+        //get point value out of the randomWord object and add it to the players points total
         player.points += randomWord.points;
         //add it to the players points html elem
         playerPointsElem.innerText = player.points;
@@ -420,4 +420,4 @@ function playEndGameAudio() {
     endGameAudio.play();
 }
 
-grabWord();
+playThemeSong();
