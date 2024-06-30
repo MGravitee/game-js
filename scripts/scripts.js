@@ -27,16 +27,6 @@ const displayedShuffledLetters = document.getElementById(
 
 const hintOverlay = document.getElementById("hint-overlay");
 
-// const hiddenHintOne = document.getElementById("hint-1");
-// const hiddenHintTwo = document.getElementById("hint-2");
-// const hiddenHintThree = document.getElementById("hint-3");
-
-// Hints
-
-// const hintOne = document.querySelector(".hint-1-output");
-// const hintTwo = document.querySelector(".hint-2-output");
-// const hintThree = document.querySelector(".hint-3-output");
-
 //Countdown timer
 
 const mainTimer = document.getElementById("count-down-main");
@@ -47,10 +37,12 @@ const answerInput = document.getElementById("answer-box");
 
 // Endgame text output
 
-//ountdown timer
+
+
+// Countdown timer
 const endGameScore = document.getElementById("game-end-txt-output");
 
-//buttons
+// Buttons
 
 const startGameBtn = document.getElementById("start-game-btn");
 const showHintBtn = document.getElementById("get-hint-btn");
@@ -58,6 +50,8 @@ const newPokemonBtn = document.getElementById("new-word-btn");
 const checkAnswerBtn = document.getElementById("check-answer-btn");
 const shuffleBtn = document.getElementById("shuffle-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
+const quitBtn = document.getElementById("quit-btn");
+
 
 // start game function
 
@@ -65,7 +59,7 @@ const startGame = function () {
     startScreen.classList.add("hide");
     scoreBoardElem.classList.remove("hide");
     gameScreen.classList.remove("hide");
-    playWhosThatAudio();
+    playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
     //!!! startMainTimer(60);
     grabWord();
@@ -122,7 +116,8 @@ const showHint = function () {
             hintPopUp.remove();
         }, 6000);
         hintOverlay.append(hintPopUp);
-        playPokeBallAudio(); // Play hint sound
+        playAudio(pokeBallAudio, 0.5);
+        // playPokeBallAudio(); // Play hint sound
 
         // Set the cooldown flag to true
         hintCoolDown = true;
@@ -212,19 +207,16 @@ function shuffleAgain(word) {
 
 // function to grabWord from pokemonList array
 const grabWord = function () {
-    //playing audio on game start
-    // playstartGameAudio();
-
     // Getting random pokemon object out of pokemonList array of objects
     randomWord = pokemonList[Math.floor(Math.random() * pokemonList.length)];
 
     // Splitting each letter of the name property from object
     shuffleAgain(randomWord);
 
-    // resetting the hints array to 0 so that hints from previous pokemon are discarded before new ones are pushed 
+    // resetting the hints array to 0 so that hints from previous pokemon are discarded before new ones are pushed
 
     hints.length = 0;
-    
+
     // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
 
     hintOne = randomWord.hint1;
@@ -251,11 +243,14 @@ const checkAnswer = function () {
     // oh man finding the lowercase method was awesome but also super annoying
 
     //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent along trying other stuff
-    if (!playerAnswer)
+    if (!playerAnswer) {
+        playAudio(noAnswerAudio, 0.5);
         return createPopup("Sorry!", "Please enter a Pokémon name to check!");
 
-    //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
+        //want to throw an alert saying that the answer wrong if, need the strict ineqality operator to make sure it's a string and only a string
+    }
     if (playerAnswer !== correctAnswer) {
+        playAudio(wrongAnswerAudio, 0.5);
         return (
             createPopup(
                 "Sorry",
@@ -265,6 +260,7 @@ const checkAnswer = function () {
         );
         // else the answer is correct, yay!
     } else {
+        playAudio(rightAnswerAudio, 0.5);
         createPopup(
             "Yay! You got it!",
             `${playerAnswer.toUpperCase()} is the right Pokémon! Keep going to catch them all!`
@@ -277,15 +273,19 @@ const checkAnswer = function () {
     }
 };
 
-const gameEnd = function () {
+function gameEnd() {
     gameScreen.classList.add("hide");
     gameEndScreen.classList.remove("hide");
     playEndGameAudio();
 };
 
-const playAgain = function () {
+function playAgain() {
     window.location.reload();
 };
+
+function quitGame() {
+    close();
+}
 
 // function to display hints via setTimeout
 
@@ -315,11 +315,15 @@ const playAgain = function () {
 startGameBtn.addEventListener("click", startGame);
 newPokemonBtn.addEventListener("click", grabWord);
 checkAnswerBtn.addEventListener("click", checkAnswer);
+
 shuffleBtn.addEventListener("click", () => {
     shuffleAgain(randomWord);
+    playAudio(shuffleAudio, 0.5);
 });
 showHintBtn.addEventListener("click", showHint);
 playAgainBtn.addEventListener("click", playAgain);
+quitBtn.addEventListener("click", quitGame);
+
 
 // Popup functions
 
@@ -339,7 +343,7 @@ function createPopup(heading, message) {
     closeButton.addEventListener("click", function () {
         popUp.style.opacity = 0;
         setTimeout(function () {
-            popup.remove();
+            popUp.remove();
         }, 1000);
     });
     popUp.appendChild(closeButton);
@@ -357,7 +361,6 @@ function createPopup(heading, message) {
 //         }, 1000);
 //     }});
 
-
 // Audio ------------------------>
 
 // Audio HTML elements (made more sense to keep these together)
@@ -368,8 +371,22 @@ const startGameAudio = document.getElementById("start-game-audio");
 const pokeBallAudio = document.getElementById("pokeball-audio");
 const endGameAudio = document.getElementById("game-end-audio");
 const shuffleAudio = document.getElementById("shuffle-audio");
+const rightAnswerAudio = document.getElementById("right-answer-audio");
+const wrongAnswerAudio = document.getElementById("wrong-answer-audio");
+const noAnswerAudio = document.getElementById("no-answer-audio");
 
 // Audio functions
+
+// helper function to play audio with specified source instead of having a hard coded function for each audio files
+
+function playAudio(audioElement, volume = 1.0) {
+    audioElement.currentTime = 0; // Rewind to the beginning
+    audioElement.play(); // Play the audio
+}
+
+function stopAudio(audioElement, volume = 1.0) {
+    audioElement.pause(); // pause the audio
+}
 
 function playThemeSong() {
     themeSongAudio.volume = 0.5;
