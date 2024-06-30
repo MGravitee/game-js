@@ -234,6 +234,39 @@ body button:hover {
     gap: 3rem;
 }
 
+/* get hint button */
+
+.get-hint-btn {
+    margin: 0 auto;
+    opacity: 0.9;
+    height: 85px;
+    width: 70px;
+}
+
+.get-hint-btn:hover {
+    opacity: 1;
+    cursor: grab;
+    transform: scale(1.1);
+    transition: ease-in 0.25s;
+}
+
+.second-hint {
+    margin: 0 auto;
+}
+.cool-down {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(0.5);
+    transition: ease-in 0.3s;
+}
+
+.cool-down:hover {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(0.5);
+    transition: ease-in 0.3s;
+}
+
 /* End Game Screen Styling -------------------------*/
 
 #game-end-screen {
@@ -263,37 +296,6 @@ body button:hover {
     width: fit-content;
 }
 
-/* get hint button */
-
-.get-hint-btn {
-    opacity: 0.9;
-    height: 85px;
-    width: 70px;
-}
-
-.get-hint-btn:hover {
-    opacity: 1;
-    cursor: grab;
-    transform: scale(1.1);
-    transition: ease-in 0.25s;
-}
-
-.second-hint {
-    margin: 0 auto;
-}
-.cool-down {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: scale(0.5);
-    transition: ease-in 0.3s;
-}
-
-.cool-down:hover {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: scale(0.5);
-    transition: ease-in 0.3s;
-}
 
 /* Popup/Modal Styling ------------------------------*/
 
