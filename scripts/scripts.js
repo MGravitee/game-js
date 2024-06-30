@@ -59,7 +59,7 @@ function startGame () {
     stopAudio(themeSongAudio, 0)
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    startMainTimer(60);
+    startMainTimer(30);
     grabWord();
 };
 
@@ -101,14 +101,18 @@ const showHint = function () {
     if (hintCoolDown) {
         return;
     }
-
-    const hint = hints.shift();
+    const nextHint = hints.shift();
     console.log(hints);
-    if (hint) {
+    // if (hints.length === 0) {
+    //     hintCoolDown = true;
+    //     showHintBtn.classList.toggle("disabled"); // this may be unecessary but doing it anyway
+    //     showHintBtn.classList.toggle("cool-down");
+    // } 
+    if (nextHint) {
         const hintPopUp = document.createElement("div");
         hintPopUp.classList.add("hint-popup", "slide-in");
-        hintPopUp.innerHTML = `<h2>${hint}</h2>`;
-        console.log(hint);
+        hintPopUp.innerHTML = `<h2>${nextHint}</h2>`;
+        console.log(nextHint);
         hintPopUp.addEventListener("animationend", () => {
             hintPopUp.remove();
         });
@@ -116,8 +120,7 @@ const showHint = function () {
             hintPopUp.remove();
         }, 6000);
         hintOverlay.append(hintPopUp);
-        playAudio(pokeBallAudio, 0.5);
-        // playPokeBallAudio(); // Play hint sound
+        playAudio(pokeBallAudio, 0.5); // playing hint sound 
 
         // Set the cooldown flag to true
         hintCoolDown = true;
@@ -162,19 +165,21 @@ let timeLeft;
 
 //  this should be to keep track of a countdown
 
-const countDown = function () {
+function countDown  () {
     console.log(timeLeft);
-    if (timeLeft > 0) {
+    if (timeLeft == 0) {
+        clearInterval (timerInterval);
+        gameEnd();
+    } if (timeLeft > 0) {
         timeLeft--;
         mainTimer.innerHTML = `${timeLeft} seconds`;
-    } else {
-    gameEnd();
-    }
+    } 
+    
 };
 
 //  this should be to start the timer
 
-const startMainTimer = function (duration) {
+function startMainTimer (duration) {
     timeLeft = duration;
     mainTimer.innerHTML = `${timeLeft} seconds`;
     timerInterval = setInterval(countDown, 1000);
@@ -275,8 +280,22 @@ const checkAnswer = function () {
 
 function gameEnd() {
     gameScreen.classList.add("hide");
+    scoreBoardElem.classList.add("hide");
     gameEndScreen.classList.remove("hide");
-    playEndGameAudio();
+    stopAudio(startGameAudio, 0);
+    getScore();
+    // playEndGameAudio();
+};
+
+function getScore () {
+
+    if (player.points >= 1) {
+        playAudio(victoryAudio, 0.5)
+        endGameScore.innerText = `Congrats! You got ${player.points} answers right!`;
+    } else {
+        playAudio(loseAudio, 0.5)
+        endGameScore.innerText = "Oh no, you didn't get any answers right, better luck next time!"
+    }
 };
 
 function playAgain() {
@@ -369,7 +388,8 @@ const themeSongAudio = document.getElementById("theme-song-audio");
 const whosThatAudio = document.getElementById("whos-that-audio");
 const startGameAudio = document.getElementById("start-game-audio");
 const pokeBallAudio = document.getElementById("pokeball-audio");
-const endGameAudio = document.getElementById("game-end-audio");
+const victoryAudio = document.getElementById("victory-audio");
+const loseAudio = document.getElementById("lose-audio");
 const shuffleAudio = document.getElementById("shuffle-audio");
 const rightAnswerAudio = document.getElementById("right-answer-audio");
 const wrongAnswerAudio = document.getElementById("wrong-answer-audio");
@@ -403,7 +423,7 @@ function playStartGameAudioDelayed() {
         startGameAudio.volume = 0.5;
         startGameAudio.loop = true;
         startGameAudio.play();
-    }, 3000);
+    }, 2000);
 }
 
 function playPokeBallAudio() {
@@ -417,7 +437,6 @@ function playShuffleAudio() {
 
 function playEndGameAudio() {
     startGameAudio.pause();
-    endGameAudio.play();
 }
 
 playThemeSong();
