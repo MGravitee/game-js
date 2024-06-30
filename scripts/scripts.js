@@ -59,7 +59,7 @@ function startGame () {
     stopAudio(themeSongAudio, 0)
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    startMainTimer(60);
+    startMainTimer(10);
     grabWord();
 };
 
@@ -162,19 +162,21 @@ let timeLeft;
 
 //  this should be to keep track of a countdown
 
-const countDown = function () {
+function countDown  () {
     console.log(timeLeft);
-    if (timeLeft > 0) {
+    if (timeLeft == 0) {
+        gameEnd();
+        return;
+    } if (timeLeft > 0) {
         timeLeft--;
         mainTimer.innerHTML = `${timeLeft} seconds`;
-    } else {
-    gameEnd();
-    }
+    } 
+    
 };
 
 //  this should be to start the timer
 
-const startMainTimer = function (duration) {
+function startMainTimer (duration) {
     timeLeft = duration;
     mainTimer.innerHTML = `${timeLeft} seconds`;
     timerInterval = setInterval(countDown, 1000);
@@ -276,7 +278,21 @@ const checkAnswer = function () {
 function gameEnd() {
     gameScreen.classList.add("hide");
     gameEndScreen.classList.remove("hide");
-    playEndGameAudio();
+    stopAudio(startGameAudio, 0);
+    getScore();
+    // playEndGameAudio();
+};
+
+function getScore () {
+    // if (!scoreCalculated) {
+    //     scoreCalculated = true; 
+    //     // Set the flag to true
+    if (player.points >= 1) {
+        playAudio(victoryAudio, 0.5)
+        endGameScore.innerText = `Congrats! You got ${player.points} answers right!`;
+    } else {
+        endGameScore.innerText = "Oh no, you didn't get any answers right, better luck next time!"
+    }
 };
 
 function playAgain() {
@@ -369,7 +385,7 @@ const themeSongAudio = document.getElementById("theme-song-audio");
 const whosThatAudio = document.getElementById("whos-that-audio");
 const startGameAudio = document.getElementById("start-game-audio");
 const pokeBallAudio = document.getElementById("pokeball-audio");
-const endGameAudio = document.getElementById("game-end-audio");
+const victoryAudio = document.getElementById("victory-audio");
 const shuffleAudio = document.getElementById("shuffle-audio");
 const rightAnswerAudio = document.getElementById("right-answer-audio");
 const wrongAnswerAudio = document.getElementById("wrong-answer-audio");
@@ -417,7 +433,6 @@ function playShuffleAudio() {
 
 function playEndGameAudio() {
     startGameAudio.pause();
-    endGameAudio.play();
 }
 
 playThemeSong();
