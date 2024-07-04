@@ -1,5 +1,8 @@
 "use strict";
 
+//!ask Randy about hitting enter key on closing the pop-up and the text input at the same time. 
+
+
 // Grabbing HTML elements --------------------->
 
 // audio on pageload - sorry  ;)
@@ -30,6 +33,7 @@ const hintOverlay = document.getElementById("hint-overlay");
 //Countdown timer
 
 const mainTimer = document.getElementById("count-down-main");
+const timerTextElem = document.getElementById("time-main");
 
 //Answer text box
 
@@ -59,7 +63,7 @@ function startGame () {
     stopAudio(themeSongAudio, 0)
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    startMainTimer(30);
+    // startMainTimer();
     grabWord();
 };
 
@@ -212,6 +216,7 @@ function countDown  () {
     }  if (timeLeft <= 30) {
             mainTimer.style.color = "#ffcb05";
     }  if (timeLeft <= 10) {
+            // timerTextElem.style.fontSize = "3rem";
             mainTimer.style.color = "#ff0000";
     }
     
@@ -324,7 +329,6 @@ function gameEnd() {
     gameEndScreen.classList.remove("hide");
     stopAudio(startGameAudio, 0);
     getScore();
-    // playEndGameAudio();
 };
 
 function getScore () {
@@ -375,6 +379,12 @@ startGameBtn.addEventListener("click", startGame);
 newPokemonBtn.addEventListener("click", grabWord);
 checkAnswerBtn.addEventListener("click", checkAnswer);
 
+answerInput.addEventListener("keydown", function (e) {
+    if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+        checkAnswer();
+    }
+});
+
 shuffleBtn.addEventListener("click", () => {
     shuffleAgain(randomWord);
     playAudio(shuffleAudio, 0.5);
@@ -402,14 +412,26 @@ function createPopup(heading, message) {
     closeButton.addEventListener("click", function () {
         popUp.style.opacity = 0;
         setTimeout(function () {
+            answerInput.focus();
             popUp.remove();
-        }, 1000);
+        }, 500);
+        closeButton.addEventListener("keydown", function (e) {
+            //checks if Enter is pressed 
+            if (e.code === "Enter") {  
+                popUp.style.opacity = 0;
+        setTimeout(function () {
+            answerInput.focus();
+            popUp.remove();
+        }, 500);
+            }
+        });
     });
     popUp.appendChild(closeButton);
-
+    
     document.body.appendChild(popUp);
     setTimeout(function () {
         popUp.style.opacity = 1;
+        closeButton.focus();
     }, 100);
 }
 
@@ -479,4 +501,4 @@ function playEndGameAudio() {
     startGameAudio.pause();
 }
 
-playThemeSong();
+// playThemeSong();
