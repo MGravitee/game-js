@@ -18,7 +18,7 @@
 body {
     /* not sure if I need position relative but am putting it anyway */
     position: relative;
-    background-image: url(../images/pokemon-bg.png);
+    background-image: url(../images/pokemon-bg1.png);
 }
 
 h1 {
