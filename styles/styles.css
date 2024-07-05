@@ -64,7 +64,6 @@ body button:hover {
     background-color: #395ba1;
     color: #ffcb05;
     transition: ease-out 0.3s;
-    /* transition: all .3s ease-out; */
 }
 
 /* Generic Screen Styling */
@@ -90,48 +89,6 @@ body button:hover {
 
 /* Start Screen Styling ------------------------------ */
 
-.music-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-}
-
-.music-button p {
-    position: absolute;
-    left: -100px;
-    top: 1px;
-    font-size: 0.8rem;
-    animation: 800ms ease-in-out 0s infinite alternate running bounce;
-}
-
-@keyframes bounce {
-    from {
-        left: -110px;
-    }
-
-    to {
-        left: -90px;
-    }
-}
-
-button#theme-music-toggle {
-    background-image: url("../media/volume-up-fill.svg");
-    background-size: cover;
-    height: 40px;
-    width: 40px;
-    border: unset;
-}
-
-button#theme-music-toggle.mute {
-    background-image: url("../media/volume-mute-fill.svg");
-    background-size: cover;
-}
-
-button#theme-music-toggle img {
-    fill: white;
-}
-
 #start-screen {
     display: flex;
     flex-direction: column;
@@ -146,8 +103,6 @@ button#theme-music-toggle img {
 #start-screen p {
     font-family: pixelify;
     color: #ffffff;
-    /* text-shadow: -1px -1px 0 #ffce00, 1px -1px 0 #ffce00, -1px 1px 0 #ffce00,
-    1px 1px 0 #ffce00; */
     text-align: center;
     font-size: 2rem;
 }
@@ -171,6 +126,8 @@ button#theme-music-toggle img {
     padding: 0;
     padding-bottom: 1rem;
 }
+
+
 
 /* Game Screen Styling ------------------------------*/
 
