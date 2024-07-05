@@ -54,6 +54,10 @@ body button {
     cursor: pointer;
 }
 
+body button:focus {
+    outline: none;
+}
+
 body button:hover {
     transform: scale(1.1);
     border: 5px double #ffcb05;
@@ -85,6 +89,48 @@ body button:hover {
 }
 
 /* Start Screen Styling ------------------------------ */
+
+.music-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+}
+
+.music-button p {
+    position: absolute;
+    left: -100px;
+    top: 1px;
+    font-size: 0.8rem;
+    animation: 800ms ease-in-out 0s infinite alternate running bounce;
+}
+
+@keyframes bounce {
+    from {
+        left: -110px;
+    }
+
+    to {
+        left: -90px;
+    }
+}
+
+button#theme-music-toggle {
+    background-image: url("../media/volume-up-fill.svg");
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+    border: unset;
+}
+
+button#theme-music-toggle.mute {
+    background-image: url("../media/volume-mute-fill.svg");
+    background-size: cover;
+}
+
+button#theme-music-toggle img {
+    fill: white;
+}
 
 #start-screen {
     display: flex;
@@ -296,7 +342,6 @@ body button:hover {
     width: fit-content;
 }
 
-
 /* Popup/Modal Styling ------------------------------*/
 
 .popup {
@@ -328,7 +373,7 @@ body button:hover {
         1px 1px 0 #395ba1;
 }
 .popup p {
-    /* letter-spacing: .25rem; */
+    letter-spacing: 0.25rem;
     font-size: 2rem;
     line-height: 1.5;
     text-align: center;
@@ -424,8 +469,4 @@ body button:hover {
     100% {
         transform: translateX(+300px);
     }
-}
-
-.second-hint {
-    margin: 0 auto;
 }

@@ -1,13 +1,12 @@
 "use strict";
 
-//!ask Randy about hitting enter key on closing the pop-up and the text input at the same time. 
-
+//!ask Randy about hitting enter key on closing the pop-up and the text input at the same time.
 
 // Grabbing HTML elements --------------------->
 
 // audio on pageload - sorry  ;)
 
-// document.addEventListener('DOMContentLoaded', playThemeSong);
+document.addEventListener("mouseenter", playThemeSong);
 
 //game screens
 
@@ -53,19 +52,18 @@ const shuffleBtn = document.getElementById("shuffle-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 const quitBtn = document.getElementById("quit-btn");
 
-
 // start game function
 
-function startGame () {
+function startGame() {
     startScreen.classList.add("hide");
     scoreBoardElem.classList.remove("hide");
     gameScreen.classList.remove("hide");
-    stopAudio(themeSongAudio, 0)
+    stopAudio(themeSongAudio, 0);
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    // startMainTimer();
+    startMainTimer();
     grabWord();
-};
+}
 
 // player object (literally just for tracking points)
 
@@ -92,7 +90,7 @@ let hintTwo;
 let hintThree;
 
 let currentHintIndex = 0;
-const hints = [];
+let hints = [];
 
 // for hint cooldown so you can't spam the button
 
@@ -123,7 +121,7 @@ const hintCoolDownDuration = 4000;
 //             hintPopUp.remove();
 //         }, 6000);
 //         hintOverlay.append(hintPopUp);
-//         playAudio(pokeBallAudio, 0.5); // playing hint sound 
+//         playAudio(pokeBallAudio, 0.5); // playing hint sound
 
 //          // Disable the button
 //         showHintBtn.disabled = true;
@@ -136,12 +134,13 @@ const hintCoolDownDuration = 4000;
 //     }
 // };
 
-const showHint = function () {
+ function showHint () {
+    debugger
     if (hints.length === 0) {
-        showHintBtn.classList.add ("disabled");
-        showHintBtn.classList.add ("cool-down");
-        
-    } if (hintCoolDown) {
+        showHintBtn.classList.add("disabled");
+        showHintBtn.classList.add("cool-down");
+    }
+    if (hintCoolDown) {
         return;
     }
     const nextHint = hints.shift();
@@ -159,22 +158,23 @@ const showHint = function () {
             hintPopUp.remove();
         }, 6000);
         hintOverlay.append(hintPopUp);
-        playAudio(pokeBallAudio, 0.5); // playing hint sound 
+        playAudio(pokeBallAudio, 0.5); // playing hint sound
 
         // Set the cooldown flag to true
         hintCoolDown = true;
-        showHintBtn.classList.add ("disabled"); // this may be unecessary but doing it anyway
-        showHintBtn.classList.add ("cool-down");
+        showHintBtn.classList.add("disabled"); // this may be unecessary but doing it anyway
+        showHintBtn.classList.add("cool-down");
         // Reset the cooldown flag after the cooldown duration
-            if (hints.length === 0) {
-                return
-            } else {
-        setTimeout(() => {
-            hintCoolDown = false;
-            showHintBtn.classList.remove ("disabled");
-            showHintBtn.classList.remove ("cool-down");
-        }, hintCoolDownDuration);
-    }}
+        if (hints.length === 0) {
+            return;
+        } else {
+            setTimeout(() => {
+                hintCoolDown = false;
+                showHintBtn.classList.remove("disabled");
+                showHintBtn.classList.remove("cool-down");
+            }, hintCoolDownDuration);
+        }
+    }
 };
 
 // const showHint = function () {
@@ -205,30 +205,32 @@ let timeLeft;
 
 //  this should be to keep track of a countdown
 
-function countDown  () {
-    console.log(timeLeft);
+function countDown() {
+    // console.log(timeLeft);
     if (timeLeft == 0) {
-        clearInterval (timerInterval);
+        clearInterval(timerInterval);
         gameEnd();
-    }  if (timeLeft > 0) {
+    }
+    if (timeLeft > 0) {
         timeLeft--;
         mainTimer.innerHTML = `${timeLeft} seconds`;
-    }  if (timeLeft <= 30) {
-            mainTimer.style.color = "#ffcb05";
-    }  if (timeLeft <= 10) {
-            // timerTextElem.style.fontSize = "3rem";
-            mainTimer.style.color = "#ff0000";
     }
-    
-};
+    if (timeLeft <= 30) {
+        mainTimer.style.color = "#ffcb05";
+    }
+    if (timeLeft <= 10) {
+        // timerTextElem.style.fontSize = "3rem";
+        mainTimer.style.color = "#ff0000";
+    }
+}
 
 //  this should be to start the timer
 
-function startMainTimer (duration) {
+function startMainTimer(duration) {
     timeLeft = duration;
     mainTimer.innerHTML = `${timeLeft} seconds`;
     timerInterval = setInterval(countDown, 1000);
-};
+}
 
 // Function to shuffle letters
 
@@ -264,8 +266,10 @@ const grabWord = function () {
     shuffleAgain(randomWord);
 
     // resetting the hints array to 0 so that hints from previous pokemon are discarded before new ones are pushed
-
-    hints.length = 0;
+    hintCoolDown = false;
+    showHintBtn.classList.remove("disabled");
+    showHintBtn.classList.remove("cool-down");
+    hints = [];
 
     // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
 
@@ -329,22 +333,22 @@ function gameEnd() {
     gameEndScreen.classList.remove("hide");
     stopAudio(startGameAudio, 0);
     getScore();
-};
+}
 
-function getScore () {
-
+function getScore() {
     if (player.points >= 1) {
-        playAudio(victoryAudio, 0.5)
+        playAudio(victoryAudio, 0.5);
         endGameScore.innerText = `Congrats! You got ${player.points} answers right!`;
     } else {
-        playAudio(loseAudio, 0.5)
-        endGameScore.innerText = "Oh no, you didn't get any answers right, better luck next time!"
+        playAudio(loseAudio, 0.5);
+        endGameScore.innerText =
+            "Oh no, you didn't get any answers right, better luck next time!";
     }
-};
+}
 
 function playAgain() {
     window.location.reload();
-};
+}
 
 function quitGame() {
     close();
@@ -380,7 +384,8 @@ newPokemonBtn.addEventListener("click", grabWord);
 checkAnswerBtn.addEventListener("click", checkAnswer);
 
 answerInput.addEventListener("keydown", function (e) {
-    if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+    if (e.code === "Enter") {
+        //checks whether the pressed key is "Enter"
         checkAnswer();
     }
 });
@@ -392,7 +397,6 @@ shuffleBtn.addEventListener("click", () => {
 showHintBtn.addEventListener("click", showHint);
 playAgainBtn.addEventListener("click", playAgain);
 quitBtn.addEventListener("click", quitGame);
-
 
 // Popup functions
 
@@ -416,18 +420,18 @@ function createPopup(heading, message) {
             popUp.remove();
         }, 500);
         closeButton.addEventListener("keydown", function (e) {
-            //checks if Enter is pressed 
-            if (e.code === "Enter") {  
+            //checks if Enter is pressed
+            if (e.code === "Enter") {
                 popUp.style.opacity = 0;
-        setTimeout(function () {
-            answerInput.focus();
-            popUp.remove();
-        }, 500);
+                setTimeout(function () {
+                    answerInput.focus();
+                    popUp.remove();
+                }, 500);
             }
         });
     });
     popUp.appendChild(closeButton);
-    
+
     document.body.appendChild(popUp);
     setTimeout(function () {
         popUp.style.opacity = 1;
