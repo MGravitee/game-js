@@ -57,7 +57,7 @@ function startGame() {
     stopAudio(themeSongAudio, 0);
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    startMainTimer();
+    startMainTimer(60);
     grabWord();
 }
 
@@ -430,9 +430,6 @@ function createPopup(heading, message) {
 
 // Audio HTML elements (made more sense to keep these together instead of at the top of the doc
 
-
-
-
 const themeSongAudio = document.getElementById("theme-song-audio");
 const whosThatAudio = document.getElementById("whos-that-audio");
 const startGameAudio = document.getElementById("start-game-audio");
@@ -446,7 +443,7 @@ const noAnswerAudio = document.getElementById("no-answer-audio");
 
 // Audio functions
 
-// helper function to play audio with specified source instead of having a hard coded function for each audio files
+// helper functions to play / stop audio 
 
 function playAudio(audioElement, volume = 1.0) {
     audioElement.currentTime = 0; // Rewind to the beginning
@@ -456,12 +453,6 @@ function playAudio(audioElement, volume = 1.0) {
 function stopAudio(audioElement, volume = 1.0) {
     audioElement.pause(); // pause the audio
 }
-
-function playThemeSong() {
-    themeSongAudio.volume = 0.5;
-    themeSongAudio.play();
-}
-
 
 function playStartGameAudioDelayed() {
     setTimeout(() => {
@@ -474,6 +465,7 @@ function playStartGameAudioDelayed() {
 
 //Toggle audio button for start screen
 
+// this was adapted from Randy's Raybike game, credit once again and thank you
 
 const toggleThemeMusicButton = document.getElementById("theme-music-toggle");
 
