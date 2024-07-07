@@ -7,20 +7,20 @@
         <link rel="stylesheet" href="styles/normalize-fwd.css" />
         <script defer src="scripts/pokelist.js"></script>
         <script defer src="scripts/scripts.js"></script>
-        <title>Stupid JS Game</title>
+        <title>Who's That Pokemon?!?!?</title>
     </head>
     <body>
         <div class="hint-overlay" id="hint-overlay"></div>
-
         <section class="screen" id="start-screen">
+            <h1 class="start-title">Who's that</h1>
             <img
                 src="./images/pokemon-logo-sizedpng.png"
                 alt="the pokemon logo"
             />
-            <h1 class="start-title">Unscramble!!!</h1>
+            <p class="question-marks" id="question-marks">?</p>
 
             <p>
-                Gotta catch em all! The name of the game is unscramble to letters and figure out asmany Pokémon as you can until the timer runs out. If you need a hint, press the pokéball (but keep in mind you only get 3 hints per Pokémon).
+                Gotta catch em all! The name of the game is to unscramble the letters and figure out as many of the first generation Pokémon as you can within the time limit. If you need a hint, press the pokéball (but keep in mind you only get 3 hints per Pokémon).
             </p>
             <p><span class="disclaimer" id="disclaimer">DISCLAIMER:</span>
                     This will probably be pretty hard if you have never played
@@ -28,6 +28,10 @@
             <p class="education" id="education">For Education Purposes Only... please don't sue me Nintendo</p>
 
             <button class="button" id="start-game-btn">Start Game</button>
+            <div class="music-button" id="music-button">
+                <p class="music-button-txt" id="music-button-txt">click →</p>
+                <div id="theme-music-toggle" class="theme-music-toggle mute"></div>
+            </div>
         </section>
 
         <div class="score-board hide" id="score-board">
@@ -37,12 +41,14 @@
             >
         </div>
         <section class="screen hide" id="game-container">
-            <h1 class="title">Pokémon Unscramble!!!!</h1>
+            <h1 class="title">Who's That Pokémon!?!</h1>
 
             <div class="game-screen" id="game-screen">
                 <h2 class="word-to-solve-output" id="word-to-solve-output"></h2>
                 <div class="hint-time" id="hint-time">
+                    <p class="hint-CTA" id="hint-CTA">Press me for hints!</p>
                     <div class="get-hint-btn" id="get-hint-btn">
+                        
                         <img
                             src="./images/pokeball-for-hints-sized.png"
                             alt="pokeball for hints"
@@ -109,4 +115,5 @@
     <audio src="./assets/sounds/right-answer.mp3" id="right-answer-audio"></audio>
     <audio src="./assets/sounds/wrong-answer.mp3" id="wrong-answer-audio"></audio>
     <audio src="./assets/sounds/no-answer.wav" id="no-answer-audio"></audio>
+    <audio src="./assets/sounds/new-pokemon.mp3" id="new-pokemon-audio"></audio>
 </html>

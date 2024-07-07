@@ -1,13 +1,6 @@
 "use strict";
 
-//!ask Randy about hitting enter key on closing the pop-up and the text input at the same time. 
-
-
 // Grabbing HTML elements --------------------->
-
-// audio on pageload - sorry  ;)
-
-// document.addEventListener('DOMContentLoaded', playThemeSong);
 
 //game screens
 
@@ -53,19 +46,18 @@ const shuffleBtn = document.getElementById("shuffle-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 const quitBtn = document.getElementById("quit-btn");
 
-
 // start game function
 
-function startGame () {
+function startGame() {
     startScreen.classList.add("hide");
     scoreBoardElem.classList.remove("hide");
     gameScreen.classList.remove("hide");
-    stopAudio(themeSongAudio, 0)
+    stopAudio(themeSongAudio, 0);
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    // startMainTimer();
+    // startMainTimer(60);
     grabWord();
-};
+}
 
 // player object (literally just for tracking points)
 
@@ -92,12 +84,11 @@ let hintTwo;
 let hintThree;
 
 let currentHintIndex = 0;
-const hints = [];
+let hints = [];
 
 // for hint cooldown so you can't spam the button
 
-let hintCoolDown = false;
-const hintCoolDownDuration = 4000;
+const hintCoolDownDuration = 5000;
 
 // showHint function
 
@@ -123,7 +114,7 @@ const hintCoolDownDuration = 4000;
 //             hintPopUp.remove();
 //         }, 6000);
 //         hintOverlay.append(hintPopUp);
-//         playAudio(pokeBallAudio, 0.5); // playing hint sound 
+//         playAudio(pokeBallAudio, 0.5); // playing hint sound
 
 //          // Disable the button
 //         showHintBtn.disabled = true;
@@ -136,46 +127,45 @@ const hintCoolDownDuration = 4000;
 //     }
 // };
 
-const showHint = function () {
-    if (hints.length === 0) {
-        showHintBtn.classList.add ("disabled");
-        showHintBtn.classList.add ("cool-down");
-        
-    } if (hintCoolDown) {
+function showHint() {
+    //if the cool-down class is active, return
+    if (showHintBtn.classList.contains("cool-down")) {
         return;
     }
+    //grabbing a hint from the array and putting it in a variable
     const nextHint = hints.shift();
     console.log(hints);
-
+    //creating a pop-up with the hint that's grabbed
     if (nextHint) {
         const hintPopUp = document.createElement("div");
+        hintPopUp.id = "hint-popup";
         hintPopUp.classList.add("hint-popup", "slide-in");
         hintPopUp.innerHTML = `<h2>${nextHint}</h2>`;
         console.log(nextHint);
         hintPopUp.addEventListener("animationend", () => {
             hintPopUp.remove();
         });
+        //giving the hint popup a cooldown so you cant spam it.
         setTimeout(() => {
             hintPopUp.remove();
         }, 6000);
         hintOverlay.append(hintPopUp);
-        playAudio(pokeBallAudio, 0.5); // playing hint sound 
+        playAudio(pokeBallAudio, 0.5); // playing hint sound
 
-        // Set the cooldown flag to true
-        hintCoolDown = true;
-        showHintBtn.classList.add ("disabled"); // this may be unecessary but doing it anyway
-        showHintBtn.classList.add ("cool-down");
-        // Reset the cooldown flag after the cooldown duration
-            if (hints.length === 0) {
-                return
-            } else {
+        showHintBtn.classList.add("disabled");
+        showHintBtn.classList.add("cool-down");
+
         setTimeout(() => {
-            hintCoolDown = false;
-            showHintBtn.classList.remove ("disabled");
-            showHintBtn.classList.remove ("cool-down");
+            if (hints.length !== 0) {
+                showHintBtn.classList.remove("cool-down");
+            }
         }, hintCoolDownDuration);
-    }}
-};
+        // if (hints.length === 0) {
+        //     // if hints array is empty, disable it, not sure I still need thi but its still working so. 
+        //     showHintBtn.classList.add("disabled");
+        // }
+    }
+}
 
 // const showHint = function () {
 //     if (hintCoolDown) {
@@ -203,42 +193,53 @@ const showHint = function () {
 let timerInterval;
 let timeLeft;
 
-//  this should be to keep track of a countdown
+//  this should keep track of a countdown
 
-function countDown  () {
-    console.log(timeLeft);
+function countDown() {
+    //different if statements which change the timer output depending, eventually stopping the timer and running gameEnd function
     if (timeLeft == 0) {
-        clearInterval (timerInterval);
+        clearInterval(timerInterval);
         gameEnd();
-    }  if (timeLeft > 0) {
+    }
+    if (timeLeft > 0) {
         timeLeft--;
         mainTimer.innerHTML = `${timeLeft} seconds`;
-    }  if (timeLeft <= 30) {
-            mainTimer.style.color = "#ffcb05";
-    }  if (timeLeft <= 10) {
-            // timerTextElem.style.fontSize = "3rem";
-            mainTimer.style.color = "#ff0000";
     }
-    
-};
+    if (timeLeft <= 30) {
+        mainTimer.style.color = "#ffcb05";
+    }
+    if (timeLeft <= 10) {
+        mainTimer.style.fontSize = "4rem";
+        mainTimer.style.color = "#ff0000";
+    }
+}
+//  starting the timer
 
-//  this should be to start the timer
-
-function startMainTimer (duration) {
+function startMainTimer(duration) {
     timeLeft = duration;
     mainTimer.innerHTML = `${timeLeft} seconds`;
     timerInterval = setInterval(countDown, 1000);
-};
+}
 
 // Function to shuffle letters
+
+//was using this for shuffling BUT then I found out about array destructuring, huzzah
+
+// const shuffleLetters = function (array) {
+//     for (let index = array.length - 1; index > 0; index--) {
+//         let newIndex = Math.floor(Math.random() * (index + 1));
+//         // Swap elements using temporary variable
+//         let temp = array[index];
+//         array[index] = array[newIndex];
+//         array[newIndex] = temp;
+//     }
+//     return array;
+// };
 
 const shuffleLetters = function (array) {
     for (let index = array.length - 1; index > 0; index--) {
         let newIndex = Math.floor(Math.random() * (index + 1));
-        // Swap elements using temporary variable
-        let temp = array[index];
-        array[index] = array[newIndex];
-        array[newIndex] = temp;
+        [array[index], array[newIndex]] = [array[newIndex], array[index]];
     }
     return array;
 };
@@ -248,7 +249,6 @@ const shuffleLetters = function (array) {
 function shuffleAgain(word) {
     letterArray = word.name.split("");
     // calling shuffle function to shuffle them
-    // shuffleLetters(letterArray);
     letterArray = shuffleLetters(letterArray);
 
     // Joining shuffled array of letters back together
@@ -256,16 +256,22 @@ function shuffleAgain(word) {
 }
 
 // function to grabWord from pokemonList array
+
 const grabWord = function () {
+    //ripping the previous hint overlay out of the DOM to clear it if the popup is still running when the pokemon switches
+    hintOverlay.innerHTML = "";
+
     // Getting random pokemon object out of pokemonList array of objects
     randomWord = pokemonList[Math.floor(Math.random() * pokemonList.length)];
 
-    // Splitting each letter of the name property from object
+    // Splitting each letter of the name property from object using our shuffle function
     shuffleAgain(randomWord);
 
-    // resetting the hints array to 0 so that hints from previous pokemon are discarded before new ones are pushed
+    // clean up step for resetting the hints array to empty so that hints from previous pokemon are discarded before new ones are pushed
 
-    hints.length = 0;
+    showHintBtn.classList.remove("disabled");
+    showHintBtn.classList.remove("cool-down");
+    hints = [];
 
     // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
 
@@ -283,7 +289,7 @@ const grabWord = function () {
 
     // Resetting the input field after an answer is given
     answerInput.value = "";
-
+    //leaving this incase the player cant figure it out (not everyones played pokemon)
     console.log(randomWord);
 };
 
@@ -292,7 +298,7 @@ const checkAnswer = function () {
     let playerAnswer = answerInput.value.toLowerCase();
     // oh man finding the lowercase method was awesome but also super annoying
 
-    //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent along trying other stuff
+    //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent a decent amount of time trying other stuff
     if (!playerAnswer) {
         playAudio(noAnswerAudio, 0.5);
         return createPopup("Sorry!", "Please enter a Pokémon name to check!");
@@ -317,70 +323,57 @@ const checkAnswer = function () {
         );
         //get point value out of the randomWord object and add it to the players points total
         player.points += randomWord.points;
-        //add it to the players points html elem
+        //add it to the players points/scoreboard html elem
         playerPointsElem.innerText = player.points;
         grabWord();
     }
 };
 
+// endGame function which calls all the necessary things
 function gameEnd() {
     gameScreen.classList.add("hide");
     scoreBoardElem.classList.add("hide");
     gameEndScreen.classList.remove("hide");
     stopAudio(startGameAudio, 0);
     getScore();
-};
+}
 
-function getScore () {
-
+// checking score and gives different endgame text depending
+function getScore() {
     if (player.points >= 1) {
-        playAudio(victoryAudio, 0.5)
+        playAudio(victoryAudio, 0.5);
         endGameScore.innerText = `Congrats! You got ${player.points} answers right!`;
     } else {
-        playAudio(loseAudio, 0.5)
-        endGameScore.innerText = "Oh no, you didn't get any answers right, better luck next time!"
+        playAudio(loseAudio, 0.5);
+        endGameScore.innerText =
+            "Oh no, you didn't get any answers right! Better luck next time!";
     }
-};
+}
 
+// using window reload hack because why not
 function playAgain() {
     window.location.reload();
-};
-
+}
+//just to close the window easily
 function quitGame() {
     close();
 }
 
-// function to display hints via setTimeout
-
-// const revealHints = function () {
-
-//   setTimeout(() => {
-//     hiddenHintOne.style.opacity = "1";
-//   }, 3000); // Display the first hint after 3 second
-
-//   setTimeout(() => {
-//       hiddenHintTwo.style.opacity = "1";
-//   }, 6000); // Display the second hint after 6 seconds
-
-//   setTimeout(() => {
-//       hiddenHintThree.style.opacity = "1";
-//   }, 9000); // Display the third hint after 9 seconds
-// };
-
-//function to display hints
-
-// getHint = function () {
-//   hiddenHintOne.style.display = "block";
-// }
-
 //event listeners
 
 startGameBtn.addEventListener("click", startGame);
+newPokemonBtn.addEventListener("click", () => {
+    grabWord;
+    playAudio(newPokemonAudio, 0.8);
+});
 newPokemonBtn.addEventListener("click", grabWord);
 checkAnswerBtn.addEventListener("click", checkAnswer);
 
+//wanted a quality of life thing that you could hit enter to check your answer instead of needing to press the button
+
 answerInput.addEventListener("keydown", function (e) {
-    if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+    if (e.code === "Enter") {
+        //checks whether the pressed key is "Enter"
         checkAnswer();
     }
 });
@@ -393,8 +386,7 @@ showHintBtn.addEventListener("click", showHint);
 playAgainBtn.addEventListener("click", playAgain);
 quitBtn.addEventListener("click", quitGame);
 
-
-// Popup functions
+// Popup function for modals (didn't want to just use alerts)
 
 function createPopup(heading, message) {
     const popUp = document.createElement("div");
@@ -412,22 +404,23 @@ function createPopup(heading, message) {
     closeButton.addEventListener("click", function () {
         popUp.style.opacity = 0;
         setTimeout(function () {
+            //the .focus() method was super helpful
             answerInput.focus();
             popUp.remove();
         }, 500);
         closeButton.addEventListener("keydown", function (e) {
-            //checks if Enter is pressed 
-            if (e.code === "Enter") {  
+            //checks if Enter is pressed
+            if (e.code === "Enter") {
                 popUp.style.opacity = 0;
-        setTimeout(function () {
-            answerInput.focus();
-            popUp.remove();
-        }, 500);
+                setTimeout(function () {
+                    answerInput.focus();
+                    popUp.remove();
+                }, 500);
             }
         });
     });
     popUp.appendChild(closeButton);
-    
+
     document.body.appendChild(popUp);
     setTimeout(function () {
         popUp.style.opacity = 1;
@@ -435,16 +428,9 @@ function createPopup(heading, message) {
     }, 100);
 }
 
-// closeButton.addEventListener("keydown", function (event) {
-//     if(event.key === "Enter") {    popup.style.opacity = 0;
-//         setTimeout(function () {
-//             popup.remove();
-//         }, 1000);
-//     }});
-
 // Audio ------------------------>
 
-// Audio HTML elements (made more sense to keep these together)
+// Audio HTML elements (made more sense to keep these together instead of at the top of the doc
 
 const themeSongAudio = document.getElementById("theme-song-audio");
 const whosThatAudio = document.getElementById("whos-that-audio");
@@ -456,10 +442,11 @@ const shuffleAudio = document.getElementById("shuffle-audio");
 const rightAnswerAudio = document.getElementById("right-answer-audio");
 const wrongAnswerAudio = document.getElementById("wrong-answer-audio");
 const noAnswerAudio = document.getElementById("no-answer-audio");
+const newPokemonAudio = document.getElementById("new-pokemon-audio");
 
 // Audio functions
 
-// helper function to play audio with specified source instead of having a hard coded function for each audio files
+// helper functions to play / stop audio 
 
 function playAudio(audioElement, volume = 1.0) {
     audioElement.currentTime = 0; // Rewind to the beginning
@@ -470,16 +457,6 @@ function stopAudio(audioElement, volume = 1.0) {
     audioElement.pause(); // pause the audio
 }
 
-function playThemeSong() {
-    themeSongAudio.volume = 0.5;
-    themeSongAudio.play();
-}
-
-function playWhosThatAudio() {
-    whosThatAudio.volume = 0.5;
-    whosThatAudio.play();
-}
-
 function playStartGameAudioDelayed() {
     setTimeout(() => {
         startGameAudio.volume = 0.5;
@@ -488,17 +465,23 @@ function playStartGameAudioDelayed() {
     }, 2000);
 }
 
-function playPokeBallAudio() {
-    pokeBallAudio.volume = 0.5;
-    pokeBallAudio.play();
-}
-function playShuffleAudio() {
-    shuffleAudio.volume = 0.5;
-    shuffleAudio.play();
-}
 
-function playEndGameAudio() {
-    startGameAudio.pause();
-}
+//Toggle audio button for start screen
 
-// playThemeSong();
+// this was adapted from Randy's Raybike game, credit once again and thank you
+
+const toggleThemeMusicButton = document.getElementById("theme-music-toggle");
+
+toggleThemeMusicButton.addEventListener("click", toggleThemeMusic);
+
+function toggleThemeMusic () {
+    if (
+      toggleThemeMusicButton.classList.contains("mute")
+    ) {
+      toggleThemeMusicButton.classList.remove("mute");
+      playAudio(themeSongAudio, 0.5);
+    } else {
+      toggleThemeMusicButton.classList.add("mute");
+      stopAudio(themeSongAudio);
+    }
+  }
