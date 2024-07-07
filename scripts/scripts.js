@@ -1,7 +1,5 @@
 "use strict";
 
-//!ask Randy about hitting enter key on closing the pop-up and the text input at the same time.
-
 // Grabbing HTML elements --------------------->
 
 //game screens
@@ -57,7 +55,7 @@ function startGame() {
     stopAudio(themeSongAudio, 0);
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    startMainTimer(60);
+    startMainTimer(15);
     grabWord();
 }
 
@@ -163,7 +161,7 @@ function showHint() {
             }
         }, hintCoolDownDuration);
         if (hints.length === 0) {
-            // if hints array is empty, disable it, not sure I still need this.
+            // if hints array is empty, disable it, not sure I still need thi but its still working so. 
             showHintBtn.classList.add("disabled");
         }
     }
@@ -195,10 +193,10 @@ function showHint() {
 let timerInterval;
 let timeLeft;
 
-//  this should be to keep track of a countdown
+//  this should keep track of a countdown
 
 function countDown() {
-    //different if statements which change the timer output dependin, eventually stopping the timer and running gameEnd function
+    //different if statements which change the timer output depending, eventually stopping the timer and running gameEnd function
     if (timeLeft == 0) {
         clearInterval(timerInterval);
         gameEnd();
@@ -211,7 +209,7 @@ function countDown() {
         mainTimer.style.color = "#ffcb05";
     }
     if (timeLeft <= 10) {
-        mainTimer.style.fontSize = "3rem";
+        mainTimer.style.fontSize = "4rem";
         mainTimer.style.color = "#ff0000";
     }
 }
@@ -272,7 +270,7 @@ const grabWord = function () {
     // clean up step for resetting the hints array to empty so that hints from previous pokemon are discarded before new ones are pushed
 
     showHintBtn.classList.remove("disabled");
-    showHintBtn.classList.remove("cool-down");
+    // showHintBtn.classList.remove("cool-down");
     hints = [];
 
     // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
@@ -300,7 +298,7 @@ const checkAnswer = function () {
     let playerAnswer = answerInput.value.toLowerCase();
     // oh man finding the lowercase method was awesome but also super annoying
 
-    //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent along trying other stuff
+    //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent a decent amount of time trying other stuff
     if (!playerAnswer) {
         playAudio(noAnswerAudio, 0.5);
         return createPopup("Sorry!", "Please enter a Pokémon name to check!");
@@ -325,7 +323,7 @@ const checkAnswer = function () {
         );
         //get point value out of the randomWord object and add it to the players points total
         player.points += randomWord.points;
-        //add it to the players points html elem
+        //add it to the players points/scoreboard html elem
         playerPointsElem.innerText = player.points;
         grabWord();
     }
@@ -384,7 +382,7 @@ showHintBtn.addEventListener("click", showHint);
 playAgainBtn.addEventListener("click", playAgain);
 quitBtn.addEventListener("click", quitGame);
 
-// Popup function for  used for
+// Popup function for modals (didn't want to just use alerts)
 
 function createPopup(heading, message) {
     const popUp = document.createElement("div");

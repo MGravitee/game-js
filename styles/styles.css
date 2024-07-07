@@ -256,6 +256,14 @@ div#theme-music-toggle.mute {
     text-shadow: none;
 }
 
+#last-10 {
+    font-size: 5rem;
+}
+
+.hint-CTA {
+    text-align: center;
+}
+
 /* input and buttons */
 
 #game-container input {
