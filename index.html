@@ -12,14 +12,15 @@
     <body>
         <div class="hint-overlay" id="hint-overlay"></div>
         <section class="screen" id="start-screen">
+            <h1 class="start-title">Who's that</h1>
             <img
                 src="./images/pokemon-logo-sizedpng.png"
                 alt="the pokemon logo"
             />
-            <h1 class="start-title">Unscramble!!!</h1>
+            <p class="question-marks" id="question-marks">?</p>
 
             <p>
-                Gotta catch em all! The name of the game is to unscramble the letters and figure out as many Pokémon names as you can within the time limit. If you need a hint, press the pokéball (but keep in mind you only get 3 hints per Pokémon).
+                Gotta catch em all! The name of the game is to unscramble the letters and figure out as many of the first generation Pokémon as you can within the time limit. If you need a hint, press the pokéball (but keep in mind you only get 3 hints per Pokémon).
             </p>
             <p><span class="disclaimer" id="disclaimer">DISCLAIMER:</span>
                     This will probably be pretty hard if you have never played
@@ -40,7 +41,7 @@
             >
         </div>
         <section class="screen hide" id="game-container">
-            <h1 class="title">Pokémon Unscramble!!!!</h1>
+            <h1 class="title">Who's That Pokémon!?!</h1>
 
             <div class="game-screen" id="game-screen">
                 <h2 class="word-to-solve-output" id="word-to-solve-output"></h2>
@@ -114,4 +115,5 @@
     <audio src="./assets/sounds/right-answer.mp3" id="right-answer-audio"></audio>
     <audio src="./assets/sounds/wrong-answer.mp3" id="wrong-answer-audio"></audio>
     <audio src="./assets/sounds/no-answer.wav" id="no-answer-audio"></audio>
+    <audio src="./assets/sounds/new-pokemon.mp3" id="new-pokemon-audio"></audio>
 </html>

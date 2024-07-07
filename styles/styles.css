@@ -23,8 +23,8 @@ body {
 
 h1 {
     color: #ffcb05;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
-        1px 1px 0 #395ba1;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2B73B9, -3px 3px 0 #395ba1,
+        1px 1px 0 #2B73B9;
     font-family: pokemon1;
     letter-spacing: 0.5rem;
     text-align: center;
@@ -50,7 +50,7 @@ body button {
     padding-bottom: 2rem;
     border: 5px solid #395ba1;
     border-radius: 10px;
-    background-color: #ffce00;
+    background-color: #ffcb05;
     cursor: pointer;
 }
 
@@ -89,6 +89,29 @@ body button:hover {
 
 /* Start Screen Styling ------------------------------ */
 
+.start-title {
+    font-size: 5rem;
+    margin: 0;
+    padding: 0;
+    padding-top: 1rem;
+    text-shadow: -8px -8px 0 #395ba1, 8px -8px 0 #2B73B9, -8px 8px 0 #395ba1,
+        1px 1px 0 #2B73B9;
+}
+
+#start-screen .question-marks {
+    position: absolute;
+    top: 70px;
+    left: 69%;
+    color: #ffcb05;
+    text-shadow: -8px -8px 0 #2B73B9, 8px -8px 0 #2B73B9, -8px 8px 0 #395ba1,
+        1px 1px 0 #395ba1;
+    font-family: pokemon1;
+    font-size: 12rem;
+    font-style: italic;
+    /* letter-spacing: -.5rem; */
+
+}
+
 #start-screen {
     display: flex;
     flex-direction: column;
@@ -97,7 +120,7 @@ body button:hover {
 #start-screen img {
     display: block;
     max-width: 35rem;
-    margin: 0 auto;
+    margin: 0 5.2rem;
 }
 
 #start-screen p {
@@ -120,11 +143,8 @@ body button:hover {
     color: red;
 }
 
-.start-title {
-    font-size: 3rem;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 1rem;
+#start-screen #education {
+    font-size: 1.25rem;
 }
 
 /* toggle music button  */
@@ -182,8 +202,8 @@ div#theme-music-toggle.mute {
 
 .title {
     color: #ffcb05;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
-        1px 1px 0 #395ba1;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2B73B9, -3px 3px 0 #395ba1,
+        1px 1px 0 #2B73B9;
     font-family: pokemon1;
     letter-spacing: 0.5rem;
     text-align: center;
@@ -231,8 +251,8 @@ div#theme-music-toggle.mute {
 .game-screen .word-to-solve-output {
     color: #ffcb05;
     font-family: pixelify;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
-        1px 1px 0 #395ba1;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2B73B9, -3px 3px 0 #395ba1,
+        1px 1px 0 #2B73B9;
     text-transform: uppercase;
     letter-spacing: 3rem;
     font-size: 3rem;
@@ -254,10 +274,6 @@ div#theme-music-toggle.mute {
 .game-screen .count-down-main {
     color: #09ff00;
     text-shadow: none;
-}
-
-#last-10 {
-    font-size: 5rem;
 }
 
 .hint-CTA {
@@ -333,16 +349,17 @@ div#theme-music-toggle.mute {
 }
 
 #game-end-screen p {
-    line-height: 1.3;
+    line-height: 1.25;
     color: #ffcb05;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
-        1px 1px 0 #395ba1;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2B73B9, -3px 3px 0 #395ba1,
+        1px 1px 0 #2B73B9;
     font-family: pokemon1;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.25rem;
     text-align: center;
     font-size: 3rem;
     padding: 0;
-    margin-top: 0;
+    margin-top: 1rem;
+    max-width: 40rem;
 }
 
 #game-end-screen button {
@@ -378,8 +395,8 @@ div#theme-music-toggle.mute {
     padding-bottom: 1rem;
     color: #ffce00;
     font-family: pokemon1;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
-        1px 1px 0 #395ba1;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2B73B9, -3px 3px 0 #395ba1,
+        1px 1px 0 #2B73B9;
 }
 .popup p {
     letter-spacing: 0.25rem;
@@ -390,8 +407,8 @@ div#theme-music-toggle.mute {
     padding-bottom: 1rem;
     color: #ffce00;
     font-family: pokemon1;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
-        1px 1px 0 #395ba1;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2B73B9, -3px 3px 0 #395ba1,
+        1px 1px 0 #2B73B9;
 }
 
 .popup button {

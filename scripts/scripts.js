@@ -346,7 +346,7 @@ function getScore() {
     } else {
         playAudio(loseAudio, 0.5);
         endGameScore.innerText =
-            "Oh no, you didn't get any answers right, better luck next time!";
+            "Oh no, you didn't get any answers right! Better luck next time!";
     }
 }
 
@@ -362,6 +362,10 @@ function quitGame() {
 //event listeners
 
 startGameBtn.addEventListener("click", startGame);
+newPokemonBtn.addEventListener("click", () => {
+    grabWord;
+    playAudio(newPokemonAudio, 0.8);
+});
 newPokemonBtn.addEventListener("click", grabWord);
 checkAnswerBtn.addEventListener("click", checkAnswer);
 
@@ -438,6 +442,7 @@ const shuffleAudio = document.getElementById("shuffle-audio");
 const rightAnswerAudio = document.getElementById("right-answer-audio");
 const wrongAnswerAudio = document.getElementById("wrong-answer-audio");
 const noAnswerAudio = document.getElementById("no-answer-audio");
+const newPokemonAudio = document.getElementById("new-pokemon-audio");
 
 // Audio functions
 
