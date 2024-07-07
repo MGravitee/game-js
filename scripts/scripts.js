@@ -55,7 +55,7 @@ function startGame() {
     stopAudio(themeSongAudio, 0);
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    startMainTimer(15);
+    // startMainTimer(60);
     grabWord();
 }
 
@@ -160,10 +160,10 @@ function showHint() {
                 showHintBtn.classList.remove("cool-down");
             }
         }, hintCoolDownDuration);
-        if (hints.length === 0) {
-            // if hints array is empty, disable it, not sure I still need thi but its still working so. 
-            showHintBtn.classList.add("disabled");
-        }
+        // if (hints.length === 0) {
+        //     // if hints array is empty, disable it, not sure I still need thi but its still working so. 
+        //     showHintBtn.classList.add("disabled");
+        // }
     }
 }
 
@@ -270,7 +270,7 @@ const grabWord = function () {
     // clean up step for resetting the hints array to empty so that hints from previous pokemon are discarded before new ones are pushed
 
     showHintBtn.classList.remove("disabled");
-    // showHintBtn.classList.remove("cool-down");
+    showHintBtn.classList.remove("cool-down");
     hints = [];
 
     // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
