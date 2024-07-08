@@ -239,7 +239,7 @@ const grabWord = function () {
     answerInput.value = "";
 
     //leaving this incase the player cant figure it out by looking in the dev console, (not everyone's played pokemon)
-    console.log(randomWord);
+    console.log(randomWord.name);
 };
 
 const checkAnswer = function () {
