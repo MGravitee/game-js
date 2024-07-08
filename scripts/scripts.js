@@ -55,7 +55,7 @@ function startGame() {
     stopAudio(themeSongAudio, 0);
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    // startMainTimer(60);
+    startMainTimer(60);
     grabWord();
 }
 
@@ -152,18 +152,19 @@ function showHint() {
         hintOverlay.append(hintPopUp);
         playAudio(pokeBallAudio, 0.5); // playing hint sound
 
-        showHintBtn.classList.add("disabled");
+        showHintBtn.disabled = true;
         showHintBtn.classList.add("cool-down");
 
         setTimeout(() => {
             console.log
             if (hints.length !== 0) {
                 showHintBtn.classList.remove("cool-down");
+                showHintBtn.disabled = false;
             }
         }, hintCoolDownDuration);
         if (hints.length === 0) {
             // if hints array is empty, disable it, not sure I still need thi but its still working so. 
-            showHintBtn.classList.add("disabled");
+            showHintBtn.disabled = true;
             showHintBtn.classList.add("cool-down");
         }
     }
@@ -275,7 +276,6 @@ const grabWord = function () {
     showHintBtn.classList.remove("disabled");
     showHintBtn.classList.remove("cool-down");
     
-
     // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
 
     hintOne = randomWord.hint1;
@@ -292,7 +292,7 @@ const grabWord = function () {
 
     // Resetting the input field after an answer is given
     answerInput.value = "";
-    //leaving this incase the player cant figure it out (not everyones played pokemon)
+    //leaving this incase the player cant figure it out by looking in the dev console, (not everyone's played pokemon)
     console.log(randomWord);
 };
 
@@ -471,7 +471,7 @@ function playStartGameAudioDelayed() {
 
 //Toggle audio button for start screen
 
-// this was adapted from Randy's Raybike game, credit once again and thank you
+// this was adapted from Randy's Raybike game, credit to him once again and thank you
 
 const toggleThemeMusicBtn = document.getElementById("theme-music-toggle");
 
