@@ -177,7 +177,6 @@ div#theme-music-toggle {
     height: 52px;
     width: 52px;
     border: unset;
-    background-color: none;
 }
 
 div#theme-music-toggle.mute {
@@ -211,7 +210,6 @@ div#german-music-toggle {
     height: 52px;
     width: 52px;
     border: unset;
-    background-color: none;
 }
 
 div#german-music-toggle.mute {
