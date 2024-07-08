@@ -88,7 +88,7 @@ let hints = [];
 
 // for hint cooldown so you can't spam the button
 
-const hintCoolDownDuration = 5000;
+const hintCoolDownDuration = 5100;
 
 // showHint function
 
@@ -148,7 +148,7 @@ function showHint() {
         //giving the hint popup a cooldown so you cant spam it.
         setTimeout(() => {
             hintPopUp.remove();
-        }, 6000);
+        }, 5000);
         hintOverlay.append(hintPopUp);
         playAudio(pokeBallAudio, 0.5); // playing hint sound
 
@@ -156,14 +156,16 @@ function showHint() {
         showHintBtn.classList.add("cool-down");
 
         setTimeout(() => {
+            console.log
             if (hints.length !== 0) {
                 showHintBtn.classList.remove("cool-down");
             }
         }, hintCoolDownDuration);
-        // if (hints.length === 0) {
-        //     // if hints array is empty, disable it, not sure I still need thi but its still working so. 
-        //     showHintBtn.classList.add("disabled");
-        // }
+        if (hints.length === 0) {
+            // if hints array is empty, disable it, not sure I still need thi but its still working so. 
+            showHintBtn.classList.add("disabled");
+            showHintBtn.classList.add("cool-down");
+        }
     }
 }
 
@@ -259,6 +261,7 @@ function shuffleAgain(word) {
 
 const grabWord = function () {
     //ripping the previous hint overlay out of the DOM to clear it if the popup is still running when the pokemon switches
+    hints = [];
     hintOverlay.innerHTML = "";
 
     // Getting random pokemon object out of pokemonList array of objects
@@ -271,7 +274,7 @@ const grabWord = function () {
 
     showHintBtn.classList.remove("disabled");
     showHintBtn.classList.remove("cool-down");
-    hints = [];
+    
 
     // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
 
@@ -443,10 +446,11 @@ const rightAnswerAudio = document.getElementById("right-answer-audio");
 const wrongAnswerAudio = document.getElementById("wrong-answer-audio");
 const noAnswerAudio = document.getElementById("no-answer-audio");
 const newPokemonAudio = document.getElementById("new-pokemon-audio");
+const germanTheme = document.getElementById("german-audio");
 
 // Audio functions
 
-// helper functions to play / stop audio 
+// helper functions to play / stop audio
 
 function playAudio(audioElement, volume = 1.0) {
     audioElement.currentTime = 0; // Rewind to the beginning
@@ -465,23 +469,40 @@ function playStartGameAudioDelayed() {
     }, 2000);
 }
 
-
 //Toggle audio button for start screen
 
 // this was adapted from Randy's Raybike game, credit once again and thank you
 
-const toggleThemeMusicButton = document.getElementById("theme-music-toggle");
+const toggleThemeMusicBtn = document.getElementById("theme-music-toggle");
 
-toggleThemeMusicButton.addEventListener("click", toggleThemeMusic);
+toggleThemeMusicBtn.addEventListener("click", toggleThemeMusic);
 
-function toggleThemeMusic () {
-    if (
-      toggleThemeMusicButton.classList.contains("mute")
-    ) {
-      toggleThemeMusicButton.classList.remove("mute");
-      playAudio(themeSongAudio, 0.5);
+function toggleThemeMusic() {
+    if (toggleThemeMusicBtn.classList.contains("mute")) {
+        toggleThemeMusicBtn.classList.remove("mute");
+        playAudio(themeSongAudio, 0.5);
+        toggleGermanMusicBtn.classList.add("mute");
+        stopAudio(germanTheme);
     } else {
-      toggleThemeMusicButton.classList.add("mute");
-      stopAudio(themeSongAudio);
+        toggleThemeMusicBtn.classList.add("mute");
+        stopAudio(themeSongAudio);
     }
-  }
+}
+
+// now for the fun german version
+
+const toggleGermanMusicBtn = document.getElementById("german-music-toggle");
+
+toggleGermanMusicBtn.addEventListener("click", toggleGermanTheme);
+
+function toggleGermanTheme() {
+    if (toggleGermanMusicBtn.classList.contains("mute")) {
+        toggleGermanMusicBtn.classList.remove("mute");
+        playAudio(germanTheme, 0.5);
+        toggleThemeMusicBtn.classList.add("mute");
+        stopAudio(themeSongAudio);
+    } else {
+        toggleGermanMusicBtn.classList.add("mute");
+        stopAudio(germanTheme);
+    }
+}

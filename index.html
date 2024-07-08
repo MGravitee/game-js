@@ -20,17 +20,34 @@
             <p class="question-marks" id="question-marks">?</p>
 
             <p>
-                Gotta catch em all! The name of the game is to unscramble the letters and figure out as many of the first generation Pokémon as you can within the time limit. If you need a hint, press the pokéball (but keep in mind you only get 3 hints per Pokémon).
+                Gotta catch em all! The name of the game is to unscramble the
+                letters and figure out as many of the first generation Pokémon
+                as you can within the time limit. If you need a hint, press the
+                pokéball (but keep in mind you only get 3 hints per Pokémon).
             </p>
-            <p><span class="disclaimer" id="disclaimer">DISCLAIMER:</span>
-                    This will probably be pretty hard if you have never played
-                    Pokémon before...</p>
-            <p class="education" id="education">For Education Purposes Only... please don't sue me Nintendo</p>
+            <p>
+                <span class="disclaimer" id="disclaimer">DISCLAIMER:</span> This
+                will probably be pretty hard if you have never played Pokémon
+                before...
+            </p>
+            <p class="education" id="education">
+                For Education Purposes Only... please don't sue me Nintendo
+            </p>
 
             <button class="button" id="start-game-btn">Start Game</button>
             <div class="music-button" id="music-button">
                 <p class="music-button-txt" id="music-button-txt">click →</p>
-                <div id="theme-music-toggle" class="theme-music-toggle mute"></div>
+                <div
+                    id="theme-music-toggle"
+                    class="theme-music-toggle mute"
+                ></div>
+            </div>
+            <div class="german-music-button" id="german-music-button">
+                <p class="german-button-txt" id="german-button-txt">or... →</p>
+                <div
+                    id="german-music-toggle"
+                    class="german-music-toggle mute"
+                ></div>
             </div>
         </section>
 
@@ -46,9 +63,8 @@
             <div class="game-screen" id="game-screen">
                 <h2 class="word-to-solve-output" id="word-to-solve-output"></h2>
                 <div class="hint-time" id="hint-time">
-                    <p class="hint-CTA" id="hint-CTA">Press me for hints!</p>
+                    <p class="hint-CTA" id="hint-CTA">Press for hints!</p>
                     <div class="get-hint-btn" id="get-hint-btn">
-                        
                         <img
                             src="./images/pokeball-for-hints-sized.png"
                             alt="pokeball for hints"
@@ -76,27 +92,26 @@
                         Shuffle Letters
                     </button>
 
-                        <button
-                            type="submit"
-                            class="check-answer-btn"
-                            id="check-answer-btn"
-                            >
-                            Check Answer
-                            </button>
+                    <button
+                        type="submit"
+                        class="check-answer-btn"
+                        id="check-answer-btn"
+                    >
+                        Check Answer
+                    </button>
                 </div>
-                   
             </div>
         </section>
 
         <section class="screen hide" id="game-end-screen">
-            <p class="game-end-txt-output" id="game-end-txt-output"><span class="player-end-points" id="player-end-points"></span></p>
+            <p class="game-end-txt-output" id="game-end-txt-output">
+                <span class="player-end-points" id="player-end-points"></span>
+            </p>
             <p>Would you like to play again?</p>
             <button class="play-again-btn" id="play-again-btn">
                 Play Again!
             </button>
-            <button class="quit-btn" id="quit-btn">
-                Please god no
-            </button>
+            <button class="quit-btn" id="quit-btn">Please god no</button>
         </section>
     </body>
     <audio src="./assets/sounds/theme-song.mp3" id="theme-song-audio"></audio>
@@ -112,8 +127,15 @@
     <audio src="./assets/sounds/victory.mp3" id="victory-audio"></audio>
     <audio src="./assets/sounds/womp-womp.mp3" id="lose-audio"></audio>
     <audio src="./assets/sounds/shuffling.mp3" id="shuffle-audio"></audio>
-    <audio src="./assets/sounds/right-answer.mp3" id="right-answer-audio"></audio>
-    <audio src="./assets/sounds/wrong-answer.mp3" id="wrong-answer-audio"></audio>
+    <audio
+        src="./assets/sounds/right-answer.mp3"
+        id="right-answer-audio"
+    ></audio>
+    <audio
+        src="./assets/sounds/wrong-answer.mp3"
+        id="wrong-answer-audio"
+    ></audio>
     <audio src="./assets/sounds/no-answer.wav" id="no-answer-audio"></audio>
     <audio src="./assets/sounds/new-pokemon.mp3" id="new-pokemon-audio"></audio>
+    <audio src="./assets/sounds/pokemon-german.mp3" id="german-audio"></audio>
 </html>

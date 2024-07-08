@@ -154,7 +154,7 @@ body button:hover {
 .music-button {
     position: absolute;
     bottom: 5%;
-    right: +80px;
+    left: +170px;
     display: flex;
 }
 
@@ -192,6 +192,41 @@ div#theme-music-toggle.mute {
     transition: ease-out 0.3s;
     cursor: pointer;
 }
+
+/* german theme music  */
+
+.german-music-button {
+    position: absolute;
+    bottom: 5%;
+    right: +80px;
+    display: flex;
+}
+
+#german-button-txt {
+    position: absolute;
+    animation: 800ms ease-in-out 0s infinite alternate running bounce;
+}
+
+div#german-music-toggle {
+    background-image: url("../images/volume-up-fill.svg");
+    background-size: cover;
+    height: 52px;
+    width: 52px;
+    border: unset;
+    background-color: none;
+}
+
+div#german-music-toggle.mute {
+    background-image: url("../images/volume-mute-fill.svg");
+    background-size: cover;
+}
+
+#german-music-toggle:hover {
+    transform: scale(1.1);
+    transition: ease-out 0.3s;
+    cursor: pointer;
+}
+
 
 /* Game Screen Styling ------------------------------*/
 
