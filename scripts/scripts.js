@@ -73,7 +73,7 @@ function startGame() {
     stopAudio(themeSongAudio, 0);
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    startMainTimer(10);
+    startMainTimer(60);
     grabWord();
 }
 
