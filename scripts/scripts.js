@@ -73,7 +73,7 @@ function startGame() {
     stopAudio(themeSongAudio, 0);
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
-    startMainTimer(60);
+    startMainTimer(10);
     grabWord();
 }
 
@@ -284,6 +284,8 @@ function gameEnd() {
     gameScreen.classList.add("hide");
     scoreBoardElem.classList.add("hide");
     gameEndScreen.classList.remove("hide");
+    // if there's still a hint on the screen, this will get rid of it. 
+    hintOverlay.innerHTML = "";
     stopAudio(startGameAudio, 0);
     getScore();
 }
@@ -365,7 +367,7 @@ function createPopup(heading, message) {
                 setTimeout(function () {
                     answerInput.focus();
                     popUp.remove();
-                }, 500);
+                }, 300);
             }
         });
     });
@@ -419,7 +421,7 @@ function playStartGameAudioDelayed() {
 
 //Toggle audio button for start screen
 
-// this was adapted from Randy's Raybike game, credit to him once again and thank you
+// this was adapted from Randy's Raybike game, as I have two seperate play/mute buttons for two different audio files. Credit to him once again and thank you
 
 const toggleThemeMusicBtn = document.getElementById("theme-music-toggle");
 

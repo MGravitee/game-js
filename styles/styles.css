@@ -168,6 +168,10 @@ body button:hover {
     position: absolute;
     animation: 800ms ease-in-out 0s infinite alternate running bounce;
 }
+#music-button-txt-german {
+    position: absolute;
+    animation: 800ms ease-in-out 0s infinite alternate running bounce;
+}
 
 @keyframes bounce {
     from {
