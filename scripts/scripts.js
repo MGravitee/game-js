@@ -46,19 +46,6 @@ const shuffleBtn = document.getElementById("shuffle-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 const quitBtn = document.getElementById("quit-btn");
 
-// start game function
-
-function startGame() {
-    startScreen.classList.add("hide");
-    scoreBoardElem.classList.remove("hide");
-    gameScreen.classList.remove("hide");
-    stopAudio(themeSongAudio, 0);
-    playAudio(whosThatAudio, 0.5);
-    playStartGameAudioDelayed();
-    startMainTimer(60);
-    grabWord();
-}
-
 // player object (literally just for tracking points)
 
 const player = {
@@ -77,6 +64,19 @@ let letterArray = [];
 // randomWord needs to be defined empty out here for scope otherwise can't grab matching hints from the right object in pokelist array
 let randomWord;
 
+// start game function
+
+function startGame() {
+    startScreen.classList.add("hide");
+    scoreBoardElem.classList.remove("hide");
+    gameScreen.classList.remove("hide");
+    stopAudio(themeSongAudio, 0);
+    playAudio(whosThatAudio, 0.5);
+    playStartGameAudioDelayed();
+    startMainTimer(60);
+    grabWord();
+}
+
 //variables for showHint function
 
 let hintOne;
@@ -91,41 +91,6 @@ let hints = [];
 const hintCoolDownDuration = 5100;
 
 // showHint function
-
-// function showHint() {
-//     if (hints.length === 0) {
-//         // No more hints available, keep the button disabled
-//         console.log('No more hints available.');
-//         showHintBtn.disabled = true;
-//         showHintBtn.classList.add ("cool-down");
-//         return;
-//     }
-
-//     // Display the next hint
-//     const nextHint = hints.shift();
-//     const hintPopUp = document.createElement("div");
-//         hintPopUp.classList.add("hint-popup", "slide-in");
-//         hintPopUp.innerHTML = `<h2>${nextHint}</h2>`;
-//         console.log(nextHint);
-//         hintPopUp.addEventListener("animationend", () => {
-//             hintPopUp.remove();
-//         });
-//         setTimeout(() => {
-//             hintPopUp.remove();
-//         }, 6000);
-//         hintOverlay.append(hintPopUp);
-//         playAudio(pokeBallAudio, 0.5); // playing hint sound
-
-//          // Disable the button
-//         showHintBtn.disabled = true;
-//         showHintBtn.classList.add ("cool-down");
-//     // Re-enable the button after 6 seconds if there are more hints
-//     if (hints.length > 0) {
-//         setTimeout(() => {
-//             showHintBtn.disabled = false;
-//         }, 6000);
-//     }
-// };
 
 function showHint() {
     //if the cool-down class is active, return
@@ -145,7 +110,7 @@ function showHint() {
         hintPopUp.addEventListener("animationend", () => {
             hintPopUp.remove();
         });
-        //giving the hint popup a cooldown so you cant spam it.
+        // timer for the hint popup to disappear
         setTimeout(() => {
             hintPopUp.remove();
         }, 5000);
@@ -156,47 +121,26 @@ function showHint() {
         showHintBtn.classList.add("cool-down");
 
         setTimeout(() => {
-            console.log
+            console.log;
             if (hints.length !== 0) {
                 showHintBtn.classList.remove("cool-down");
                 showHintBtn.disabled = false;
             }
         }, hintCoolDownDuration);
         if (hints.length === 0) {
-            // if hints array is empty, disable it, not sure I still need thi but its still working so. 
+            // if hints array is empty, disable it, not sure I still need thi but its still working so.
             showHintBtn.disabled = true;
             showHintBtn.classList.add("cool-down");
         }
     }
 }
 
-// const showHint = function () {
-//     if (hintCoolDown) {
-//         return;
-//     }
-
-//     playPokeBallAudio();
-//     if (currentHintIndex < hints.length) {
-//         hints[currentHintIndex].style.opacity = "1";
-//         currentHintIndex++;
-//     }
-//     hintCoolDown = true;
-
-//     showHintBtn.classList.add("disabled");
-//     showHintBtn.classList.add("cool-down");
-//     setTimeout(() => {
-//         hintCoolDown = false;
-//         showHintBtn.classList.remove("disabled");
-//         showHintBtn.classList.remove("cool-down");
-//     }, hintCoolDownDuration);
-// };
-
-// variables for timer function
+// variables for timer functions
 
 let timerInterval;
 let timeLeft;
 
-//  this should keep track of a countdown
+//  countdown function
 
 function countDown() {
     //different if statements which change the timer output depending, eventually stopping the timer and running gameEnd function
@@ -226,7 +170,7 @@ function startMainTimer(duration) {
 
 // Function to shuffle letters
 
-//was using this for shuffling BUT then I found out about array destructuring, huzzah
+// Was using this for shuffling BUT then I found out about array destructuring in 3400, huzzah
 
 // const shuffleLetters = function (array) {
 //     for (let index = array.length - 1; index > 0; index--) {
@@ -261,21 +205,22 @@ function shuffleAgain(word) {
 // function to grabWord from pokemonList array
 
 const grabWord = function () {
-    //ripping the previous hint overlay out of the DOM to clear it if the popup is still running when the pokemon switches
+    //ripping the previous hint overlay out of the DOM to clear it if the popup is still running when the pokemon switches and starting with a fresh empty hint array
     hints = [];
     hintOverlay.innerHTML = "";
 
     // Getting random pokemon object out of pokemonList array of objects
+
     randomWord = pokemonList[Math.floor(Math.random() * pokemonList.length)];
 
     // Splitting each letter of the name property from object using our shuffle function
     shuffleAgain(randomWord);
 
-    // clean up step for resetting the hints array to empty so that hints from previous pokemon are discarded before new ones are pushed
+    // clean up step for resetting the hints array to empty so that hints from previous pokemon are discarded before new ones are pushed. I know we tried to solve the problem and not need this BUT, after everything we did last thursday it was still causing problems unfortunately.
 
     showHintBtn.classList.remove("disabled");
     showHintBtn.classList.remove("cool-down");
-    
+
     // grabbing hint properties from randomWord and pushing them into hints array at top of file for cooldown function
 
     hintOne = randomWord.hint1;
@@ -292,6 +237,7 @@ const grabWord = function () {
 
     // Resetting the input field after an answer is given
     answerInput.value = "";
+
     //leaving this incase the player cant figure it out by looking in the dev console, (not everyone's played pokemon)
     console.log(randomWord);
 };
@@ -299,6 +245,7 @@ const grabWord = function () {
 const checkAnswer = function () {
     // this is to check if the typed value is the correct answer
     let playerAnswer = answerInput.value.toLowerCase();
+
     // oh man finding the lowercase method was awesome but also super annoying
 
     //this is thrown if the player leaves the field blank - bang operator and falsey value was super helpful here, spent a decent amount of time trying other stuff
@@ -461,6 +408,7 @@ function stopAudio(audioElement, volume = 1.0) {
     audioElement.pause(); // pause the audio
 }
 
+//made a seperate function for this as it had a few more tweaks to it and it was easier to write it this way.
 function playStartGameAudioDelayed() {
     setTimeout(() => {
         startGameAudio.volume = 0.5;
