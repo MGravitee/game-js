@@ -99,14 +99,12 @@ function showHint() {
     }
     //grabbing a hint from the array and putting it in a variable
     const nextHint = hints.shift();
-    console.log(hints);
     //creating a pop-up with the hint that's grabbed
     if (nextHint) {
         const hintPopUp = document.createElement("div");
         hintPopUp.id = "hint-popup";
         hintPopUp.classList.add("hint-popup", "slide-in");
         hintPopUp.innerHTML = `<h2>${nextHint}</h2>`;
-        console.log(nextHint);
         hintPopUp.addEventListener("animationend", () => {
             hintPopUp.remove();
         });
