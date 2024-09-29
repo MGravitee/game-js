@@ -16,7 +16,6 @@
 /* Main Styling ------------------------------*/
 
 body {
-    /* not sure if I need position relative but am putting it anyway */
     position: relative;
     background-image: url(../images/pokemon-bg1.png);
 }
@@ -77,7 +76,7 @@ body button:hover {
     width: 55rem;
     min-height: 25rem;
     border: 0.5rem solid #395ba1;
-    border-radius: 10px;
+    border-radius: 0.625rem;
 }
 
 .screen p {
@@ -128,7 +127,7 @@ body button:hover {
     font-size: 2rem;
 }
 
-/* startgame button */
+/* start game button */
 
 #start-screen button {
     align-self: center;
@@ -152,42 +151,59 @@ body button:hover {
 .music-button {
     position: absolute;
     bottom: 5%;
-    left: +170px;
+    left: 15rem;
     display: flex;
 }
 
 .german-music-button {
     position: absolute;
     bottom: 5%;
-    right: +80px;
+    right: 15rem;
     display: flex;
 }
 
 
 #music-button-txt {
     position: absolute;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2b73b9, -3px 3px 0 #395ba1, 1px 1px 0 #2b73b9;
+    bottom: 5%;
+    right: 32rem;
     animation: 800ms ease-in-out 0s infinite alternate running bounce;
 }
 #music-button-txt-german {
     position: absolute;
-    animation: 800ms ease-in-out 0s infinite alternate running bounce;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2b73b9, -3px 3px 0 #395ba1, 1px 1px 0 #2b73b9;
+    bottom: 5%;
+    left: 30rem;
+    animation: 800ms ease-in-out 0s infinite alternate running bounce2;
 }
+
+/* animations for music toggles */
 
 @keyframes bounce {
     from {
-        left: -150px;
+        left: -200px;
     }
 
     to {
-        left: -120px;
+        left: -180px;
+    }
+}
+@keyframes bounce2 {
+    from {
+        right: -200px;
+    }
+
+    to {
+        right: -180px;
     }
 }
 
 div.theme-music-toggle {
     background-image: url("../images/volume-up-fill.svg");
     background-size: cover;
-    height: 52px;
-    width: 52px;
+    height: 48px;
+    width: 48px;
     border: unset;
 }
 
@@ -255,8 +271,7 @@ div.theme-music-toggle:hover {
 .game-screen .word-to-solve-output {
     color: #ffcb05;
     font-family: pixelify;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2b73b9, -3px 3px 0 #395ba1,
-        1px 1px 0 #2b73b9;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2b73b9, -3px 3px 0 #395ba1, 1px 1px 0 #2b73b9;
     text-transform: uppercase;
     letter-spacing: 3rem;
     font-size: 3rem;
@@ -269,8 +284,7 @@ div.theme-music-toggle:hover {
 
 .game-screen .time-main {
     text-align: center;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1,
-        1px 1px 0 #395ba1;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #395ba1, -3px 3px 0 #395ba1, 1px 1px 0 #395ba1;
     color: #ffffff;
     font-size: 3rem;
 }
@@ -355,8 +369,7 @@ div.theme-music-toggle:hover {
 #game-end-screen p {
     line-height: 1.25;
     color: #ffcb05;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2b73b9, -3px 3px 0 #395ba1,
-        1px 1px 0 #2b73b9;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2b73b9, -3px 3px 0 #395ba1, 1px 1px 0 #2b73b9;
     font-family: pokemon1;
     letter-spacing: 0.25rem;
     text-align: center;
@@ -399,8 +412,7 @@ div.theme-music-toggle:hover {
     padding-bottom: 1rem;
     color: #ffce00;
     font-family: pokemon1;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2b73b9, -3px 3px 0 #395ba1,
-        1px 1px 0 #2b73b9;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2b73b9, -3px 3px 0 #395ba1, 1px 1px 0 #2b73b9;
 }
 .popup p {
     letter-spacing: 0.25rem;
@@ -411,8 +423,7 @@ div.theme-music-toggle:hover {
     padding-bottom: 1rem;
     color: #ffce00;
     font-family: pokemon1;
-    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2b73b9, -3px 3px 0 #395ba1,
-        1px 1px 0 #2b73b9;
+    text-shadow: -3px -3px 0 #395ba1, 3px -3px 0 #2b73b9, -3px 3px 0 #395ba1, 1px 1px 0 #2b73b9;
 }
 
 .popup button {
