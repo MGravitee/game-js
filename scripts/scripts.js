@@ -126,7 +126,7 @@ function showHint() {
             }
         }, hintCoolDownDuration);
         if (hints.length === 0) {
-            // if hints array is empty, disable it, not sure I still need thi but its still working so.
+            // if hints array is empty, disable it.
             showHintBtn.disabled = true;
             showHintBtn.classList.add("cool-down");
         }
@@ -168,7 +168,7 @@ function startMainTimer(duration) {
 
 // Function to shuffle letters
 
-// Was using this for shuffling BUT then I found out about array destructuring in 3400, huzzah
+// Was using this for shuffling BUT then I found out about array destructuring, huzzah
 
 // const shuffleLetters = function (array) {
 //     for (let index = array.length - 1; index > 0; index--) {
@@ -277,7 +277,7 @@ const checkAnswer = function () {
     }
 };
 
-// endGame function which calls all the necessary things
+// endGame function
 function gameEnd() {
     gameScreen.classList.add("hide");
     scoreBoardElem.classList.add("hide");
@@ -288,7 +288,7 @@ function gameEnd() {
     getScore();
 }
 
-// checking score and gives different endgame text depending
+// checking score and gives different end game text depending
 function getScore() {
     if (player.points >= 1) {
         playAudio(victoryAudio, 0.5);
@@ -300,15 +300,6 @@ function getScore() {
     }
 }
 
-// using window reload hack because why not
-function playAgain() {
-    window.location.reload();
-}
-//just to close the window easily
-function quitGame() {
-    close();
-}
-
 //event listeners
 
 startGameBtn.addEventListener("click", startGame);
@@ -316,7 +307,9 @@ newPokemonBtn.addEventListener("click", () => {
     grabWord;
     playAudio(newPokemonAudio, 0.8);
 });
+
 newPokemonBtn.addEventListener("click", grabWord);
+
 checkAnswerBtn.addEventListener("click", checkAnswer);
 
 //wanted a quality of life thing that you could hit enter to check your answer instead of needing to press the button
@@ -333,8 +326,16 @@ shuffleBtn.addEventListener("click", () => {
     playAudio(shuffleAudio, 0.5);
 });
 showHintBtn.addEventListener("click", showHint);
-playAgainBtn.addEventListener("click", playAgain);
-quitBtn.addEventListener("click", quitGame);
+
+//play again uses window reload 
+playAgainBtn.addEventListener("click", () => {
+    window.location.reload();
+});  
+    
+//quit button simply closes it
+quitBtn.addEventListener("click", () => {
+    close();
+});
 
 // Popup function for modals (didn't want to just use alerts)
 
@@ -424,6 +425,8 @@ function playStartGameAudioDelayed() {
 const toggleThemeMusicBtn = document.getElementById("theme-music-toggle");
 
 toggleThemeMusicBtn.addEventListener("click", toggleThemeMusic);
+
+//being able to turn theme music on or off
 
 function toggleThemeMusic() {
     if (toggleThemeMusicBtn.classList.contains("mute")) {
