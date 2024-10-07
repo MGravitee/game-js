@@ -71,6 +71,7 @@ function startGame() {
     scoreBoardElem.classList.remove("hide");
     gameScreen.classList.remove("hide");
     stopAudio(themeSongAudio, 0);
+    stopAudio(germanTheme, 0);
     playAudio(whosThatAudio, 0.5);
     playStartGameAudioDelayed();
     startMainTimer(60);
